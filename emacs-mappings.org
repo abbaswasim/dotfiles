@@ -1,0 +1,42 @@
+"C-x C-f") 'helm-find-files)
+"s-f") 'helm-occur)
+"s-z") 'helm-resume)
+"s-2") 'rtags-imenu)
+
+";" 'evil-ex)
+"s-q") 'evil-quit)
+
+leader "d" 'evil-mc-make-all-cursors)
+leader "v" 'iedit-mode)
+leader "o" 'helm-find-files)
+leader "e" 'evil-ace-jump-word-mode)
+leader "l" 'evil-ace-jump-line-mode)
+leader "c" 'evil-ace-jump-char-mode)
+leader "b" 'switch-to-buffer)
+leader "k" 'kill-buffer)
+leader "z" 'helm-resume)
+# leader "a" 'helm-gtags-select)
+leader "t" 'helm-projectile-find-other-file)
+leader "p" 'helm-projectile)
+leader "w" 'kill-this-buffer)
+leader "2" 'rtags-imenu)
+
+;; use evil-mc for multiple cursors (C-n/C-p) to create cursors for current word
+
+"g[" 'rtags-previous-match)
+"g]" 'rtags-next-match)
+"gs" 'rtags-find-symbol-at-point)
+"gx" 'rtags-find-references-at-point)
+"g9" 'rtags-location-stack-back)
+"g0" 'rtags-location-stack-forward)
+"gp" 'rtags-preprocess-mode-map)
+
+;; flycheck shortcuts for evil
+"g8" 'flycheck-next-error)
+"g7" 'flycheck-previous-error)
+
+;; Override gf to use helm-projectile-find-file-dwim instead
+(define-key evil-normal-state-map "gf" 'helm-projectile-find-file-dwim)
+
+(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+(global-set-key (kbd "<C-tab>") (function company-other-backend))

@@ -1,0 +1,11 @@
+:set arrowstyle=long
+:set print pretty on
+:map s is<CR><Esc>
+:map n in<CR><Esc>
+:map c ic<CR><Esc>
+:map r ir<CR><Esc>
+:map bt ibt<CR><Esc>
+:map f ifin<CR><Esc>
+:map d idown<CR><Esc>
+:map u iup<CR><Esc>
+:map <CR> i<CR><Esc>
