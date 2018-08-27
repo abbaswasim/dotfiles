@@ -47,9 +47,6 @@
 ;; Add all my leader mappings
 (require 'init-leader)
 
-(require 'evil-jumper)
-(global-evil-jumper-mode)
-
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 

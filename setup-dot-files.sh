@@ -34,7 +34,7 @@ pushd .oh-my-zsh/themes/
 echo "Cloning and installing oh-my-zsh theme powerlevel9k..."
 git clone --depth 1 https://github.com/bhilburn/powerlevel9k.git
 
+popd
+
 echo "Running emacs packages install script..."
 emacs --script ./emacs-install-packages.el
-
-popd
