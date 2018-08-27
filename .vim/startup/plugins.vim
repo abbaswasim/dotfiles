@@ -19,7 +19,7 @@ Plugin 'ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
-Plugin 'xolox/vim-easytags'
+" Plugin 'xolox/vim-easytags' " Don't use tags for now
 Plugin 'tagbar'
 Plugin 'tcomment_vim'
 Plugin 'lusty'
