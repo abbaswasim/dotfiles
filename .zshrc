@@ -133,6 +133,10 @@ setopt APPEND_HISTORY
 # Killer: share history between multiple shells
 setopt SHARE_HISTORY
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+	alias lldb='/usr/local/opt/llvm/bin/lldb'
+fi
+
 alias what_can_i_delete='du -sh * | gsort -hr'
 alias create_patch='diff -rupN'
 alias less='less -r'								# raw control characters
@@ -156,6 +160,7 @@ alias gpom='git push origin master'
 alias gcm='git commit -m'
 alias gsquash_last_commits='git rebase -i HEAD~2'
 alias git-create-patch='git format-patch master --stdout' # // Just pipe it into a .patch
+alias git-show-files-changed-in-commit="git diff-tree --no-commit-id --name-only -r"
 
 alias lt='ls -alstr'
 alias grep='grep -nI'
