@@ -18,5 +18,8 @@
 ;; remap C-j back to eval-print-last-sexp it is hijacked by (electric-newline-and-maybe-indent)
 (global-set-key (kbd "C-j") 'electric-newline-and-maybe-indent)
 
+;; Quickly turn SetSomething to set_something
+(global-set-key (kbd "s-6") 'string-inflection-underscore)
+
 (provide 'init-mappings)
 ;;; init-mappings.el ends here

@@ -55,7 +55,9 @@
 (setq c-default-style "linux" c-basic-offset tab-width)
 (require 'smart-tab)
 (global-smart-tab-mode 1)
-;; (smart-tabs-insinuate 'c 'javascript)
+
+;; string manipulation package
+(require 'string-inflection)
 
 ;; let TODO done time logging
 (setq org-log-done t)
@@ -70,12 +72,14 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
-;; enable c++-mode in .h instead of c-mode
+;; enable c++-mode in .h instead of c-mode and other associations
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.frag\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.vert\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.comp\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.gltf\\'" . javascript-mode))
 
 ;; Autoload code folding minor mode
 (add-hook 'c++-mode-hook 'hs-minor-mode)
@@ -92,7 +96,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-	(web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx elscreen avy litable company semantic cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags flycheck-rtags company-rtags package-utils smart-tab srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip flycheck-clangcheck evil-tutor evil-tabs evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))))
+	(clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx elscreen avy litable company semantic cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags flycheck-rtags company-rtags package-utils smart-tab srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip flycheck-clangcheck evil-tutor evil-tabs evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))))
 
 ;; Show helm-kill-ring with C-k
 (global-set-key (kbd "C-k") 'helm-show-kill-ring)
