@@ -21,5 +21,9 @@
 ;; Quickly turn SetSomething to set_something
 (global-set-key (kbd "s-6") 'string-inflection-underscore)
 
+;; Format selected region with clang-format, or complete buffer
+(global-set-key [C-s-tab] 'clang-format-region)
+(global-set-key (kbd "s-7") 'clang-format-buffer)
+
 (provide 'init-mappings)
 ;;; init-mappings.el ends here
