@@ -19,18 +19,16 @@
 (add-to-list 'exec-path "/usr/local/bin")
 
 ;; load my configurations
-(require 'init-mappings)
 (require 'init-packages)
+(require 'init-mappings)
 (require 'init-evil)
 (require 'init-powerline)
 (require 'init-linum)
 (require 'init-helm)
 (require 'init-completion)
-;; (require 'init-completion-irony)
 (require 'init-common)
 (require 'init-flycheck)
 (require 'init-magit)
-;; (require 'init-auto-complete)
 
 ;; Remove all the distractions
 (setq inhibit-splash-screen t
