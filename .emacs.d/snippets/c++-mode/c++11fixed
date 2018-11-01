@@ -1,0 +1,30 @@
+# -*- mode: snippet -*-
+# name: C++11 class with no options
+# key: cls11fixed
+# desc: Snippet for C++11 classes based on c++-mode/class.
+# based on c++11 snippet from yassnipet snippets
+# --
+class ${1:Name}
+{
+public:
+	//! Default constructor
+	${1:$(yas-c++-class-name yas-text)}() = default;
+
+	//! Copy constructor
+	${1:$(yas-c++-class-name yas-text)}(const ${1:$(yas-c++-class-name yas-text)} &other) = default;
+
+	//! Move constructor
+	${1:$(yas-c++-class-name yas-text)}(${1:$(yas-c++-class-name yas-text)} &&other) noexcept = default;
+
+	//! Destructor
+	virtual ~${1:$(yas-c++-class-name yas-text)}() noexcept = default;
+
+	//! Copy assignment operator
+	${1:$(yas-c++-class-name yas-text)}& operator=(const ${1:$(yas-c++-class-name yas-text)} &other) = default;
+
+	//! Move assignment operator
+	${1:$(yas-c++-class-name yas-text)}& operator=(${1:$(yas-c++-class-name yas-text)} &&other) noexcept = default;
+$0
+protected:
+private:
+};
