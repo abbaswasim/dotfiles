@@ -6,6 +6,12 @@
 (require 'json)
 (require 'flycheck)
 
+(defvar project-copyright-header)
+(defvar project-namespace-name)
+
+(setq project-copyright-header "// Copyright 2018")
+(setq project-namespace-name "core_engine")
+
 ;; TODO: fix the interactive mode
 (defun print-elements-of-list (list)
   "Print each element of LIST on a line of its own."
@@ -44,7 +50,6 @@
 
 (defun flycheck-clang-find-compiledb-dir (file-or-dir)
   "Given FILE-OR-DIR search up for `clang-dbname'.
-
 Return the directory which contains the database or nil."
   (let ((root-dir
 		 (locate-dominating-file
@@ -64,8 +69,7 @@ Return the directory which contains the database or nil."
 
 (defun flatten (list)
   "This function will flatten LIST.
-
-  If input is ((\"a\") (\"b\" \"c\")) it will output (\"a\" \"b\" \"c\")"
+If input is ((\"a\") (\"b\" \"c\")) it will output (\"a\" \"b\" \"c\")"
   (mapcan (lambda (x) (if (listp x) x nil)) list))
 
 (defun my-add-headers-include-to-dir-local (cl-build-path file-name)
@@ -76,10 +80,10 @@ Return the directory which contains the database or nil."
 	(if commands
 		(delete-dups (flatten (flycheck-clang-get-compile-command commands))))))
 
+;; fix this function and add comments
 (defun create-dir-locals-el-at-root ()
   "This function create .dir-locals.el at the root of the project.
-
- This will be used for flycheck headers files"
+This will be used for flycheck headers files"
   (interactive)
   (unless clang-build-path
 	(setq clang-build-path (flycheck-clang-find-compiledb-dir buffer-file-name)))
@@ -106,10 +110,10 @@ Return the directory which contains the database or nil."
   "Kill BUFFER and delete its windows.
 BUFFER may be either a buffer or its name (a string)."
   (interactive)
-  (setq buffer  (get-buffer buffer))
-  (if (buffer-live-p buffer)            ; Kill live buffer only.
-	  (let ((wins  (get-buffer-window-list buffer nil t))) ; On all frames.
-		(when (kill-buffer buffer)      ; Only delete windows if buffer killed.
+  (defvar init-common-buf (get-buffer buffer))
+  (if (buffer-live-p init-common-buf)               ; Kill live buffer only.
+	  (let ((wins  (get-buffer-window-list init-common-buf nil t))) ; On all frames.
+		(when (kill-buffer init-common-buf)         ; Only delete windows if buffer killed.
 		  (dolist (win  wins)           ; (User might keep buffer if modified.)
 			(when (window-live-p win)
 			  ;; Ignore error, in particular,
@@ -136,8 +140,7 @@ BUFFER may be either a buffer or its name (a string)."
 
 (defun create-note (name)
   "This create a note with NAME provided.
-
-  Always opens the file NAME in notes-folder."
+Always opens the file NAME in notes-folder."
   (interactive "sWhat do you want to call your note: ")
   (cd notes-folder)
   (find-file (concat name ".org"))
@@ -147,6 +150,46 @@ BUFFER may be either a buffer or its name (a string)."
   (goto-char (+ (* 2 (string-width name)) 23)))
 
 (global-set-key (kbd "s-4") 'create-note)
+
+(defun insert-header-include (name extension)
+  "Insert #include <NAME.EXTENSION> in place.
+Make sure extension has '.' included."
+  (insert "\n\n#include <")
+  (insert name)
+  (insert extension)
+  (insert ">"))
+
+(defun insert-namespace (namespace)
+  "Insert NAMESPACE in place."
+  (insert "\n\nnamespace ")
+  (insert namespace)
+  (insert "\n{\n\n} // namespace ")
+  (insert namespace))
+
+(defun c++-create-header (name header-dir source-dir)
+  "Create header/inline and source file with specificed NAME in HEADER-DIR and SOURCE-DIR."
+  (interactive
+   (let* ((X (read-string "What do you want to call your C/C++ source: "))
+		  (Y (read-directory-name "Where do you want header/inline: " (projectile-project-root)))
+		  (Z (read-directory-name "Where do you want source: " Y)))
+	 (list X Y Z)))
+  (cd source-dir)
+  (find-file (concat name ".cpp"))
+  (insert project-copyright-header)
+  (insert-header-include name ".hpp")
+  (insert-namespace project-namespace-name)
+  (save-buffer)
+  (cd header-dir)
+  (find-file (concat name ".inl"))
+  (insert project-copyright-header)
+  (insert-namespace project-namespace-name)
+  (save-buffer)
+  (find-file (concat name ".hpp"))
+  (insert project-copyright-header)
+  (insert "\n#pragma once")
+  (insert-namespace project-namespace-name)
+  (insert-header-include name ".inl")
+  (save-buffer))
 
 (provide 'init-common)
 ;;; init-common.el ends here
