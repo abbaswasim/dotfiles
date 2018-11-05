@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: make_unique
+# key: mku
+# --
+std::make_unique<${1:type}>(${2:init});$0
