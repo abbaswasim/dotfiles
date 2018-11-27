@@ -1,10 +1,10 @@
 # -*- mode: snippet -*-
-# name: C++11 class with no options
-# key: cls11fixed
+# name: C++11 class with no options for Roar
+# key: cls11roar
 # desc: Snippet for C++11 classes based on c++-mode/class.
 # based on c++11 snippet from yassnipet snippets
 # --
-class ${1:Name}
+class ROAR_ENGINE_ITEM ${1:Name}
 {
 public:
 

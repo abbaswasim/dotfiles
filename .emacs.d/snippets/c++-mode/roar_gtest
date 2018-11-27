@@ -1,20 +1,27 @@
 # -*- mode: snippet -*-
-# name: C++11 class with no options
-# key: cls11fixed
-# desc: Snippet for C++11 classes based on c++-mode/class.
-# based on c++11 snippet from yassnipet snippets
+# name: Roar Test class
+# key: rortest
 # --
-class ${1:Name}
+
+#pragma once
+
+#include <gtest/gtest.h>
+
+namespace ror_test
+{
+class ${1:Name} : public testing::Test
 {
 public:
-
 	${1:$(yas-c++-class-name yas-text)}() = default; //! Default constructor
 	${1:$(yas-c++-class-name yas-text)}(const ${1:$(yas-c++-class-name yas-text)} &a_other) = default; //! Copy constructor
 	${1:$(yas-c++-class-name yas-text)}(${1:$(yas-c++-class-name yas-text)} &&a_other) noexcept = default; //! Move constructor
 	${1:$(yas-c++-class-name yas-text)}& operator=(const ${1:$(yas-c++-class-name yas-text)} &a_other) = default; //! Copy assignment operator
 	${1:$(yas-c++-class-name yas-text)}& operator=(${1:$(yas-c++-class-name yas-text)} &&a_other) noexcept = default; //! Move assignment operator
 	virtual ~${1:$(yas-c++-class-name yas-text)}() noexcept = default;	//! Destructor
-$0
+	$0
 protected:
+	virtual void SetUp(){}
+	virtual void TearDown(){}
 private:
 };
+}

@@ -154,10 +154,10 @@ Always opens the file NAME in notes-folder."
 (defun insert-header-include (name extension)
   "Insert #include <NAME.EXTENSION> in place.
 Make sure extension has '.' included."
-  (insert "\n\n#include <")
+  (insert "\n\n#include \"")
   (insert name)
   (insert extension)
-  (insert ">"))
+  (insert "\""))
 
 (defun insert-namespace (namespace)
   "Insert NAMESPACE in place."
@@ -190,6 +190,8 @@ Make sure extension has '.' included."
   (insert-namespace project-namespace-name)
   (insert-header-include name ".inl")
   (save-buffer))
+
+(global-set-key (kbd "s-8") 'c++-create-header)
 
 (provide 'init-common)
 ;;; init-common.el ends here

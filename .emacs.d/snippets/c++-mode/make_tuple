@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: make_tuple
+# key: mkt
+# --
+std::make_tuple(${1:fromt});$0
