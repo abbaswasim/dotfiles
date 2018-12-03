@@ -20,8 +20,8 @@ public:
 	virtual ~${1:$(yas-c++-class-name yas-text)}() noexcept = default;	//! Destructor
 	$0
 protected:
-	virtual void SetUp(){}
-	virtual void TearDown(){}
+	virtual void SetUp() override {}
+	virtual void TearDown() override {}
 private:
 };
 }

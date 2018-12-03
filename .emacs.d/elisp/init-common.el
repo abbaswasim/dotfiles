@@ -1,6 +1,9 @@
-;; init-common.el --- provides common usefull functions
+;;; init-common.el --- provides common usefull functions;
+;;
+;;
 ;;; Commentary:
-
+;;
+;;
 ;;; Code:
 
 (require 'json)

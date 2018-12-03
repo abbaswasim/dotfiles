@@ -8,12 +8,12 @@ class ROAR_ENGINE_ITEM ${1:Name}
 {
 public:
 
-	${1:$(yas-c++-class-name yas-text)}() = default; //! Default constructor
-	${1:$(yas-c++-class-name yas-text)}(const ${1:$(yas-c++-class-name yas-text)} &a_other) = default; //! Copy constructor
-	${1:$(yas-c++-class-name yas-text)}(${1:$(yas-c++-class-name yas-text)} &&a_other) noexcept = default; //! Move constructor
-	${1:$(yas-c++-class-name yas-text)}& operator=(const ${1:$(yas-c++-class-name yas-text)} &a_other) = default; //! Copy assignment operator
-	${1:$(yas-c++-class-name yas-text)}& operator=(${1:$(yas-c++-class-name yas-text)} &&a_other) noexcept = default; //! Move assignment operator
-	virtual ~${1:$(yas-c++-class-name yas-text)}() noexcept = default;	//! Destructor
+	__OPTIMIZED ${1:$(yas-c++-class-name yas-text)}() = default; //! Default constructor
+	__OPTIMIZED ${1:$(yas-c++-class-name yas-text)}(const ${1:$(yas-c++-class-name yas-text)} &a_other) = default; //! Copy constructor
+	__OPTIMIZED ${1:$(yas-c++-class-name yas-text)}(${1:$(yas-c++-class-name yas-text)} &&a_other) noexcept = default; //! Move constructor
+	__OPTIMIZED ${1:$(yas-c++-class-name yas-text)}& operator=(const ${1:$(yas-c++-class-name yas-text)} &a_other) = default; //! Copy assignment operator
+	__OPTIMIZED ${1:$(yas-c++-class-name yas-text)}& operator=(${1:$(yas-c++-class-name yas-text)} &&a_other) noexcept = default; //! Move assignment operator
+	__OPTIMIZED virtual ~${1:$(yas-c++-class-name yas-text)}() noexcept = default;	//! Destructor
 $0
 protected:
 private:

@@ -74,4 +74,8 @@
 (setq projectile-enable-caching t)
 (helm-projectile-on)
 
+(add-to-list 'projectile-other-file-alist '("inl" "cpp" "hpp" "h"))
+(add-to-list 'projectile-other-file-alist '("hpp" "cpp" "inl" "h"))
+(add-to-list 'projectile-other-file-alist '("cpp" "hpp" "inl" "h"))
+
 (provide 'init-helm)

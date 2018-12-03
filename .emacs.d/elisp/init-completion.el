@@ -60,6 +60,20 @@
 
 (global-company-mode)
 
+;; TODO Remove this some day
+;; Hack to workaround bug
+;; https://github.com/syl20bnr/spacemacs/issues/11058
+(defun et/semantic-remove-hooks ()
+  "Utility function to remove some semantic functions!"
+  (remove-hook 'completion-at-point-functions
+			   'semantic-analyze-completion-at-point-function)
+  (remove-hook 'completion-at-point-functions
+			   'semantic-analyze-notc-completion-at-point-function)
+  (remove-hook 'completion-at-point-functions
+			   'semantic-analyze-nolongprefix-completion-at-point-function))
+
+(add-hook 'semantic-mode-hook #'et/semantic-remove-hooks)
+
 ;;; srefactor setup
 (require 'srefactor)
 (require 'srefactor-lisp)
