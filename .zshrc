@@ -200,6 +200,8 @@ alias cleanup_dsstore_files="find . -name '*.DS_Store' -type f -ls -delete"
 alias mount_bsg_jira="sudo mount -o resvport server:/home/$USERNAME /development/remote-dir"
 alias reset_audio="sudo killall coreaudiod"
 
+alias list_my_snippets="cd ~/.emacs.d/snippets/; cat */* G key; cd -"
+
 # Android adb specific aliases
 #Set aliases for most common keys
 alias adbk_back="adb shell input keyevent 4"
