@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: map
+# key: map
+# --
+std::map<${1:type1}> ${2:var};
+$0

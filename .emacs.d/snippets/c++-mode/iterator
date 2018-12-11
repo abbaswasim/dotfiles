@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: iterator
+# key: iter
+# --
+${1:std::}${2:${3:vector}<${4:int}>}::iterator ${5:iter};
