@@ -135,6 +135,8 @@ setopt SHARE_HISTORY
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	alias lldb='/usr/local/opt/llvm/bin/lldb'
+	alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+	alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 fi
 
 alias what_can_i_delete='du -sh * | gsort -hr'

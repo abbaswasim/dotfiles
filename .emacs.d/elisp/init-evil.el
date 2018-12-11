@@ -56,13 +56,13 @@
 (global-evil-mc-mode  1)
 
 ;; Some mappings for tabs and buffers
-(load "elscreen" "ElScreen" t)
-(elscreen-start)
-(define-key evil-normal-state-map (kbd "C-w t") 'elscreen-create) ;creat tab
-(define-key evil-normal-state-map (kbd "C-w x") 'elscreen-kill) ;kill tab
-(define-key evil-normal-state-map "gb" 'elscreen-previous) ;previous tab
-(define-key evil-normal-state-map "gt" 'elscreen-next) ;next tab
-(setq elscreen-display-tab nil)
+;; (load "elscreen" "ElScreen" t)
+;; (elscreen-start)
+;; (define-key evil-normal-state-map (kbd "C-w t") 'elscreen-create) ;creat tab
+;; (define-key evil-normal-state-map (kbd "C-w x") 'elscreen-kill) ;kill tab
+;; (define-key evil-normal-state-map "gb" 'elscreen-previous) ;previous tab
+;; (define-key evil-normal-state-map "gt" 'elscreen-next) ;next tab
+;; (setq elscreen-display-tab nil)
 
 ;; rtags shortcuts for evil
 (define-key evil-normal-state-map "g[" 'rtags-previous-match)
@@ -82,7 +82,7 @@
 (define-key evil-normal-state-map "gf" 'helm-projectile-find-file-dwim)
 
 ;; :tabnew and the likes
-(global-evil-tabs-mode t)
+;; (global-evil-tabs-mode t)
 
 (setq evil-emacs-state-cursor '("#3A2E58" box))
 (setq evil-normal-state-cursor '("#789000" box))
