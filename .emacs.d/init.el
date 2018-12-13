@@ -29,6 +29,7 @@
 (require 'init-common)
 (require 'init-flycheck)
 (require 'init-magit)
+(require 'init-neotree)
 
 ;; Remove all the distractions
 (setq inhibit-splash-screen t
@@ -157,16 +158,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(elscreen-tab-current-screen-face ((t (:background "#789000" :foreground "White"))))
- '(elscreen-tab-other-screen-face ((t (:background "#E4B91E" :foreground "#9166AB"))))
  '(evil-search-highlight-persist-highlight-face ((t (:background "#3e999f" :foreground "#ffffff"))))
  '(linum-relative-current-face ((t (:inherit linum :weight bold :underline "#555"))))
  '(popup-tip-face ((t (:background "khaki1" :foreground "black" :underline nil)))))
 
-(setq elscreen-tab-display-control nil)
-(setq elscreen-tab-display-kill-screen nil)
-
 ;; make sure ag follows symlinks, one can also provide other command line options
 (setq helm-ag-command-option "-f")
 
-;; (setq elscreen-display-tab nil)
+;;; init.el ends here
