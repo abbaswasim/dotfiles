@@ -15,13 +15,20 @@
 
 (defvar neotree/previous-buffer nil)
 
+(defun sublimetree-kill-buffer()
+  "Kills neotree/previous-buffer if it exists."
+  (interactive)
+  (if neotree/previous-buffer
+	   (if (get-buffer neotree/previous-buffer)
+		   (kill-buffer neotree/previous-buffer)))
+  (setq neotree/previous-buffer nil))
+
 (defun sublimetree-next-line (&optional arg)
   "Quick look like sublime text.
 ARG are the same as `neo-open-file'."
   (interactive "P")
   (neotree-next-line)
-  (if neotree/previous-buffer
-	  (kill-buffer neotree/previous-buffer))
+  (sublimetree-kill-buffer)
   (neotree-enter arg)
   (setq neotree/previous-buffer (buffer-name))
   (neo-global--select-window))
@@ -31,8 +38,7 @@ ARG are the same as `neo-open-file'."
 ARG are the same as `neo-open-file'."
   (interactive "P")
   (neotree-previous-line)
-  (if neotree/previous-buffer
-	  (kill-buffer neotree/previous-buffer))
+  (sublimetree-kill-buffer)
   (neotree-enter arg)
   (setq neotree/previous-buffer (buffer-name))
   (neo-global--select-window))
@@ -40,9 +46,7 @@ ARG are the same as `neo-open-file'."
 (defun override-neotree-toggle ()
   "Overrides neotree-toggle so we can save current buffer."
   (interactive)
-  (if neotree/previous-buffer
-	  (kill-buffer neotree/previous-buffer))
-  (setq neotree/previous-buffer nil)
+  (sublimetree-kill-buffer)
   (neotree-toggle))
 
 (evil-define-key 'normal neotree-mode-map (kbd "n") 'sublimetree-next-line)
