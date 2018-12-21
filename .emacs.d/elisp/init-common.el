@@ -109,30 +109,18 @@ This will be used for flycheck headers files"
 	 (window-configuration-to-register '_)
 	 (delete-other-windows))))
 
-(defun kill-buffer-and-its-windows (buffer)
-  "Kill BUFFER and delete its windows.
-BUFFER may be either a buffer or its name (a string)."
-  (interactive)
-  (defvar init-common-buf (get-buffer buffer))
-  (if (buffer-live-p init-common-buf)               ; Kill live buffer only.
-	  (let ((wins  (get-buffer-window-list init-common-buf nil t))) ; On all frames.
-		(when (kill-buffer init-common-buf)         ; Only delete windows if buffer killed.
-		  (dolist (win  wins)           ; (User might keep buffer if modified.)
-			(when (window-live-p win)
-			  ;; Ignore error, in particular,
-			  ;; "Attempt to delete the sole visible or iconified frame".
-			  (condition-case nil (delete-window win) (error nil))))))))
+(setq help-window-select t)
 
 (defun describe-thing-in-popup ()
   "Show full documentation of the symbol at point."
   (interactive)
   (let* ((thing (symbol-at-point))
 			   (description (describe-function thing)))
-	(kill-buffer-and-its-windows "*Help*")
+	(quit-window)
 	(popup-tip description
 			   :point (point)
 			   :around t
-			   :height 50
+			   :height 100
 			   :scroll-bar t
 			   :margin t)))
 
