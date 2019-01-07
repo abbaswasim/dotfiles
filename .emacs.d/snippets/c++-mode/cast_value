@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: cast
+# key: sta
+# --
+static_cast<_type>($0)

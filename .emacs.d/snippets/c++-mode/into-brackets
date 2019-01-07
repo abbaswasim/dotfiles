@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: into-brackets
+# key: {}
+# --
+{
+	$0
+}

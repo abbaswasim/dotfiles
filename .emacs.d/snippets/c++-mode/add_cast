@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: add_cast
+# key: stc
+# --
+static_cast<_type>($0

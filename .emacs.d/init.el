@@ -93,7 +93,36 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-	(yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx elscreen avy litable company semantic cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags flycheck-rtags company-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-tabs evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))))
+	(neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company semantic cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags flycheck-rtags company-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
+ '(safe-local-variable-values
+   (quote
+	((project-copyright-header . "
+// Roar Source Code
+// Wasim Abbas
+// http://www.waZim.com
+// Copyright (c) 2008-2019
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the 'Software'),
+// to deal in the Software without restriction, including without limitation
+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the Software
+// is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+// CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+// OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+// Version: 1.0.0
+")
+	 (project-namespace-name . "ror")))))
 
 ;; Show helm-kill-ring with C-k
 (global-set-key (kbd "C-k") 'helm-show-kill-ring)
@@ -119,6 +148,8 @@
 
 ;; leave a few lines above and blew when scrlling
 (setq scroll-margin 10 scroll-conservatively 9999 scroll-step 1)
+;; Enable smooth scrolling
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 ;; show current function at the top
 (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)

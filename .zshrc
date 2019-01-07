@@ -192,6 +192,7 @@ alias -g L="| less"
 alias update_emacs_packages='emacs -batch -u "$USER" -f package-utils-upgrade-all -kill'
 alias start_synergy_server='cd /software/synergy/;./synergy-core --server -c synergy.conf; cd -'
 alias kill_synergy_server='killall -9 synergy-core'
+alias cpp_to_template_proccessed='clang++ -Xclang -ast-print -fsyntax-only'
 
 alias mk='make -j32'
 alias emasc=emacs
