@@ -184,5 +184,46 @@ Make sure extension has '.' included."
 
 (global-set-key (kbd "s-8") 'c++-create-header)
 
+;; Let projectile save buffer on compile
+(setq compilation-ask-about-save nil)
+
+;; Run projectile compile command to start building the poroject
+(defun compile-projectile-project-no-prompt ()
+  "Compiles projectile project without prompting for compile command.
+
+It uses projectile-project-compilation-cmd from .dir-locals.el if defined
+Or run projectile-compile-command first to save a command in history"
+  (interactive)
+  (let ((compilation-read-command nil))
+	(projectile-compile-project nil)))
+
+(global-set-key (kbd "s-<return>") 'compile-projectile-project-no-prompt)
+
+;; Cycles through the compilation errors only
+(defun go-to-next-compile-error (&optional direction threshold)
+  "Opens the next compiler error.
+
+Sets `compilation-skip-threshold' to 2 to skip anything other than errors.
+If `DIRECTION' is nil it moves to next error and -1 will take you to previous.
+If `THRESHOLD' is 2 only traverses error, 1 means errors and warnings and 0 means everything."
+  (interactive)
+  (let ((compilation-skip-threshold threshold))
+	(next-error direction)))
+
+;; > to takes you to next error
+;; < to takes you to previous error
+(global-set-key (kbd "s-.") (lambda () (interactive) (go-to-next-compile-error 1 2)))
+(global-set-key (kbd "s-,") (lambda () (interactive) (go-to-next-compile-error -1 2)))
+
+;; > to takes you to next error+warning
+;; < to takes you to previous error+warning
+(global-set-key (kbd "s->") (lambda () (interactive) (go-to-next-compile-error 1 1)))
+(global-set-key (kbd "s-<") (lambda () (interactive) (go-to-next-compile-error -1 1)))
+
+;; > to takes you to next error+warning+info
+;; < to takes you to previous error+warning+info
+(global-set-key (kbd "C-s-.") (lambda () (interactive) (go-to-next-compile-error 1 0)))
+(global-set-key (kbd "C-s-,") (lambda () (interactive) (go-to-next-compile-error -1 0)))
+
 (provide 'init-common)
 ;;; init-common.el ends here

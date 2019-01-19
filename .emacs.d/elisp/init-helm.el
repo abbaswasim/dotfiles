@@ -39,32 +39,6 @@
 (setq helm-quick-update t)
 (setq helm-bookmark-show-location t)
 
-;; ;; helm-gtags settings
-
-;; (setq
-;;  helm-gtags-ignore-case t
-;;  helm-gtags-auto-update t
-;;  helm-gtags-use-input-at-cursor t
-;;  helm-gtags-pulse-at-cursor t
-;;  helm-gtags-prefix-key "\C-cg"
-;;  helm-gtags-suggested-key-mapping t
-;;  )
-
-;; (require 'helm-gtags)
-;; ;; Enable helm-gtags-mode
-;; (add-hook 'dired-mode-hook 'helm-gtags-mode)
-;; (add-hook 'eshell-mode-hook 'helm-gtags-mode)
-;; (add-hook 'c-mode-hook 'helm-gtags-mode)
-;; (add-hook 'c++-mode-hook 'helm-gtags-mode)
-;; (add-hook 'asm-mode-hook 'helm-gtags-mode)
-
-;; (define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
-;; (define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
-;; (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
-;; (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
-;; (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
-;; (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
-
 (require 'helm-misc)
 (require 'helm-projectile)
 
@@ -73,6 +47,9 @@
 (setq projectile-switch-project-action 'helm-projectile)
 (setq projectile-enable-caching t)
 (helm-projectile-on)
+
+;; helm-projectile-ag would use symbol at point as input with this setting
+(setq helm-ag-insert-at-point 'symbol)
 
 (add-to-list 'projectile-other-file-alist '("inl" "cpp" "hpp" "h"))
 (add-to-list 'projectile-other-file-alist '("hpp" "cpp" "inl" "h"))

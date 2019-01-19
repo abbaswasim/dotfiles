@@ -146,8 +146,10 @@ alias gcleanco='git clean -fdx;git checkout -- .'         # Full clean of git re
 alias who-is-holding-reference='lsof | grep '         # Find out who is grabing onto files
 alias all-predefined-macros='clang -dM -E -x c /dev/null'
 
-export ANDROID_SDK_ROOT=/development/android/android-sdk/sdk/
-export ANDROID_NDK_ROOT=/development/android/android-ndk-r10e/
+export ANDROID_NDK_ROOT=/development/android/ndk
+export ANDROID_SDK_ROOT=/development/android/sdk
+export ANDROID_HOME=$ANDROID_SDK_ROOT
+export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT
 export ANDROID_MAKE_CCACHE=ccache
 
 # alias gk='gitk --all &'
@@ -160,6 +162,7 @@ alias gdws='git diff --color --ignore-space-at-eol -b -w'
 alias gaup='git add -up'
 alias gpom='git push origin master'
 alias gcm='git commit -m'
+alias ganw="git diff -U0 -w --no-color | git apply --cached --ignore-whitespace --unidiff-zero" # Git add ignoring whitespace
 alias gsquash_last_commits='git rebase -i HEAD~2'
 alias git-create-patch='git format-patch master --stdout' # // Just pipe it into a .patch
 alias git-show-files-changed-in-commit="git diff-tree --no-commit-id --name-only -r"

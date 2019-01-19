@@ -42,5 +42,8 @@
 ;; <leader>2 shows all symbols in current file to chose from
 (evil-leader/set-key "2" 'rtags-imenu)
 
+;; <leader>f starts helm-projectile-ag at current symbol
+(evil-leader/set-key "f" 'helm-projectile-ag)
+
 (provide 'init-leader)
 ;;; init-leader.el ends here
