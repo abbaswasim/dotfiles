@@ -196,4 +196,8 @@
 ;; make sure ag follows symlinks, one can also provide other command line options
 (setq helm-ag-command-option "-f")
 
+;; Stop emacs splitting windows, only use the current windows available
+(setq split-width-threshold nil)
+(setq split-height-threshold nil)
+
 ;;; init.el ends here

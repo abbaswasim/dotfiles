@@ -225,5 +225,14 @@ If `THRESHOLD' is 2 only traverses error, 1 means errors and warnings and 0 mean
 (global-set-key (kbd "C-s-.") (lambda () (interactive) (go-to-next-compile-error 1 0)))
 (global-set-key (kbd "C-s-,") (lambda () (interactive) (go-to-next-compile-error -1 0)))
 
+;; Always make compilation buffer open at the bootom of the windows at 40% of the height
+(add-to-list 'display-buffer-alist
+			 `("*compilation*"
+			   (display-buffer-reuse-window
+				display-buffer-in-side-window)
+			   (reusable-frames . visible)
+			   (side            . bottom)
+			   (window-height   . 0.4)))
+
 (provide 'init-common)
 ;;; init-common.el ends here

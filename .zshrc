@@ -172,13 +172,13 @@ alias grep='grep -nI'
 alias search_in_all_c_type_sources="find . -name '*.h' -or -name '*.c' -or -name '*.cpp' -or -name '*.cc' | xargs grep"
 alias find_executables="find . -perm +0111 -type f"
 
-alias adb="/development/android/platform-tools/adb"
-alias fastboot="/development/android/platform-tools/fastboot"
+alias adb="$ANDROID_SDK_ROOT/platform-tools/adb"
+alias fastboot="$ANDROID_SDK_ROOT/platform-tools/fastboot"
 alias which_arch='lipo -info'
 alias mount_to_dev='hdiutil attach -imagekey diskimage-class=CRawDiskImage -nomount'
 alias android_print_screen='adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > screen.png'
 alias android_print_screen_adb='adb shell screencap -p /sdcard/screen.png; adb pull /sdcard/screen.png; adb shell rm /sdcard/screen.png'
-alias apktool="/development/android/apktool/apktool"
+alias apktool="$ANDROID_SDK_ROOT/apktool/apktool"
 alias open_gnome_terminal_on_server='ssh -f -Y $USERNAME@server gnome-terminal'
 alias flush_dns_cache='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder;say cache flushed'
 alias vim_without_vimrc='vim -u NONE -N'
@@ -276,7 +276,7 @@ function f()
   find . -name $1
 }
 
-function find-something-in-something()
+function find_something_in_something()
 {
   toFind="$1"
   if [ ! $2 ] ; then file="*" ; else file="$2"; fi
@@ -311,4 +311,27 @@ gcoc() {
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
   git checkout $(echo "$commit" | sed "s/ .*//")
+}
+
+# Make, install, run and collect android apk error logs
+android_make_deploy_collect()
+{
+	APK_PATH=
+	PACKAGE_NAME=
+	ACTIVITY_NAME=
+	FILTER="E"
+
+	if [ "$#" -lt 3 ]; then
+		echo "To use this function provide apk to install, package name, activity name and optional filter\n\tmk_install_run_errors bla.apk com.bla.something MyActivity {filter, default E}\t where filter is {E|V|I}"
+	else
+		APK_PATH=$1
+		PACKAGE_NAME=$2
+		ACTIVITY_NAME=$3
+
+		if [ "$#" -eq 4 ]; then
+			FILTER=$4
+		fi
+
+		make -j8 && adb install -r $APK_PATH && adb shell am start -n $PACKAGE_NAME/$PACKAGE_NAME.$ACTIVITY_NAME && sleep 2 && adb logcat --pid=`adb shell pidof -s $PACKAGE_NAME` *:$FILTER
+	fi
 }
