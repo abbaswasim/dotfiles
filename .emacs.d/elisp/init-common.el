@@ -124,7 +124,18 @@ This will be used for flycheck headers files"
 			   :scroll-bar t
 			   :margin t)))
 
-(global-set-key (kbd "s-5") 'describe-thing-in-popup)
+ ;; in elisp mode show help in popup
+(evil-define-key 'normal emacs-lisp-mode-map (kbd "s-1") 'describe-thing-in-popup)
+;; in cmake mode show help in side window
+(evil-define-key 'normal cmake-mode-map (kbd "C-M-s-!") 'cmake-help)
+;; keyboard macro for the above to press enter automatically
+(evil-define-key 'normal cmake-mode-map (kbd "s-1") '(lambda (&optional arg)
+													   "Keyboard macro."
+													   (interactive "p")
+													   (kmacro-exec-ring-item
+														(quote
+														 ([209715233 return] 0 "%d")) arg)))
+
 
 (defvar notes-folder "/development/notes/")
 (defvar notes-text "\n\n* Atendees:\n** Ours:\n** <other> \n\n* Notes:\n")
