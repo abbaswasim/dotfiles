@@ -5,8 +5,7 @@ This is the collection of my dotfiles I have gathered over the years. You can us
 ## How to use
 
 `
-git clone https://github.com/abbaswasim/dotfiles.git ~/dotfiles
-~/dotfiles/setup-dot-files.sh
+git clone https://github.com/abbaswasim/dotfiles.git ~/dotfiles && ~/dotfiles/setup-dot-files.sh
 `
 
 ## License
