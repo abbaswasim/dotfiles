@@ -124,6 +124,8 @@ This will be used for flycheck headers files"
 			   :scroll-bar t
 			   :margin t)))
 
+ ;; in python mode show help in window
+(evil-define-key 'normal python-mode-map (kbd "s-1") 'elpy-doc)
  ;; in elisp mode show help in popup
 (evil-define-key 'normal emacs-lisp-mode-map (kbd "s-1") 'describe-thing-in-popup)
 ;; in cmake mode show help in side window
