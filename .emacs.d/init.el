@@ -18,6 +18,11 @@
 ;; load binaries from /usr/local/bin dir
 (add-to-list 'exec-path "/usr/local/bin")
 
+;; Check if packages are avaiable for udpate
+(auto-package-update-maybe)
+;; Also delete old copies of packages being updated
+(setq auto-package-update-prompt-before-update t)
+
 ;; load my configurations
 (require 'init-packages)
 (require 'init-mappings)
@@ -93,10 +98,11 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-	(elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company semantic cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags flycheck-rtags company-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
+	(auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company semantic cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags flycheck-rtags company-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
  '(safe-local-variable-values
    (quote
-	((project-copyright-header . "
+	((projectile-project-compilation-cmd . "cmake --build build")
+	 (project-copyright-header . "
 // Roar Source Code
 // Wasim Abbas
 // http://www.waZim.com
@@ -191,7 +197,15 @@
  ;; If there is more than one, they won't work right.
  '(evil-search-highlight-persist-highlight-face ((t (:background "#3e999f" :foreground "#ffffff"))))
  '(linum-relative-current-face ((t (:inherit linum :weight bold :underline "#555"))))
+ '(org-level-1 ((t (:inherit outline-1 :height 1.0))))
+ '(org-level-2 ((t (:inherit outline-2 :height 1.0))))
+ '(org-level-3 ((t (:inherit outline-3 :height 1.0))))
+ '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+ '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
  '(popup-tip-face ((t (:background "khaki1" :foreground "black" :underline nil)))))
+
+;; Enable org bullets in org-mode
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;; make sure ag follows symlinks, one can also provide other command line options
 (setq helm-ag-command-option "-f")
@@ -202,5 +216,23 @@
 
 ;; enable elpy best python IDE, if completion doesn't work make sure to 'pip install jedi'
 (elpy-enable)
+
+;; enable async mode very handy
+;; Try to understand how this works a bit more
+(require 'async)
+
+;; Find better shortcut keys for those
+(global-set-key (kbd "s-C-<left>")  'shrink-window-horizontally)
+(global-set-key (kbd "s-C-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "s-C-<down>")  'shrink-window)
+(global-set-key (kbd "s-C-<up>")    'enlarge-window)
+
+;;; Some Company defaults, i need to look into
+;; (setq company-tooltip-limit 20)
+;; (setq company-idle-delay .15)
+;; (setq company-echo-delay 0)
+;; (setq company-begin-commands '(self-insert-command))
+;; (define-key company-active-map (kbd "C-n") #'company-select-next)
+;; (define-key company-active-map (kbd "C-p") #'company-select-previous)
 
 ;;; init.el ends here
