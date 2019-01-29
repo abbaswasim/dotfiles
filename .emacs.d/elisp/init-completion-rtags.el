@@ -57,6 +57,7 @@
 (setq company-minimum-prefix-length 1)
 (setq company-show-numbers t)
 (setq company-tooltip-limit 20)
+
 (setq company-idle-delay 0.3)
 
 (global-company-mode)
@@ -82,5 +83,5 @@
 (define-key c-mode-map (kbd "s-i") 'srefactor-refactor-at-point)
 (define-key c++-mode-map (kbd "s-i") 'srefactor-refactor-at-point)
 
-(provide 'init-completion)
-;;; init-completion.el ends here
+(provide 'init-completion-rtags)
+;;; init-completion-rtags.el ends here

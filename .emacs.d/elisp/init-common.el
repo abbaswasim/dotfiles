@@ -7,7 +7,7 @@
 ;;; Code:
 
 (require 'json)
-(require 'flycheck)
+;; (require 'flycheck)
 
 (defvar project-copyright-header)
 (defvar project-namespace-name)
