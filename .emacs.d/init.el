@@ -25,21 +25,26 @@
 
 ;; load my configurations
 (require 'init-packages)
-(require 'init-mappings)
+(require 'init-company)
+(require 'init-rtags)
+(require 'init-flycheck)
 (require 'init-evil)
 (require 'init-powerline)
 (require 'init-linum)
 (require 'init-helm)
-;; (require 'init-completion-rtags)
-(require 'init-completion-ycmd)
+(require 'init-ycmd)
 (require 'init-common)
-;; (require 'init-flycheck)
 (require 'init-magit)
 (require 'init-neotree)
+(require 'init-mappings)
+(require 'init-c-cpp)
+(require 'init-python)
+(require 'init-cmake)
 
 ;; If .elc is older make sure .el is loaded and recompiled
 ;; TODO Check how much time this adds before enabling
 ;; (setq load-prefer-newer t)
+;; (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
 
 ;; Remove all the distractions
 (setq inhibit-splash-screen t
@@ -79,18 +84,7 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
-;; enable c++-mode in .h instead of c-mode and other associations
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.frag\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.vert\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.comp\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.gltf\\'" . javascript-mode))
-
 ;; Autoload code folding minor mode
-(add-hook 'c++-mode-hook 'hs-minor-mode)
-(add-hook 'c-mode-hook 'hs-minor-mode)
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; start maximized
@@ -103,7 +97,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-	(flycheck-popup-tip flycheck-ycmd company-ycmd ycmd auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company semantic cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags company-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
+	(flycheck-popup-tip flycheck-ycmd company-ycmd ycmd auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company semantic cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
  '(safe-local-variable-values
    (quote
 	((projectile-project-compilation-cmd . "cmake --build build")
@@ -159,12 +153,13 @@
 
 ;; leave a few lines above and blew when scrlling
 (setq scroll-margin 10 scroll-conservatively 9999 scroll-step 1)
+
 ;; Enable smooth scrolling
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
 
 ;; show current function at the top
 (add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
-(semantic-mode 1)
+(semantic-mode 1) ;; Wish I never have to rely on semantic mode for sticky funcs
 (require 'stickyfunc-enhance)
 
 ;; open all gdb windows by default
@@ -219,9 +214,6 @@
 (setq split-width-threshold nil)
 (setq split-height-threshold nil)
 
-;; enable elpy best python IDE, if completion doesn't work make sure to 'pip install jedi'
-(elpy-enable)
-
 ;; enable async mode very handy
 ;; Try to understand how this works a bit more
 (require 'async)
@@ -231,18 +223,6 @@
 (global-set-key (kbd "s-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "s-C-<down>")  'shrink-window)
 (global-set-key (kbd "s-C-<up>")    'enlarge-window)
-
-;;; Some Company defaults, i need to look into
-;; (setq company-tooltip-limit 20)
-;; (setq company-idle-delay .15)
-;; (setq company-echo-delay 0)
-;; (setq company-begin-commands '(self-insert-command))
-;; (define-key company-active-map (kbd "C-n") #'company-select-next)
-;; (define-key company-active-map (kbd "C-p") #'company-select-previous)
-
-;; Better syntax highlighting in cmake files
-(autoload 'cmake-font-lock-activate "cmake-font-lock" nil t)
-(add-hook 'cmake-mode-hook 'cmake-font-lock-activate)
 
 (when (string-equal system-type "darwin")
   ;; Non-native fullscreen

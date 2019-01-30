@@ -15,6 +15,7 @@
 (global-set-key (kbd "s-=") 'hs-toggle-hiding)
 
 (global-set-key (kbd "s-v") 'evil-paste-after)
+
 ;; remap C-j back to eval-print-last-sexp it is hijacked by (electric-newline-and-maybe-indent)
 (global-set-key (kbd "C-j") 'electric-newline-and-maybe-indent)
 
