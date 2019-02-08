@@ -109,6 +109,7 @@ setopt NO_NOMATCH
 
 # Where it gets saved
 HISTFILE=~/.omz_history
+NUMCPUS=8 # Default number looks good
 
 # incase running on Arch within a debian docker container, seperate history
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -121,6 +122,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
 	else
 		echo "Os unknown! something went wrong your OS is undefined, fix .zshrc"
 	fi	# ...
+	NUMCPUS=$(awk '/^processor/ {++n} END {print n+1}' /proc/cpuinfo)
 fi
 
 # Remember about a years worth of history (AWESOME)
@@ -137,6 +139,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	alias lldb='/usr/local/opt/llvm/bin/lldb'
 	alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 	alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+	NUMCPUS=`sysctl -n hw.ncpu`
 fi
 
 alias what_can_i_delete='du -sh * | gsort -hr'
@@ -197,8 +200,9 @@ alias start_synergy_server='cd /software/synergy/;./synergy-core --server -c syn
 alias kill_synergy_server='killall -9 synergy-core'
 alias cpp_to_template_proccessed='clang++ -Xclang -ast-print -fsyntax-only'
 
-alias mk='make -j32'
+alias mk='make -j$NUMCPUS'
 alias emasc=emacs
+alias c=cat
 
 # Undo a `git push`
 alias undo_git_push="git push -f origin HEAD^:master"
