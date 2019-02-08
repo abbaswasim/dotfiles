@@ -41,6 +41,9 @@
 (require 'init-python)
 (require 'init-cmake)
 
+;; Use simple terminal because a lot of packages struggle otherwise
+(setenv "TERM" "dumb")
+
 ;; If .elc is older make sure .el is loaded and recompiled
 ;; TODO Check how much time this adds before enabling
 ;; (setq load-prefer-newer t)
@@ -63,6 +66,7 @@
 (global-hl-line-mode t)
 (setq undo-limit 100000)
 (defalias 'yes-or-no-p 'y-or-n-p)
+(setq ring-bell-function 'ignore)
 ;; tabs are always spaces
 ;; (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -97,7 +101,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-	(flycheck-popup-tip flycheck-ycmd company-ycmd ycmd auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company semantic cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
+	(realgud flycheck-popup-tip flycheck-ycmd company-ycmd ycmd auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company semantic cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
  '(safe-local-variable-values
    (quote
 	((projectile-project-compilation-cmd . "cmake --build build")
@@ -226,7 +230,7 @@
 
 (when (string-equal system-type "darwin")
   ;; Non-native fullscreen
-  (setq ns-use-native-fullscreen nil)
+  ;; (setq ns-use-native-fullscreen nil)
   ;; delete files by moving them to the trash
   (setq delete-by-moving-to-trash t)
   (setq trash-directory "~/.Trash"))
