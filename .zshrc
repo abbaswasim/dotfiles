@@ -7,6 +7,7 @@ export ZSH=$HOME/dotfiles/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="steeef"
 
 # The following will convert all .txt files into .html files
 # zmv '(*).txt' '$1.html'
@@ -16,7 +17,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -31,7 +32,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -56,8 +57,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git osx emacs gitignore git-remote-branch)
 
 # User configuration
-export PATH=~/bin:/development/rtags/bin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
+export PATH=~/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,6 +97,7 @@ setopt AUTO_CD
 
 # don't save duplicates in history
 setopt HIST_IGNORE_DUPS
+
 # Even if there are commands inbetween commands that are the same, still only save the last one
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
@@ -104,6 +105,7 @@ setopt HIST_REDUCE_BLANKS
 # If a line starts with a space, don't save it.
 setopt HIST_IGNORE_SPACE
 setopt HIST_NO_STORE
+
 # this one lets zsh stop expanding globs like * before sent to find etc
 setopt NO_NOMATCH
 
@@ -136,7 +138,7 @@ setopt APPEND_HISTORY
 setopt SHARE_HISTORY
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	alias lldb='/usr/local/opt/llvm/bin/lldb'
+	alias lldb='PATH="/usr/bin:$PATH" /usr/local/opt/llvm/bin/lldb'
 	alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 	alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 	NUMCPUS=`sysctl -n hw.ncpu`
