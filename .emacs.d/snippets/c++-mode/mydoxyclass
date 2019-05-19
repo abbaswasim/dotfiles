@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# contributor: Wasim Abbas <abbas.wasim@gmail.com>
+# name: Function Doxygen Doc
+# key: doxc
+# group: doxygen
+# --
+/**
+ * @brief      ${1:class description}
+ * @details    ${2:detailed description}
+ */

@@ -260,6 +260,11 @@ function g_without_semicolon()
 	ag "$*(?!.*;)"
 }
 
+function dg_without_semicolon()
+{
+	ag --hidden --all-text "$*(?!.*;)"
+}
+
 function dgr()
 {
 	grep -nI "$*" . --exclude=.svn --exclude=.git
