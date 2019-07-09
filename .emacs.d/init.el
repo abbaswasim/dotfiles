@@ -37,6 +37,8 @@
 	   (menu-bar-mode -99)
 	   (set-frame-parameter nil 'fullscreen 'fullboth)))
 
+(add-to-list 'default-frame-alist '(fullscreen . fullboth))
+
 (tool-bar-mode -1)
 (show-paren-mode 1)
 (setq show-paren-delay 0)
