@@ -137,7 +137,7 @@ setopt APPEND_HISTORY
 # Killer: share history between multiple shells
 setopt SHARE_HISTORY
 
-source ./dotfiles/setup-clang.sh
+source $HOME/dotfiles/setup-clang.sh
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
