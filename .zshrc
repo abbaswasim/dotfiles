@@ -137,8 +137,9 @@ setopt APPEND_HISTORY
 # Killer: share history between multiple shells
 setopt SHARE_HISTORY
 
+source ./dotfiles/setup-clang.sh
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
-	alias lldb='PATH="/usr/bin:$PATH" /usr/local/opt/llvm/bin/lldb'
 	alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 	alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 	NUMCPUS=`sysctl -n hw.ncpu`
