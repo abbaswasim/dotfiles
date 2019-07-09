@@ -18,36 +18,14 @@
 ;; load binaries from /usr/local/bin dir
 (add-to-list 'exec-path "/usr/local/bin")
 
-;; Check if packages are avaiable for udpate
-(auto-package-update-maybe)
-;; Also delete old copies of packages being updated
-(setq auto-package-update-prompt-before-update t)
-
 ;; load my configurations
 (require 'init-packages)
-(require 'init-company)
-(require 'init-rtags)
-(require 'init-flycheck)
 (require 'init-evil)
 (require 'init-powerline)
-(require 'init-linum)
 (require 'init-helm)
-(require 'init-ycmd)
 (require 'init-common)
-(require 'init-magit)
-(require 'init-neotree)
 (require 'init-mappings)
 (require 'init-c-cpp)
-(require 'init-python)
-(require 'init-cmake)
-
-;; Use simple terminal because a lot of packages struggle otherwise
-(setenv "TERM" "dumb")
-
-;; If .elc is older make sure .el is loaded and recompiled
-;; TODO Check how much time this adds before enabling
-;; (setq load-prefer-newer t)
-;; (byte-recompile-directory (expand-file-name "~/.emacs.d") 0)
 
 ;; Remove all the distractions
 (setq inhibit-splash-screen t
@@ -70,68 +48,6 @@
 ;; tabs are always spaces
 ;; (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(setq c-default-style "linux" c-basic-offset tab-width)
-
-;; string manipulation package
-(require 'string-inflection)
-
-;; let TODO done time logging
-(setq org-log-done t)
-(setq org-agenda-files (list "~/org/work.org"
-				 "~/org/other.org"
-				 "~/org/home.org"
-				 "~/org/notes.org"))
-
-(setq org-default-notes-file (expand-file-name "~/org/notes.org"))
-
-;; Don't make backups everything is version controled
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-
-;; Autoload code folding minor mode
-(add-hook 'before-save-hook 'whitespace-cleanup)
-
-;; start maximized
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(helm-ag-insert-at-point (quote symbol) t)
- '(initial-frame-alist (quote ((fullscreen . maximized))))
- '(package-selected-packages
-   (quote
-	(flycheck-posframe realgud flycheck-popup-tip flycheck-ycmd company-ycmd ycmd auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company semantic cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
- '(safe-local-variable-values
-   (quote
-	((projectile-project-compilation-cmd . "cmake --build build")
-	 (project-copyright-header . "
-// Roar Source Code
-// Wasim Abbas
-// http://www.waZim.com
-// Copyright (c) 2008-2019
-//
-// Permission is hereby granted, free of charge, to any person obtaining
-// a copy of this software and associated documentation files (the 'Software'),
-// to deal in the Software without restriction, including without limitation
-// the rights to use, copy, modify, merge, publish, distribute, sublicense,
-// and/or sell copies of the Software, and to permit persons to whom the Software
-// is furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
-// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-// CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
-// OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-//
-// Version: 1.0.0
-")
-	 (project-namespace-name . "ror")))))
 
 ;; Show helm-kill-ring with C-k
 (global-set-key (kbd "C-k") 'helm-show-kill-ring)
@@ -148,9 +64,6 @@
 ;; Use s-r for recent files opened
 (global-set-key (kbd "s-r") 'helm-recentf)
 
-;; Use s-c for locate
-(global-set-key (kbd "s-c") 'helm-locate)
-
 ;; Remember place where the file was last edited
 (setq save-place-file "~/.emacs.d/saveplace")
 (save-place-mode 1)
@@ -160,19 +73,6 @@
 
 ;; Enable smooth scrolling
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-
-;; show current function at the top
-(add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
-(semantic-mode 1) ;; Wish I never have to rely on semantic mode for sticky funcs
-(require 'stickyfunc-enhance)
-
-;; open all gdb windows by default
-(setq gdb-many-windows t)
-(setq gdb-show-main t)
-
-; start yasnippet with emacs
-(require 'yasnippet)
-(yas-global-mode 1)
 
 ;; Remove all the clutter from the status bar
 (require 'diminish)
@@ -219,22 +119,5 @@
 ;; Stop emacs splitting windows, only use the current windows available
 (setq split-width-threshold nil)
 (setq split-height-threshold nil)
-
-;; enable async mode very handy
-;; Try to understand how this works a bit more
-(require 'async)
-
-;; Find better shortcut keys for those
-(global-set-key (kbd "s-C-<left>")  'shrink-window-horizontally)
-(global-set-key (kbd "s-C-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "s-C-<down>")  'shrink-window)
-(global-set-key (kbd "s-C-<up>")    'enlarge-window)
-
-(when (string-equal system-type "darwin")
-  ;; Non-native fullscreen
-  ;; (setq ns-use-native-fullscreen nil)
-  ;; delete files by moving them to the trash
-  (setq delete-by-moving-to-trash t)
-  (setq trash-directory "~/.Trash"))
 
 ;;; init.el ends here
