@@ -184,7 +184,7 @@ Make sure extension has '.' included."
   (insert-namespace project-namespace-name)
   (save-buffer)
   (cd header-dir)
-  (find-file (concat name ".inl"))
+  (find-file (concat name ".hh"))
   (insert project-copyright-header)
   (insert-namespace project-namespace-name)
   (save-buffer)
@@ -192,7 +192,7 @@ Make sure extension has '.' included."
   (insert project-copyright-header)
   (insert "\n#pragma once")
   (insert-namespace project-namespace-name)
-  (insert-header-include name ".inl")
+  (insert-header-include name ".hh")
   (save-buffer))
 
 (global-set-key (kbd "s-8") 'c++-create-header)

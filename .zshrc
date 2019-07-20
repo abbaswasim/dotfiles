@@ -215,6 +215,8 @@ alias reset_audio="sudo killall coreaudiod"
 
 alias list_my_snippets="cd ~/.emacs.d/snippets/; cat */* G key; cd -"
 
+alias k9="kill -9"
+
 # Android adb specific aliases
 #Set aliases for most common keys
 alias adbk_back="adb shell input keyevent 4"

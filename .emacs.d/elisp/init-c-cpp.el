@@ -10,7 +10,7 @@
 ;; enable c++-mode in .h instead of c-mode and other associations
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.hh\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.frag\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.vert\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.comp\\'" . c++-mode))

@@ -51,8 +51,8 @@
 ;; helm-projectile-ag would use symbol at point as input with this setting
 (setq helm-ag-insert-at-point 'symbol)
 
-(add-to-list 'projectile-other-file-alist '("inl" "cpp" "hpp" "h"))
-(add-to-list 'projectile-other-file-alist '("hpp" "cpp" "inl" "h"))
-(add-to-list 'projectile-other-file-alist '("cpp" "hpp" "inl" "h"))
+(add-to-list 'projectile-other-file-alist '("hh" "cpp" "hpp" "h"))
+(add-to-list 'projectile-other-file-alist '("hpp" "cpp" "hh" "h"))
+(add-to-list 'projectile-other-file-alist '("cpp" "hpp" "hh" "h"))
 
 (provide 'init-helm)
