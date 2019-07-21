@@ -8,6 +8,8 @@
 
 ;; Zero delay when starting completion
 (setq company-idle-delay 0)
+(setq company-minimum-prefix-length 1)
+
 (add-hook 'after-init-hook 'global-company-mode)
 
 (setq company-tooltip-limit 20)
@@ -28,6 +30,10 @@
 
 ;; Start with a cleaner default. Each language will add the appropriate backends depending on the mode
 (setq company-backends '(company-capf company-files (company-dabbrev-code company-keywords) company-dabbrev))
+
+;; Fancy icons for company, not worth it, loses colors in completion and helm style fuzzy colors too
+; (require 'company-box)
+; (add-hook 'company-mode-hook 'company-box-mode)
 
 (provide 'init-company)
 

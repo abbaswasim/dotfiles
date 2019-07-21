@@ -28,7 +28,7 @@
 (evil-leader/set-key "z" 'helm-resume)
 
 ;; <leader>a show all symbols and can helm-search amongs them
-(evil-leader/set-key "a" 'helm-gtags-select)
+;; (evil-leader/set-key "a" 'helm-gtags-select)
 
 ;; <leader>t toggle between header/source
 (evil-leader/set-key "t" 'helm-projectile-find-other-file)

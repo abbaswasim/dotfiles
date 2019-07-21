@@ -5,8 +5,8 @@
 
 (require 'flycheck)
 ;; (require 'flycheck-popup-tip) ;; Shows very nice popup which one can control with faces but its very slow
-;; (require 'flycheck-pos-tip) ;; The default popup library but no control over faces and now abandoned
-(require 'flycheck-posframe) ;; New man in town, looks great, but has this annoying flicker when mode is enabled
+(require 'flycheck-pos-tip) ;; The default popup library but no control over faces and now abandoned
+;; (require 'flycheck-posframe) ;; New man in town, looks great, but has this annoying flicker when mode is enabled
 
 ;; flycheck enable for everything
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -18,17 +18,17 @@
 ;; (with-eval-after-load 'flycheck (flycheck-popup-tip-mode))
 
 ;; Postip config
-;; (with-eval-after-load 'flycheck (flycheck-pos-tip-mode))
+(with-eval-after-load 'flycheck (flycheck-pos-tip-mode))
 
 ;; Posframe config
-(with-eval-after-load 'flycheck
-  (require 'flycheck-posframe)
-  (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
+;; (with-eval-after-load 'flycheck
+  ;; (require 'flycheck-posframe)
+  ;; (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
 
 ;; (flycheck-posframe-configure-pretty-defaults)
 
-(setq flycheck-posframe-error-prefix "➤ ")
-(setq flycheck-posframe-warning-prefix "! ")
+;; (setq flycheck-posframe-error-prefix "➤ ")
+;; (setq flycheck-posframe-warning-prefix "! ")
 
 (setq flycheck-standard-error-navigation nil)
 

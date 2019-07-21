@@ -18,6 +18,11 @@
 ;; load binaries from /usr/local/bin dir
 (add-to-list 'exec-path "/usr/local/bin")
 
+(require 'exec-path-from-shell)
+(exec-path-from-shell-initialize)
+
+;; (setq load-prefer-newer t)
+
 ;; Check if packages are avaiable for udpate
 (auto-package-update-maybe)
 ;; Also delete old copies of packages being updated
@@ -26,13 +31,11 @@
 ;; load my configurations
 (require 'init-packages)
 (require 'init-company)
-(require 'init-rtags)
 (require 'init-flycheck)
 (require 'init-evil)
 (require 'init-powerline)
 (require 'init-linum)
 (require 'init-helm)
-(require 'init-ycmd)
 (require 'init-common)
 (require 'init-magit)
 (require 'init-neotree)
@@ -40,6 +43,7 @@
 (require 'init-c-cpp)
 (require 'init-python)
 (require 'init-cmake)
+(require 'init-lsp)
 
 ;; Use simple terminal because a lot of packages struggle otherwise
 (setenv "TERM" "dumb")
@@ -54,10 +58,8 @@
 	  inhibit-startup-message t
 	  inhibit-startup-echo-area-message t)
 
-(add-hook 'server-visit-hook
-	 (lambda ()
-	   (menu-bar-mode -99)
-	   (set-frame-parameter nil 'fullscreen 'fullboth)))
+(add-to-list 'default-frame-alist '(fullscreen . fullboth))
+;; (setq ns-use-native-fullscreen t)
 
 (tool-bar-mode -1)
 (show-paren-mode 1)
@@ -98,10 +100,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(helm-ag-insert-at-point (quote symbol) t)
- '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-	(flycheck-posframe realgud flycheck-popup-tip flycheck-ycmd company-ycmd ycmd auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company semantic cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
+	(lsp-ui company-lsp helm-lsp lsp-clangd solarized-theme realgud flycheck-popup-tip flycheck-ycmd company-ycmd ycmd auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company semantic cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
  '(safe-local-variable-values
    (quote
 	((projectile-project-compilation-cmd . "cmake --build build")
@@ -199,9 +200,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-search-highlight-persist-highlight-face ((t (:background "#3e999f" :foreground "#ffffff"))))
  '(flycheck-posframe-error-face ((t (:background "#e37d7d" :foreground "#1d1d1d"))))
  '(flycheck-posframe-warning-face ((t (:background "#ec9562" :foreground "#1d1d1d"))))
- '(evil-search-highlight-persist-highlight-face ((t (:background "#3e999f" :foreground "#ffffff"))))
  '(linum-relative-current-face ((t (:inherit linum :weight bold :underline "#555"))))
  '(org-level-1 ((t (:inherit outline-1 :height 1.2))))
  '(org-level-2 ((t (:inherit outline-2 :height 1.1))))

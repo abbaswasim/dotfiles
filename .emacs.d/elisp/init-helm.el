@@ -16,7 +16,7 @@
 (when (executable-find "curl")
   (setq helm-google-suggest-use-curl-p t))
 
-(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+(setq helm-split-window-inside-p           t ; open helm buffer inside current window, not occupy whole other window
 	  helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
 	  helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
 	  helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
@@ -42,7 +42,7 @@
 (require 'helm-misc)
 (require 'helm-projectile)
 
-(projectile-global-mode)
+(projectile-mode)
 (setq projectile-completion-system 'helm)
 (setq projectile-switch-project-action 'helm-projectile)
 (setq projectile-enable-caching t)
@@ -54,5 +54,11 @@
 (add-to-list 'projectile-other-file-alist '("hh" "cpp" "hpp" "h"))
 (add-to-list 'projectile-other-file-alist '("hpp" "cpp" "hh" "h"))
 (add-to-list 'projectile-other-file-alist '("cpp" "hpp" "hh" "h"))
+
+;; Fix arrow keys issue with latest update
+(customize-set-variable 'helm-ff-lynx-style-map t)
+(customize-set-variable 'helm-occur-use-ioccur-style-keys t)
+(define-key helm-map (kbd "<left>") 'helm-previous-source)
+(define-key helm-map (kbd "<right>") 'helm-next-source)
 
 (provide 'init-helm)
