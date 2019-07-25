@@ -36,7 +36,20 @@
 (setq company-lsp-enable-recompletion nil)
 
 ;; show all symbols in current buffer
-(global-set-key (kbd "s-2") 'rtags-imenu)
+(global-set-key (kbd "s-2") 'helm-imenu)
+
+(require 'evil)
+;; lsp mode shortcuts for evil
+;; (define-key evil-normal-state-map "g[" 'rtags-previous-match)
+;; (define-key evil-normal-state-map "g]" 'rtags-next-match)
+(define-key evil-normal-state-map "gs" 'lsp-find-references)
+(define-key evil-normal-state-map "gx" 'lsp-find-definition)
+(define-key evil-normal-state-map "gb" 'lsp-execute-code-action)
+(global-set-key (kbd "s-o") 'helm-lsp-workspace-symbol)
+;; (define-key evil-normal-state-map "gx" 'rtags-find-references-at-point)
+;; (define-key evil-normal-state-map "g9" 'rtags-location-stack-back)
+;; (define-key evil-normal-state-map "g0" 'rtags-location-stack-forward)
+;; (define-key evil-normal-state-map "gp" 'rtags-preprocess-file)
 
 ;; Set clangd arguments
 (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=error"))

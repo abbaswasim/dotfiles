@@ -64,14 +64,6 @@
 ;; (define-key evil-normal-state-map "gt" 'elscreen-next) ;next tab
 ;; (setq elscreen-display-tab nil)
 
-;; rtags shortcuts for evil
-(define-key evil-normal-state-map "g[" 'rtags-previous-match)
-(define-key evil-normal-state-map "g]" 'rtags-next-match)
-(define-key evil-normal-state-map "gs" 'rtags-find-symbol-at-point)
-(define-key evil-normal-state-map "gx" 'rtags-find-references-at-point)
-(define-key evil-normal-state-map "g9" 'rtags-location-stack-back)
-(define-key evil-normal-state-map "g0" 'rtags-location-stack-forward)
-(define-key evil-normal-state-map "gp" 'rtags-preprocess-file)
 (define-key evil-normal-state-map "go" 'other-window)
 
 ;; flycheck shortcuts for evil

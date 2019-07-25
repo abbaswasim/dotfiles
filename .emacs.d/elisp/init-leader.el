@@ -40,7 +40,7 @@
 (evil-leader/set-key "w" 'kill-this-buffer)
 
 ;; <leader>2 shows all symbols in current file to chose from
-(evil-leader/set-key "2" 'rtags-imenu)
+(evil-leader/set-key "2" 'helm-imenu)
 
 ;; <leader>f starts helm-projectile-ag at current symbol
 (evil-leader/set-key "f" 'helm-projectile-ag)
