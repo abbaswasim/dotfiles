@@ -10,20 +10,17 @@
 
 (require 'lsp-ui)
 
-
 (setq lsp-ui-doc-enable nil
 	  lsp-ui-sideline-enable t
 	  lsp-ui-flycheck-enable t
 	  lsp-ui-flycheck-list-position 'bottom
 	  lsp-ui-flycheck-live-reporting t
+	  lsp-enable-snippet t
 	  lsp-ui-peek-enable nil
 	  lsp-ui-peek-list-width 60
 	  lsp-ui-peek-peek-height 25)
 
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
-; (add-hook 'c-mode-common-hook 'flycheck-mode)
-; (add-hook 'c++-mode-hook 'flycheck-mode)
-
 
 (require 'flycheck)
 ; (require 'lsp-ui-flycheck)
@@ -33,12 +30,10 @@
 (add-hook 'c-mode-common-hook 'flycheck-mode)
 
 (require 'company-lsp)
-(push 'company-lsp company-backends)
 (setq company-lsp-cache-candidates nil)
 (setq company-lsp-async t)
 (setq company-lsp-enable-snippet t)
 (setq company-lsp-enable-recompletion nil)
-(push 'company-lsp company-backends)
 
 ;; show all symbols in current buffer
 (global-set-key (kbd "s-2") 'rtags-imenu)

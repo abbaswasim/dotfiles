@@ -7,9 +7,6 @@
 
 (global-set-key (kbd "s-z") 'helm-resume)
 
-;; show all symbols in current buffer
-(global-set-key (kbd "s-2") 'rtags-imenu)
-
 (global-set-key (kbd "<f5>") 'toggle-maximize-buffer)
 
 (global-set-key (kbd "s-=") 'hs-toggle-hiding)
