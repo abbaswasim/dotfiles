@@ -15,114 +15,30 @@
 (setq project-copyright-header "// Copyright 2018")
 (setq project-namespace-name "core_engine")
 
-;; TODO: fix the interactive mode
-(defun print-elements-of-list (list)
-  "Print each element of LIST on a line of its own."
-  (interactive list)
-  (while list
-	(print (car list))
-	(setq list (cdr list))))
-
-(defvar clang-dbname)
-(defvar clang-build-path)
-(defvar first-part)
-(defvar second-part)
-
-(setq clang-dbname "compile_commands.json")
-(setq clang-build-path nil)
-(setq first-part "\(\(c++-mode \(flycheck-clang-include-path . \(")
-(setq second-part "\)\)\)\)\n")
-
-(defun flycheck-clang-get-json ()
-  "Get the compile commands from `clang-dbname'."
-  (let ((commands (json-read-file (expand-file-name clang-dbname clang-build-path))))
-	(mapcar (lambda (item)
-			  (cdr (assq 'command item)))
-			commands)))
-
-(defun flycheck-clang-get-compile-command (json)
-  "Return the compile command for a given `JSON' fragment from the compile database."
-  (mapcar (lambda (item)
-			(let ((raw-cmds (split-string item)))
-			  (seq-filter (lambda (it)
-							(cond
-							 ((string-match "-I" it) t)
-							 (t nil)))
-						  raw-cmds))
-			)json))
-
-(defun flycheck-clang-find-compiledb-dir (file-or-dir)
-  "Given FILE-OR-DIR search up for `clang-dbname'.
-Return the directory which contains the database or nil."
-  (let ((root-dir
-		 (locate-dominating-file
-		  file-or-dir
-		  clang-dbname)))
-	(when root-dir
-	  (expand-file-name root-dir))))
-
-(defun clean-I-from-path (include-paths)
-  "This function will remove the `-I' from the INCLUDE-PATHS."
-  (mapcar (lambda (single-path)
-			(let ((clean-path (substring single-path 2)))
-			  (if (not (file-name-absolute-p clean-path))
-				  (concat clang-build-path (replace-regexp-in-string "^[.\/]+" "/" clean-path))
-				(file-truename clean-path))))
-		  include-paths))
-
-(defun flatten (list)
-  "This function will flatten LIST.
-If input is ((\"a\") (\"b\" \"c\")) it will output (\"a\" \"b\" \"c\")"
-  (mapcan (lambda (x) (if (listp x) x nil)) list))
-
-(defun my-add-headers-include-to-dir-local (cl-build-path file-name)
-  "This function load compile_commands.json relative to CL-BUILD-PATH FILE-NAME.
-
-  It then parses it for all the headers"
-  (let ((commands (flycheck-clang-get-json)))
-	(if commands
-		(delete-dups (flatten (flycheck-clang-get-compile-command commands))))))
-
-;; fix this function and add comments
-(defun create-dir-locals-el-at-root ()
-  "This function create .dir-locals.el at the root of the project.
-This will be used for flycheck headers files"
-  (interactive)
-  (unless clang-build-path
-	(setq clang-build-path (flycheck-clang-find-compiledb-dir buffer-file-name)))
-  (if clang-build-path
-	(with-temp-file (concat clang-build-path "/.dir-locals.el" )
-	  (insert first-part)
-	  (mapc (lambda (item)
-			  (insert "\"")
-			  (insert item)
-			  (insert "\" "))
-			(clean-I-from-path (my-add-headers-include-to-dir-local clang-build-path buffer-file-name)))
-	  (insert second-part))))
-
-(defun toggle-maximize-buffer ()
-  "Maximize current buffer."
- (interactive)
- (if (= 1 (length (window-list)))
-	 (jump-to-register '_)
-   (progn
-	 (window-configuration-to-register '_)
-	 (delete-other-windows))))
-
 (setq help-window-select t)
+
+(defvar my-posframe-buffer "*my-describe-thingy-buffer*")
+
+(defun remove-description-posframe ()
+  "Remove any visible posframe created earlier."
+  (posframe-hide-all)
+  (remove-hook 'pre-command-hook #'remove-description-posframe))
+
+(require 'posframe)
 
 (defun describe-thing-in-popup ()
   "Show full documentation of the symbol at point."
   (interactive)
   (let* ((thing (symbol-at-point))
-			   (description (describe-function thing)))
+		 (description (describe-function thing)))
 	(quit-window)
-	(popup-tip description
-			   :point (point)
-			   :around t
-			   :height 100
-			   :scroll-bar t
-			   :margin t)))
+	(posframe-show
+	 my-posframe-buffer
+	 :string description
+	 :foreground-color "#2d2d2d"
+	 :background-color "#ffcc66"
+	 :position (point))
+	(add-hook 'pre-command-hook #'remove-description-posframe)))
 
  ;; in python mode show help in window
 (evil-define-key 'normal python-mode-map (kbd "s-1") 'elpy-doc)
