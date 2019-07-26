@@ -1,5 +1,8 @@
-;; init-packages.el -- elpa configuration
-;; Initialize the package manager and add archives
+;;; init-packages.el -- elpa configuration
+;;; Commentary:
+;;; Initialize the package manager and add archives
+
+;;; Code:
 (require 'package)
 
 ;;; Standard package repositories
@@ -27,3 +30,5 @@
 (advice-add 'package-menu--find-upgrades :around #'package-menu--remove-excluded-packages)
 
 (provide 'init-packages)
+
+;;; init-packages.el ends here

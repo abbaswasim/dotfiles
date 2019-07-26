@@ -15,18 +15,9 @@
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 ;; add custom theme folder to load themes from ~/.emacs.d/themes
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
-;; load binaries from /usr/local/bin dir
-(add-to-list 'exec-path "/usr/local/bin")
 
-(require 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
-
-;; (setq load-prefer-newer t)
-
-;; Check if packages are avaiable for udpate
+;; Check if packages are avaiable for udpate and update if interval has passed
 (auto-package-update-maybe)
-;; Also delete old copies of packages being updated
-(setq auto-package-update-prompt-before-update t)
 
 ;; load my configurations
 (require 'init-packages)
@@ -100,9 +91,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(helm-ag-insert-at-point (quote symbol) t)
+ '(helm-ff-lynx-style-map t)
+ '(helm-occur-use-ioccur-style-keys t)
  '(package-selected-packages
    (quote
-	(lsp-ui company-lsp helm-lsp lsp-clangd solarized-theme realgud flycheck-popup-tip flycheck-ycmd company-ycmd ycmd auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
+	(exec-path-from-shell lsp-ui company-lsp helm-lsp lsp-clangd solarized-theme realgud flycheck-popup-tip flycheck-ycmd company-ycmd ycmd auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
  '(safe-local-variable-values
    (quote
 	((projectile-project-compilation-cmd . "cmake --build build")
@@ -182,10 +175,14 @@
 (diminish 'evil-mc-mode)
 (diminish 'helm-mode)
 
+(when (memq window-system '(mac ns))
 ;;; sRGB doesn't blend with Powerline's pixmap colors, but is only
 ;;; used in OS X. Disable sRGB before setting up Powerline.
-(when (memq window-system '(mac ns))
-  (setq ns-use-srgb-colorspace nil))
+  (setq ns-use-srgb-colorspace nil)
+;;; MacOs runs emacs from gui so doesn't inherit environment
+;;; Bellow lines makes sure it does
+  (require 'exec-path-from-shell)
+  (exec-path-from-shell-initialize))
 
 (require 'color-theme-sanityinc-tomorrow)
 (load-theme 'sanityinc-tomorrow-eighties t)
