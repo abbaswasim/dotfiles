@@ -17,6 +17,15 @@
 
 (setq help-window-select t)
 
+(defun toggle-maximize-buffer ()
+  "Maximize current buffer."
+  (interactive)
+  (if (= 1 (length (window-list)))
+	  (jump-to-register '_)
+	(progn
+	  (window-configuration-to-register '_)
+	  (delete-other-windows))))
+
 (defvar my-posframe-buffer "*my-describe-thingy-buffer*")
 
 (defun remove-description-posframe ()
