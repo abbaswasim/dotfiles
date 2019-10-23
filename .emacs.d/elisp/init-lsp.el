@@ -42,17 +42,22 @@
 ;; lsp mode shortcuts for evil
 ;; (define-key evil-normal-state-map "g[" 'rtags-previous-match)
 ;; (define-key evil-normal-state-map "g]" 'rtags-next-match)
-(define-key evil-normal-state-map "gs" 'lsp-find-references)
-(define-key evil-normal-state-map "gx" 'lsp-find-definition)
+(define-key evil-normal-state-map "g[" 'xref-prev-line)
+(define-key evil-normal-state-map "g]" 'xref-next-line)
+(define-key evil-normal-state-map "gx" 'lsp-find-references)
+(define-key evil-normal-state-map "gs" 'lsp-find-definition)
 (define-key evil-normal-state-map "gb" 'lsp-execute-code-action)
+(define-key evil-normal-state-map "gp" 'xref-pop-marker-stack)
 (global-set-key (kbd "s-o") 'helm-lsp-workspace-symbol)
-;; (define-key evil-normal-state-map "gx" 'rtags-find-references-at-point)
-;; (define-key evil-normal-state-map "g9" 'rtags-location-stack-back)
-;; (define-key evil-normal-state-map "g0" 'rtags-location-stack-forward)
 ;; (define-key evil-normal-state-map "gp" 'rtags-preprocess-file)
 
 ;; Set clangd arguments
 (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=error"))
+
+;; (setq lsp-log-io t)
+;; Still don't know how ccls performs, could never get it to work
+;; (require 'ccls)
+;; (setq ccls-executable "/usr/local/bin/ccls")
 
 (provide 'init-lsp)
 
