@@ -49,4 +49,4 @@ echo "All emacs packages installed"
 
 echo "Installing jedi for python mode"
 pip install jedi
-echo "Jedi installed"
+echo "If python is installed and pip has worked then Jedi is installed, otherwise install manually"
