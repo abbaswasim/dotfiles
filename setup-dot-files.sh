@@ -50,3 +50,5 @@ echo "All emacs packages installed"
 echo "Installing jedi for python mode"
 pip install jedi
 echo "If python is installed and pip has worked then Jedi is installed, otherwise install manually"
+
+echo "If on Mac Os run brew using the packages Brewfile in misc/Brewfile, run 'brew bundle' in misc/"

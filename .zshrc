@@ -190,8 +190,15 @@ alias flush_dns_cache='sudo dscacheutil -flushcache;sudo killall -HUP mDNSRespon
 alias vim_without_vimrc='vim -u NONE -N'
 alias find_everything='locate / | fzf'
 alias find_and_delete_files='#find . -type f -name ".non-existent-file" -exec rm -f {} \;'
-# alias emacs='echo "There should be an instance of emacs running use \"em FILE\" instead"'
-# alias em='emc'
+
+# Emacs specific setup, copied from .oh-my-zsh
+unalias emacs
+unalias e
+export EMACS_PLUGIN_LAUNCHER="~/dotfiles/misc/emacsclient.sh"
+# set EDITOR if not already defined.
+export EDITOR="${EDITOR:-${EMACS_PLUGIN_LAUNCHER}}"
+alias emacs="$EMACS_PLUGIN_LAUNCHER --no-wait"
+alias e=emacs
 alias evim='te'
 
 # this way just use G to grep for stuff
