@@ -34,14 +34,18 @@ echo "oh-my-zsh installed"
 echo "Cloning and installing fzf..."
 git clone --depth 1 https://github.com/junegunn/fzf.git .fzf
 printf 'y\ny\ny\n' | ./.fzf/install
-pushd .oh-my-zsh/themes/
 echo "fzf installed"
+pushd .oh-my-zsh/themes/
 
 echo "Cloning and installing oh-my-zsh theme powerlevel9k..."
 git clone --depth 1 https://github.com/bhilburn/powerlevel9k.git
 echo "powerlevel installed"
 
 popd
+
+echo "Cloning and installing oh-my-zsh plugin syntax-highligting..."
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+echo "plugin installed"
 
 echo "Running emacs packages install script..."
 emacs --script ./emacs-install-packages.el
