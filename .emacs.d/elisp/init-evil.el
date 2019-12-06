@@ -70,6 +70,10 @@
 (define-key evil-normal-state-map "g8" 'flycheck-next-error)
 (define-key evil-normal-state-map "g7" 'flycheck-previous-error)
 
+;; Evil numbers shortcuts
+(define-key evil-normal-state-map "gt" 'evil-numbers/inc-at-pt)
+(define-key evil-normal-state-map "gy" 'evil-numbers/dec-at-pt)
+
 ;; Override gf to use helm-projectile-find-file-dwim instead
 (define-key evil-normal-state-map "gf" 'helm-projectile-find-file-dwim)
 
