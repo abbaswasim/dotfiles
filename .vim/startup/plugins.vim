@@ -21,8 +21,8 @@ Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 " Plugin 'xolox/vim-easytags' " Don't use tags for now
 Plugin 'tagbar'
-Plugin 'tcomment_vim'
-Plugin 'lusty'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'sjbach/lusty'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 Plugin 'ervandew/supertab'
@@ -32,12 +32,12 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'flazz/vim-colorschemes'
 
 if has('nvim')
-    " neocomplete alternative for neovim
-    Plugin 'Shougo/deoplete.nvim'
+	" neocomplete alternative for neovim
+	Plugin 'Shougo/deoplete.nvim'
 else
-    Plugin 'Shougo/neocomplete'
-    Plugin 'Shougo/neosnippet'
-    Plugin 'Shougo/neosnippet-snippets'
+	Plugin 'Shougo/neocomplete'
+	Plugin 'Shougo/neosnippet'
+	Plugin 'Shougo/neosnippet-snippets'
 endif
 
 " All of your Plugins must be added before the following line
