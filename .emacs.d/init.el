@@ -52,7 +52,7 @@
 	  inhibit-startup-message t
 	  inhibit-startup-echo-area-message t)
 
-(add-to-list 'default-frame-alist '(fullscreen . fullboth))
+;; (add-to-list 'default-frame-alist '(fullscreen . fullboth))
 ;; (setq ns-use-native-fullscreen t)
 
 (tool-bar-mode -1)
