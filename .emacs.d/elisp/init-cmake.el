@@ -3,7 +3,6 @@
 
 ;;; Code:
 
-(require 'cl)
 (require 'company-cmake)
 
 ;; Better syntax highlighting in cmake files

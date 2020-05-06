@@ -6,7 +6,6 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
 
 (setq user-full-name "Wasim Abbas")
 (setq user-mail-address "abbas.wasim@gmail.com")
@@ -15,9 +14,6 @@
 (add-to-list 'load-path (expand-file-name "elisp" user-emacs-directory))
 ;; add custom theme folder to load themes from ~/.emacs.d/themes
 (add-to-list 'custom-theme-load-path (expand-file-name "themes" user-emacs-directory))
-
-;; Check if packages are avaiable for udpate and update if interval has passed
-(auto-package-update-maybe)
 
 ;; load my configurations
 (require 'init-packages)
@@ -93,12 +89,14 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(c-noise-macro-names (quote ("FORCE_INLINE" "ROAR_ENGINE_ITEM")))
  '(helm-ag-insert-at-point (quote symbol) t)
  '(helm-ff-lynx-style-map t)
  '(helm-occur-use-ioccur-style-keys t)
+ '(ns-use-srgb-colorspace t)
  '(package-selected-packages
    (quote
-	(posframe exec-path-from-shell lsp-ui company-lsp helm-lsp lsp-clangd solarized-theme realgud flycheck-popup-tip flycheck-ycmd company-ycmd ycmd auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package linum-off powerline linum linum-relative helm-rtags package-utils srefactor helm flycheck evil zenburn-theme yasnippet stickyfunc-enhance powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
+	(which-key magit posframe exec-path-from-shell lsp-ui helm-lsp lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package linum-off powerline linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
  '(safe-local-variable-values
    (quote
 	((projectile-project-compilation-cmd . "cd /personal/roar_engine/ && cmake --build build -- -j4")
@@ -162,9 +160,13 @@
 (setq gdb-many-windows t)
 (setq gdb-show-main t)
 
-; start yasnippet with emacs
+;; start yasnippet with emacs
 (require 'yasnippet)
 (yas-global-mode 1)
+
+;; Which key
+(require 'which-key)
+(which-key-mode)
 
 ;; Remove all the clutter from the status bar
 (require 'diminish)

@@ -4,6 +4,7 @@
 
 ;;; Code:
 (require 'package)
+(require 'dash)
 
 ;;; Standard package repositories
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
@@ -13,7 +14,11 @@
 (add-to-list 'package-archives '("elpy" . "https://jorgenschaefer.github.io/packages/"))
 
 (setq package-enable-at-startup nil)
-(package-initialize)
+
+(unless package--initialized (package-initialize t))
+
+;; Check if packages are avaiable for update and update if interval has passed
+(auto-package-update-maybe)
 
 (defvar package-menu-exclude-packages '("color-theme-sanityinc-tomorrow"))
 

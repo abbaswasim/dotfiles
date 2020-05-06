@@ -172,5 +172,34 @@ If `THRESHOLD' is 2 only traverses error, 1 means errors and warnings and 0 mean
 			   (side            . bottom)
 			   (window-height   . 0.4)))
 
+
+;; Make C++ function calls more prominent by assigning it a color
+(font-lock-add-keywords 'c++-mode
+						`((,(concat
+							 "\\<[_a-zA-Z][_a-zA-Z0-9]*\\>"       ; Object identifier
+							 "\\s *"                              ; Optional white space
+							 "\\(?:\\.\\|->\\|::\\)"              ; Member access
+							 "\\s *"                              ; Optional white space
+							 "\\<\\([_a-zA-Z][_a-zA-Z0-9]*\\)\\>" ; Member identifier
+							 "\\s *"                              ; Optional white space
+							 "(")                                 ; Paren for method invocation
+						   1 'font-lock-function-name-face t)))
+
+(font-lock-add-keywords
+ 'c++-mode
+ '(
+;; ("\\<[A-Z]*_[A-Z_]+\\>" . font-lock-doc-face) ;; For macros and CONSTANTS_CONSTANTS, doesn't fully work
+   ("\\_<\\(\\+\\|-\\)?\\([0-9]+\\)\\(\\.[0-9f]+\\)?\\_>" 0 'font-lock-warning-face prepend) ; Number identifier
+;; ("\\<[\\-+]*[0-9]*\\.?[0-9]+\\([ulUL]+\\|[eE][\\-+]?[0-9]+\\)?\\>" . font-lock-constant-face) ;; better constants regex to use some day
+   ("\\<\\(FIXME\\):" 1 font-lock-warning-face prepend)
+   ("\\<\\(TODO\\):" 1 font-lock-warning-face prepend)
+   ("\\<\\(FORCE_INLINE\\)" 1 font-lock-doc-face)
+   ("\\<\\(ROAR_ENGINE_ITEM\\)" 1 font-lock-doc-face)
+   ))
+
+;; If macros or CONSTANTS_CONSTANTS font-lock-face are added, enable this for it to work
+(custom-set-variables '(c-noise-macro-names '("FORCE_INLINE" "ROAR_ENGINE_ITEM")))
+
+
 (provide 'init-common)
 ;;; init-common.el ends here
