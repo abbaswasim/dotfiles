@@ -9,5 +9,7 @@
 ;; (setq linum-relative-current-symbol "")
 ;; (linum-relative-mode 1)
 
+(global-display-line-numbers-mode)
+
 (provide 'init-linum)
 ;;; init-linum.el ends here

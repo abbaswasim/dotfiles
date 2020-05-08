@@ -44,6 +44,7 @@
 ;; (setq lsp-completion-styles '(helm-flex)) ;; Shouldn't be required in emacs 27
 ;; And  "-header-insertion-decorators=0" as workarounds for now to clangd for common-complete
 
+;; Lets setup C++/C completion etc
 ;; Set clangd arguments
 (setq lsp-clients-clangd-args '("-j=8" "-background-index" "-header-insertion-decorators=0" "-log=error"))
 
@@ -51,6 +52,11 @@
 ;; Bigger limint for GC for lsp mode (100mb)
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
+
+;; Lets setup swift mode server using lsp-SourceKit
+(require 'lsp-sourcekit)
+(setq lsp-sourcekit-executable "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp") ;; run 'xcrun --find sourcekit-lsp' next time to find path
+(add-hook 'swift-mode-hook (lambda () (lsp))) ;; Enable swift mode when visiting .swift files
 
 (provide 'init-lsp)
 

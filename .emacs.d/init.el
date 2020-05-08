@@ -89,14 +89,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(c-noise-macro-names (quote ("FORCE_INLINE" "ROAR_ENGINE_ITEM")))
- '(helm-ag-insert-at-point (quote symbol) t)
+ '(helm-ag-insert-at-point 'symbol t)
  '(helm-ff-lynx-style-map t)
  '(helm-occur-use-ioccur-style-keys t)
  '(ns-use-srgb-colorspace t)
  '(package-selected-packages
-   (quote
-	(which-key magit posframe exec-path-from-shell lsp-ui helm-lsp lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package linum-off powerline linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode)))
+   '(swift-mode lsp-sourcekit which-key magit posframe exec-path-from-shell lsp-ui helm-lsp lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package powerline linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))
  '(safe-local-variable-values
    (quote
 	((projectile-project-compilation-cmd . "cd /personal/roar_engine/ && cmake --build build -- -j4")
@@ -126,7 +124,7 @@
 //
 // Version: 1.0.0
 ")
-	 (project-namespace-name . "ror")))))
+	 (project-namespace-name . "ror"))))
 
 ;; Show helm-kill-ring with C-k
 (global-set-key (kbd "C-k") 'helm-show-kill-ring)
@@ -229,6 +227,10 @@
 (global-set-key (kbd "s-C-<up>")    'enlarge-window)
 
 (when (string-equal system-type "darwin")
+  ;; On Big mac open a bigger window please, perhaps guess the resolution in the future
+  (add-to-list 'default-frame-alist '(height . 100))
+  (add-to-list 'default-frame-alist '(width . 310))
+
   ;; Non-native fullscreen
   ;; (setq ns-use-native-fullscreen nil)
   ;; delete files by moving them to the trash

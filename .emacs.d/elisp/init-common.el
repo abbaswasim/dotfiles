@@ -183,23 +183,21 @@ If `THRESHOLD' is 2 only traverses error, 1 means errors and warnings and 0 mean
 							 "\\<\\([_a-zA-Z][_a-zA-Z0-9]*\\)\\>" ; Member identifier
 							 "\\s *"                              ; Optional white space
 							 "(")                                 ; Paren for method invocation
-						   1 'font-lock-function-name-face t)))
+						   1 font-lock-function-name-face)))
 
 (font-lock-add-keywords
  'c++-mode
  '(
-;; ("\\<[A-Z]*_[A-Z_]+\\>" . font-lock-doc-face) ;; For macros and CONSTANTS_CONSTANTS, doesn't fully work
-   ("\\_<\\(\\+\\|-\\)?\\([0-9]+\\)\\(\\.[0-9f]+\\)?\\_>" 0 'font-lock-warning-face prepend) ; Number identifier
-;; ("\\<[\\-+]*[0-9]*\\.?[0-9]+\\([ulUL]+\\|[eE][\\-+]?[0-9]+\\)?\\>" . font-lock-constant-face) ;; better constants regex to use some day
+   ;; ("\\_<[A-Z]*_[A-Z_]+\\_>" . font-lock-doc-face) ;; For macros and CONSTANTS_CONSTANTS, doesn't fully work
+   ("\\_<\\(\\+\\|-\\|0x\\)?\\([0-9]+\\)\\(\\.[0-9fulUL]+\\)?\\_>" . font-lock-warning-face) ; Number identifier
    ("\\<\\(FIXME\\):" 1 font-lock-warning-face prepend)
    ("\\<\\(TODO\\):" 1 font-lock-warning-face prepend)
-   ("\\<\\(FORCE_INLINE\\)" 1 font-lock-doc-face)
-   ("\\<\\(ROAR_ENGINE_ITEM\\)" 1 font-lock-doc-face)
+   ;; ("\\_<\\(FORCE_INLINE\\)" . font-lock-doc-face) ;; this broke again in emacs 28
+   ;; ("\\_<\\(ROAR_ENGINE_ITEM\\)" . font-lock-doc-face) ;; this broke again in emacs 28
    ))
 
 ;; If macros or CONSTANTS_CONSTANTS font-lock-face are added, enable this for it to work
-(custom-set-variables '(c-noise-macro-names '("FORCE_INLINE" "ROAR_ENGINE_ITEM")))
-
+;; (custom-set-variables '(c-noise-macro-names '("FORCE_INLINE" "ROAR_ENGINE_ITEM"))) ;; this broke again in emacs 28
 
 (provide 'init-common)
 ;;; init-common.el ends here
