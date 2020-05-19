@@ -57,7 +57,7 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git osx emacs gitignore git-remote-branch zsh-syntax-highlighting)
 
 # User configuration
-export PATH=~/bin:$PATH
+# export PATH=~/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
 
@@ -152,11 +152,12 @@ alias gcleanco='git clean -fdx;git checkout -- .'         # Full clean of git re
 alias who-is-holding-reference='lsof | grep '         # Find out who is grabing onto files
 alias all-predefined-macros='clang -dM -E -x c /dev/null'
 
-export ANDROID_NDK_ROOT=/development/android/ndk
+export ANDROID_NDK_ROOT=/development/android/sdk/ndk/21.1.6352462
 export ANDROID_SDK_ROOT=/development/android/sdk
 export ANDROID_HOME=$ANDROID_SDK_ROOT
 export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT
 export ANDROID_MAKE_CCACHE=ccache
+export ANDROID_ROOT=$ANDROID_SDK_ROOT
 
 # alias gk='gitk --all &'
 alias gs='git status'
