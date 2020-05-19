@@ -11,7 +11,8 @@
 
 (setq lsp-ui-doc-enable nil
 	  lsp-ui-sideline-enable t
-	  lsp-ui-flycheck-enable t
+	  lsp-ui-sideline-show-symbol t ;; check this one later what does it enable disable
+	  lsp-ui-sideline-ignore-duplicate t
 	  lsp-ui-flycheck-list-position 'bottom
 	  lsp-flycheck-live-reporting t
 	  lsp-enable-snippet t

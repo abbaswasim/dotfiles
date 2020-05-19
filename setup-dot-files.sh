@@ -8,6 +8,7 @@ rm .fzf.zsh
 rm -rf .vim
 rm .vimrc
 rm .zshrc
+rm .zshenv
 echo "Old symbolic links removed"
 
 echo "Creating new symbolic links..."
@@ -15,6 +16,7 @@ ln -s dotfiles/.emacs.d .emacs.d
 ln -s dotfiles/.vim .vim
 ln -s dotfiles/.vimrc .vimrc
 ln -s dotfiles/.zshrc .zshrc
+ln -s dotfiles/.zshenv .zshenv
 echo "Symbolic links created"
 
 echo "Cloning Vundle for vim..."

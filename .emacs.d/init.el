@@ -89,15 +89,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(c-noise-macro-names '("FORCE_INLINE" "ROAR_ENGINE_ITEM"))
  '(helm-ag-insert-at-point 'symbol t)
  '(helm-ff-lynx-style-map t)
  '(helm-occur-use-ioccur-style-keys t)
  '(ns-use-srgb-colorspace t)
  '(package-selected-packages
-   '(swift-mode lsp-sourcekit which-key magit posframe exec-path-from-shell lsp-ui helm-lsp lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package powerline linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))
+   '(lua-mode swift-mode lsp-sourcekit which-key magit posframe exec-path-from-shell lsp-ui helm-lsp lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package powerline linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))
  '(safe-local-variable-values
-   (quote
-	((projectile-project-compilation-cmd . "cd /personal/roar_engine/ && cmake --build build -- -j4")
+   '((project-copyright-header . "// Copyright 200008")
+	 (projectile-project-compilation-cmd . "cmake --build build --config Debug -- -j16")
+	 (projectile-project-compilation-cmd . "cd /personal/roar_engine/ && cmake --build build -- -j4")
 	 (project-copyright-header . "
 // Roar Source Code
 // Wasim Abbas
@@ -149,7 +151,7 @@
 (save-place-mode 1)
 
 ;; leave a few lines above and blew when scrlling
-(setq scroll-margin 10 scroll-conservatively 9999 scroll-step 1)
+(setq scroll-margin 10 scroll-conservatively 101 scroll-step 1)
 
 ;; Enable smooth scrolling
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))

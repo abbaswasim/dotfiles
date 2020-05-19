@@ -41,7 +41,7 @@
 (add-hook 'c-mode-common-hook
 		  (lambda ()
 			(set (make-local-variable 'company-backends)
-				 (concatenate 'list '(company-capf company-yasnippet) company-backends))))
+				 (setq company-backends (append '((:separate company-capf :separate  company-yasnippet) company-yasnippet) company-backends)))))
 
 (provide 'init-c-cpp)
 

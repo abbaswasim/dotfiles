@@ -183,21 +183,22 @@ If `THRESHOLD' is 2 only traverses error, 1 means errors and warnings and 0 mean
 							 "\\<\\([_a-zA-Z][_a-zA-Z0-9]*\\)\\>" ; Member identifier
 							 "\\s *"                              ; Optional white space
 							 "(")                                 ; Paren for method invocation
-						   1 font-lock-function-name-face)))
+						   1 'font-lock-function-name-face t)))
 
 (font-lock-add-keywords
  'c++-mode
  '(
+   ("\\<\\(\\sw+\\)?(" 1 font-lock-function-name-face) ;; Any free standing functions highlights
    ;; ("\\_<[A-Z]*_[A-Z_]+\\_>" . font-lock-doc-face) ;; For macros and CONSTANTS_CONSTANTS, doesn't fully work
    ("\\_<\\(\\+\\|-\\|0x\\)?\\([0-9]+\\)\\(\\.[0-9fulUL]+\\)?\\_>" . font-lock-warning-face) ; Number identifier
    ("\\<\\(FIXME\\):" 1 font-lock-warning-face prepend)
    ("\\<\\(TODO\\):" 1 font-lock-warning-face prepend)
-   ;; ("\\_<\\(FORCE_INLINE\\)" . font-lock-doc-face) ;; this broke again in emacs 28
-   ;; ("\\_<\\(ROAR_ENGINE_ITEM\\)" . font-lock-doc-face) ;; this broke again in emacs 28
+   ("\\_<\\(FORCE_INLINE\\)" 1 font-lock-doc-face) ;; this broke again in emacs 28, but seems to be working now
+   ("\\_<\\(ROAR_ENGINE_ITEM\\)" 1 font-lock-doc-face) ;; this broke again in emacs 28, but seems to be working now
    ))
 
 ;; If macros or CONSTANTS_CONSTANTS font-lock-face are added, enable this for it to work
-;; (custom-set-variables '(c-noise-macro-names '("FORCE_INLINE" "ROAR_ENGINE_ITEM"))) ;; this broke again in emacs 28
+(custom-set-variables '(c-noise-macro-names '("FORCE_INLINE" "ROAR_ENGINE_ITEM"))) ;; this broke again in emacs 28, but seems to be working now
 
 (provide 'init-common)
 ;;; init-common.el ends here
