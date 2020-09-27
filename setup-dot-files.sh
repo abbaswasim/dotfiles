@@ -39,8 +39,8 @@ printf 'y\ny\ny\n' | ./.fzf/install
 echo "fzf installed"
 pushd .oh-my-zsh/themes/
 
-echo "Cloning and installing oh-my-zsh theme powerlevel9k..."
-git clone --depth 1 https://github.com/bhilburn/powerlevel9k.git
+echo "Cloning and installing oh-my-zsh theme powerlevel10k..."
+git clone --depth 1 https://github.com/romkatv/powerlevel10k.git
 echo "powerlevel installed"
 
 popd

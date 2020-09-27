@@ -176,9 +176,9 @@ If `THRESHOLD' is 2 only traverses error, 1 means errors and warnings and 0 mean
 ;; Make C++ function calls more prominent by assigning it a color
 (font-lock-add-keywords 'c++-mode
 						`((,(concat
-							 "\\<[_a-zA-Z][_a-zA-Z0-9]*\\>"       ; Object identifier
-							 "\\s *"                              ; Optional white space
-							 "\\(?:\\.\\|->\\|::\\)"              ; Member access
+							 "\\<[_a-zA-Z][_a-zA-Z0-9]*\\>"       ; Object identifier ;; Don't need this one just highlight anything that looks like function
+							 "\\s *"                              ; Optional white space ;; Don't need this one just highlight anything that looks like function
+							 "\\(?:\\.\\|->\\|::\\)"              ; Member access "(?:" in the regex means non-capturing group
 							 "\\s *"                              ; Optional white space
 							 "\\<\\([_a-zA-Z][_a-zA-Z0-9]*\\)\\>" ; Member identifier
 							 "\\s *"                              ; Optional white space
