@@ -17,6 +17,7 @@ ln -s dotfiles/.vim .vim
 ln -s dotfiles/.vimrc .vimrc
 ln -s dotfiles/.zshrc .zshrc
 ln -s dotfiles/.zshenv .zshenv
+ln -s dotfiles/.p10k.zsh .p10k.zsh
 echo "Symbolic links created"
 
 echo "Cloning Vundle for vim..."
