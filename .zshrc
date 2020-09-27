@@ -6,7 +6,7 @@ export ZSH=$HOME/dotfiles/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME="steeef"
 
 # The following will convert all .txt files into .html files
