@@ -9,6 +9,7 @@ rm -rf .vim
 rm .vimrc
 rm .zshrc
 rm .zshenv
+rm .p10k.zsh
 echo "Old symbolic links removed"
 
 echo "Creating new symbolic links..."
