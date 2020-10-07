@@ -239,4 +239,8 @@
   (setq delete-by-moving-to-trash t)
   (setq trash-directory "~/.Trash"))
 
+(when (string-equal system-type "gnu/linux")
+  (add-to-list 'default-frame-alist '(height . 79))
+  (add-to-list 'default-frame-alist '(width . 280)))
+
 ;;; init.el ends here
