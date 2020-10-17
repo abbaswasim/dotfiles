@@ -1,6 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+#
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ ' && return
+
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -218,6 +221,9 @@ alias start_synergy_server='cd /software/synergy/;./synergy-core --server -c syn
 alias kill_synergy_server='killall -9 synergy-core'
 alias synergy_key_reset='sudo /usr/bin/xset r on'
 alias cpp_to_template_proccessed='clang++ -Xclang -ast-print -fsyntax-only'
+
+alias start_barrier_server="/Applications/Barrier.app/Contents/MacOS/barriers --no-tray --debug INFO --enable-drag-drop --enable-crypto -c /software/barrier/barrier-server.config.sgc --address :24800"
+alias kill_barrier_server='killall -9 barriers'
 
 alias mk='make -j$NUMCPUS'
 alias emasc=emacs
