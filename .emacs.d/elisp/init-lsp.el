@@ -3,22 +3,28 @@
 ;;; init-lsp.el lsp-mode settings
 ;;; Code:
 
+(require 'lsp)
 (require 'lsp-mode)
 (add-hook 'c-mode-common-hook #'lsp)
 
 (require 'lsp-ui)
 (require 'flycheck)
+(require 'lsp-diagnostics)
+(require 'lsp-completion)
+(require 'lsp-clangd)
 
 (setq lsp-ui-doc-enable nil
 	  lsp-ui-sideline-enable t
 	  lsp-ui-sideline-show-symbol t ;; check this one later what does it enable disable
 	  lsp-ui-sideline-ignore-duplicate t
 	  lsp-ui-flycheck-list-position 'bottom
-	  lsp-flycheck-live-reporting t
 	  lsp-enable-snippet t
-	  lsp-prefer-capf t
-	  lsp-diagnostic-package :flycheck
+	  lsp-enable-imenu t
+	  lsp-completion-provider :capf
+	  lsp-diagnostics-provider :flycheck
 	  lsp-ui-peek-enable nil
+	  lsp-auto-guess-root t
+	  lsp-log-io t
 	  lsp-ui-peek-list-width 60
 	  lsp-ui-peek-peek-height 25)
 
@@ -30,8 +36,6 @@
 
 (require 'evil)
 ;; lsp mode shortcuts for evil
-;; (define-key evil-normal-state-map "g[" 'rtags-previous-match)
-;; (define-key evil-normal-state-map "g]" 'rtags-next-match)
 (define-key evil-normal-state-map "g[" 'xref-prev-line)
 (define-key evil-normal-state-map "g]" 'xref-next-line)
 (define-key evil-normal-state-map "gx" 'lsp-find-references)
