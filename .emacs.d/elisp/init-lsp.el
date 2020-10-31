@@ -12,6 +12,7 @@
 (require 'lsp-diagnostics)
 (require 'lsp-completion)
 (require 'lsp-clangd)
+(require 'lsp-headerline)
 
 (setq lsp-ui-doc-enable nil
 	  lsp-ui-sideline-enable t
@@ -26,6 +27,8 @@
 	  lsp-auto-guess-root t
 	  lsp-log-io t
 	  lsp-ui-peek-list-width 60
+	  lsp-headerline-breadcrumb-enable t
+;;	  lsp-headerline-breadcrumb-enable-symbol-numbers t don't really need this one
 	  lsp-ui-peek-peek-height 25)
 
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
@@ -57,6 +60,9 @@
 ;; Bigger limint for GC for lsp mode (100mb)
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
+
+;; LSP header line setup
+(setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
 
 ;; Lets setup swift mode server using lsp-SourceKit
 (require 'lsp-sourcekit)
