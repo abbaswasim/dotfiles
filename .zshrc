@@ -208,7 +208,7 @@ unalias e
 export EMACS_PLUGIN_LAUNCHER="~/dotfiles/misc/emacsclient.sh"
 # set EDITOR if not already defined.
 export EDITOR="${EDITOR:-${EMACS_PLUGIN_LAUNCHER}}"
-alias emacs="$EMACS_PLUGIN_LAUNCHER --no-wait"
+alias emacs="$EMACS_PLUGIN_LAUNCHER"
 alias e=emacs
 alias evim='te'
 
@@ -228,6 +228,8 @@ alias kill_barrier_server='killall -9 barriers'
 alias mk='make -j$NUMCPUS'
 alias emasc=emacs
 alias c=cat
+alias lc=cat
+alias cl=cat
 
 # Undo a `git push`
 alias undo_git_push="git push -f origin HEAD^:master"

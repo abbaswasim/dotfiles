@@ -50,7 +50,6 @@ set showmatch
 " Solarized theme
 syntax enable
 set background=light
-set listchars=tab:>~,nbsp:_,trail:·,eol:⏎
 
 set wildignore+=*.a,*.o
 set wildignore+=*.bmp,*.git,*.ico,*.jpg,*.png
@@ -60,7 +59,6 @@ set wildignore+=tags
 
 set encoding=utf-8
 
-set list
 set wildchar=<Tab> wildmenu wildmode=full
 
 " Always show statusline
