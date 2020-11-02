@@ -4,7 +4,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	LLVM_CACHE_PATH=/tmp/llvm-path
 
 	if [ ! -f "$LLVM_PATH" ]; then
-		echo `(brew --prefix llvm)` > $LLVM_CACHE_PATH
+		echo `(/usr/local/bin/brew --prefix llvm)` > $LLVM_CACHE_PATH
 	fi
 
 	LLVM_PATH=`cat $LLVM_CACHE_PATH`

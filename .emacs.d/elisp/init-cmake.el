@@ -4,6 +4,7 @@
 ;;; Code:
 
 (require 'company-cmake)
+(require 'cmake-font-lock)
 
 ;; Better syntax highlighting in cmake files
 (autoload 'cmake-font-lock-activate "cmake-font-lock" nil t)
@@ -12,7 +13,7 @@
 (add-hook 'cmake-mode-hook
 		  (lambda ()
 			(set (make-local-variable 'company-backends)
-				 (concatenate 'list '((company-files company-cmake company-dabbrev-code company-dabbrev company-capf)) company-backends))))
+				 '(company-files company-cmake company-dabbrev-code company-dabbrev company-capf))))
 
 (provide 'init-cmake)
 

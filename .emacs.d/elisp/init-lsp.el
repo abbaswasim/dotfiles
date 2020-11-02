@@ -25,7 +25,6 @@
 	  lsp-diagnostics-provider :flycheck
 	  lsp-ui-peek-enable nil
 	  lsp-auto-guess-root t
-	  lsp-log-io t
 	  lsp-ui-peek-list-width 60
 	  lsp-headerline-breadcrumb-enable t
 ;;	  lsp-headerline-breadcrumb-enable-symbol-numbers t don't really need this one

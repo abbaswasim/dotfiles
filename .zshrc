@@ -147,8 +147,6 @@ setopt APPEND_HISTORY
 # Killer: share history between multiple shells
 setopt SHARE_HISTORY
 
-source $HOME/dotfiles/setup-clang.sh
-
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 	alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
@@ -259,9 +257,6 @@ alias adbk_search="adb shell input keyevent 84"
 alias adbk_enter="adb shell input keyevent 66"
 alias adbk_call="adb shell input keyevent 5"
 alias adbk_menu="adb shell input keyevent 82"
-
-# load fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # cd to selected file folder
 cdf()
