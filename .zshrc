@@ -187,6 +187,8 @@ alias grep='grep -nI'
 alias search_in_all_c_type_sources="find . -name '*.h' -or -name '*.c' -or -name '*.cpp' -or -name '*.cc' | xargs grep"
 alias find_executables="find . -perm +0111 -type f"
 
+alias rgd='rg --colors line:fg:yellow --colors line:style:bold --colors path:fg:green --colors path:style:bold --colors match:fg:black --colors match:bg:yellow --colors match:style:nobold'
+
 alias adb="$ANDROID_SDK_ROOT/platform-tools/adb"
 alias fastboot="$ANDROID_SDK_ROOT/platform-tools/fastboot"
 alias which_arch='lipo -info'
@@ -272,15 +274,26 @@ function print_screen_android()
 	adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > $1
 }
 
-function dg()
+function dga()
 {
 	ag --hidden --all-text "$*"
 }
 
-function g_without_semicolon()
+function dg()
+{
+	rg --hidden --colors line:fg:yellow --colors line:style:bold --colors path:fg:green --colors path:style:bold --colors match:fg:black --colors match:bg:yellow --colors match:style:nobold "$*"
+}
+
+function ag_without_semicolon()
 {
 	ag "$*(?!.*;)"
 }
+
+function rg_without_semicolon()
+{
+	rg --colors line:fg:yellow --colors line:style:bold --colors path:fg:green --colors path:style:bold --colors match:fg:black --colors match:bg:yellow --colors match:style:nobold "$*(?!.*;)"
+}
+
 
 function dg_without_semicolon()
 {
