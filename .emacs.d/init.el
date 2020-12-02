@@ -97,12 +97,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(c-noise-macro-names '("FORCE_INLINE" "ROAR_ENGINE_ITEM"))
+ '(evil-undo-system 'undo-redo)
  '(helm-ag-insert-at-point 'symbol t)
  '(helm-ff-lynx-style-map t)
  '(helm-occur-use-ioccur-style-keys t)
  '(ns-use-srgb-colorspace t)
  '(package-selected-packages
-   '(cmake-font-lock eglot lsp-sourcekit lsp-mode lsp-ui lua-mode swift-mode which-key magit posframe exec-path-from-shell helm-lsp lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package powerline linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))
+   '(helm-rg cmake-font-lock eglot lsp-sourcekit lsp-mode lsp-ui lua-mode swift-mode which-key magit posframe exec-path-from-shell helm-lsp lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package powerline linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))
+ '(projectile-globally-ignored-directories '(".idea" ".vscode" ".git" ".hg"))
  '(safe-local-variable-values
    '((project-copyright-header . "// Copyright 200008")
 	 (projectile-project-compilation-cmd . "cmake --build build --config Debug -- -j16")
@@ -111,7 +113,7 @@
 // Roar Source Code
 // Wasim Abbas
 // http://www.waZim.com
-// Copyright (c) 2008-2019
+// Copyright (c) 2020
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the 'Software'),

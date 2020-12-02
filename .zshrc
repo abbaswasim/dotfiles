@@ -154,6 +154,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 alias what_can_i_delete='du -sh * | gsort -hr'
+alias rf='rm -rf'
 alias create_patch='diff -rupN'
 alias less='less -r'								# raw control characters
 alias gcleanco='git clean -fdx;git checkout -- .'         # Full clean of git repository

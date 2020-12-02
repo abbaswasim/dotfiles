@@ -24,6 +24,7 @@
 	  lsp-completion-provider :capf
 	  lsp-diagnostics-provider :flycheck
 	  lsp-ui-peek-enable nil
+	  ;; lsp-log-io t
 	  lsp-auto-guess-root t
 	  lsp-ui-peek-list-width 60
 	  lsp-headerline-breadcrumb-enable t
