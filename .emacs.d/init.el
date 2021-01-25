@@ -160,7 +160,27 @@
 (save-place-mode 1)
 
 ;; leave a few lines above and blew when scrlling
-(setq scroll-margin 10 scroll-conservatively 101 scroll-step 1)
+;; (setq scroll-margin 10 scroll-conservatively 101 scroll-step 1)
+;; (setq scroll-margin 10 scroll-conservatively 101 scroll-step 1)
+;; (setq scroll-conservatively 101)
+;; (setq redisplay-dont-pause t
+;;   scroll-conservatively 10000
+;;   scroll-preserve-screen-position 1)
+
+(setq
+ scroll-conservatively 1000                     ;; only 'jump' when moving this far
+ scroll-margin 4                                ;; scroll N lines to screen edge
+ scroll-step 1                                  ;; keyboard scroll one line at a time
+ mouse-wheel-scroll-amount '(6 ((shift) . 1))   ;; mouse scroll N lines
+ mouse-wheel-progressive-speed nil              ;; don't accelerate scrolling
+
+ redisplay-dont-pause t                         ;; don't pause display on input
+
+ ;; Always redraw immediately when scrolling,
+ ;; more responsive and doesn't hang!
+ fast-but-imprecise-scrolling nil
+ jit-lock-defer-time 0
+ )
 
 ;; Enable smooth scrolling
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
@@ -206,6 +226,7 @@
  '(flycheck-posframe-error-face ((t (:background "#e37d7d" :foreground "#1d1d1d"))))
  '(flycheck-posframe-warning-face ((t (:background "#ec9562" :foreground "#1d1d1d"))))
  '(linum-relative-current-face ((t (:inherit linum :weight bold :underline "#555"))))
+ '(lsp-face-highlight-textual ((t (:inherit highlight :background "black"))))
  '(org-level-1 ((t (:inherit outline-1 :height 1.2))))
  '(org-level-2 ((t (:inherit outline-2 :height 1.1))))
  '(org-level-3 ((t (:inherit outline-3 :height 1.0))))

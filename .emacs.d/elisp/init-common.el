@@ -35,8 +35,8 @@
 
 (require 'posframe)
 
-(defun describe-thing-in-popup ()
-  "Show full documentation of the symbol at point."
+(defun describe-elisp-in-popup ()
+  "Show full documentation of the elisp symbol at point."
   (interactive)
   (let* ((thing (symbol-at-point))
 		 (description (describe-function thing)))
@@ -49,12 +49,27 @@
 	 :position (point))
 	(add-hook 'pre-command-hook #'remove-description-posframe)))
 
+(defvar vulkan-1_2-base-url "https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/")
+(defvar cpp-reference-base-url "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=")
+
+(defun describe-c++-in-browser ()
+  "Show full documentation of the c++ symbol at point by searching it online in a browser."
+  (interactive)
+  (let* ((thing (symbol-at-point)))
+	(if (string= (substring (downcase (symbol-name thing)) 0 2) "vk")
+		(let ((fullurl (concat vulkan-1_2-base-url (symbol-name thing) ".html")))
+		  (browse-url fullurl))
+	  (let ((fullurl (concat cpp-reference-base-url (symbol-name thing))))
+		(browse-url fullurl)))))
+
  ;; in python mode show help in window
 (evil-define-key 'normal python-mode-map (kbd "s-1") 'elpy-doc)
+
  ;; in elisp mode show help in popup
-(evil-define-key 'normal emacs-lisp-mode-map (kbd "s-1") 'describe-thing-in-popup)
+(evil-define-key 'normal emacs-lisp-mode-map (kbd "s-1") 'describe-elisp-in-popup)
+
 ;; in cmake mode show help in side window
-(evil-define-key 'normal cmake-mode-map (kbd "C-M-s-!") 'cmake-help)
+(evil-define-key 'normal cmake-mode-map (kbd "C-M-s-!") 'cmake-help) ;; This is important for the one below
 ;; keyboard macro for the above to press enter automatically
 (evil-define-key 'normal cmake-mode-map (kbd "s-1") '(lambda (&optional arg)
 													   "Keyboard macro."
@@ -63,6 +78,8 @@
 														(quote
 														 ([209715233 return] 0 "%d")) arg)))
 
+;; in C/C++ mode show help in browser
+(evil-define-key 'normal c++-mode-map (kbd "s-1") 'describe-c++-in-browser)
 
 (defvar notes-folder "/development/notes/")
 (defvar notes-text "\n\n* Atendees:\n** Ours:\n** <other> \n\n* Notes:\n")

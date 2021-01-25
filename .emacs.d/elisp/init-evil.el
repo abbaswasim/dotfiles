@@ -128,5 +128,9 @@
 (require 'evil-nerd-commenter)
 (evilnc-default-hotkeys)
 
+;; Disable Evil mode in certain modes
+(add-to-list 'evil-emacs-state-modes 'xref--xref-buffer-mode)
+(add-to-list 'evil-emacs-state-modes 'debugger-mode)
+
 (provide 'init-evil)
 ;;; init-evil ends here
