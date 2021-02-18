@@ -267,6 +267,14 @@
 
 (when (string-equal system-type "gnu/linux")
   (add-to-list 'default-frame-alist '(height . 79))
-  (add-to-list 'default-frame-alist '(width . 280)))
+  (add-to-list 'default-frame-alist '(width . 280))
+  (when (not (display-graphic-p))
+	(progn
+	 (cl-loop for char from ?1 to ?9
+			  do (define-key input-decode-map (format "\e[1;P%c" char) (kbd (format "s-%c" char))))
+
+	 (cl-loop for char from ?a to ?z
+			  do (define-key input-decode-map (format "\e[1;P%c" char) (kbd (format "s-%c" char))))
+	 )))
 
 ;;; init.el ends here
