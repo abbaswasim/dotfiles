@@ -244,6 +244,10 @@
 (setq split-width-threshold nil)
 (setq split-height-threshold nil)
 
+;; Compilation buffer scroll behaviour set to last command
+(setq compilation-scroll-output t)
+;; (setq compilation-scroll-output 'first-error) ;; Also possible but I prefer to end of output
+
 ;; enable async mode very handy
 ;; Try to understand how this works a bit more
 (require 'async)
