@@ -7,6 +7,8 @@
 ;;; Code:
 
 (require 'json)
+(require 'python)
+(require 'evil)
 ;; (require 'flycheck)
 
 (defvar project-copyright-header)
@@ -216,6 +218,9 @@ If `THRESHOLD' is 2 only traverses error, 1 means errors and warnings and 0 mean
 
 ;; If macros or CONSTANTS_CONSTANTS font-lock-face are added, enable this for it to work
 (custom-set-variables '(c-noise-macro-names '("FORCE_INLINE" "ROAR_ENGINE_ITEM"))) ;; this broke again in emacs 28, but seems to be working now
+
+;; Load init.el faster
+(global-set-key (kbd "s-I") (lambda () (interactive) (find-file-other-window user-init-file)))
 
 (provide 'init-common)
 ;;; init-common.el ends here

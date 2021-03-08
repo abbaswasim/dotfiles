@@ -77,6 +77,9 @@
 ;; Override gf to use helm-projectile-find-file-dwim instead
 (define-key evil-normal-state-map "gf" 'helm-projectile-find-file-dwim)
 
+;; Remap gw to swap characters
+(evil-define-key 'normal 'global "gw" "xphh")
+
 ;; :tabnew and the likes
 ;; (global-evil-tabs-mode t)
 

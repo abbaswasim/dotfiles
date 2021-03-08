@@ -17,7 +17,7 @@
 
 (when (memq window-system '(mac ns))
 ;;; MacOs runs emacs from gui so doesn't inherit environment
-;;; Bellow lines makes sure it does
+;;; the following lines makes sure it does
   (require 'exec-path-from-shell)
   (exec-path-from-shell-initialize))
 
@@ -106,14 +106,13 @@
    '(helm-rg cmake-font-lock eglot lsp-sourcekit lsp-mode lsp-ui lua-mode swift-mode which-key magit posframe exec-path-from-shell helm-lsp lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package powerline linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet powerline-evil popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))
  '(projectile-globally-ignored-directories '(".idea" ".vscode" ".git" ".hg"))
  '(safe-local-variable-values
-   '((project-copyright-header . "// Copyright 200008")
-	 (projectile-project-compilation-cmd . "cmake --build build --config Debug -- -j16")
-	 (projectile-project-compilation-cmd . "cd /personal/roar_engine/ && cmake --build build -- -j4")
+   '((projectile-project-compilation-cmd . "cd /personal/roar_engine && cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug && cmake --build build --config Debug -- -j$NUMCPUS")
+	 (project-namespace-name . "ror")
 	 (project-copyright-header . "
 // Roar Source Code
 // Wasim Abbas
 // http://www.waZim.com
-// Copyright (c) 2020
+// Copyright (c) 2021
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the 'Software'),
@@ -134,8 +133,7 @@
 // OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 // Version: 1.0.0
-")
-	 (project-namespace-name . "ror"))))
+"))))
 
 ;; Show helm-kill-ring with C-k
 (global-set-key (kbd "C-k") 'helm-show-kill-ring)
