@@ -191,6 +191,14 @@ If `THRESHOLD' is 2 only traverses error, 1 means errors and warnings and 0 mean
 			   (side            . bottom)
 			   (window-height   . 0.4)))
 
+;; Always make xref buffer open at the bootom of the windows at 20% of the height
+(add-to-list 'display-buffer-alist
+			 `("*xref*"
+			   (display-buffer-reuse-window
+				display-buffer-in-side-window)
+			   (reusable-frames . visible)
+			   (side            . bottom)
+			   (window-height   . 0.2)))
 
 ;; Make C++ function calls more prominent by assigning it a color
 (font-lock-add-keywords 'c++-mode
@@ -220,7 +228,18 @@ If `THRESHOLD' is 2 only traverses error, 1 means errors and warnings and 0 mean
 (custom-set-variables '(c-noise-macro-names '("FORCE_INLINE" "ROAR_ENGINE_ITEM"))) ;; this broke again in emacs 28, but seems to be working now
 
 ;; Load init.el faster
-(global-set-key (kbd "s-I") (lambda () (interactive) (find-file-other-window user-init-file)))
+(global-set-key (kbd "s-I") (lambda () (interactive) (find-file user-init-file)))
+
+;; Close the annoying compilation window if there are no errors/warnings
+; from enberg on #emacs
+(add-hook 'compilation-finish-functions
+  (lambda (buf str)
+	(if (null (string-match ".*exited abnormally.*" str)) ;;no errors, make the compilation window go away in a few seconds
+		(progn
+		  (run-at-time
+		   "2 sec" nil 'delete-windows-on
+		   (get-buffer-create "*compilation*"))
+		  (message "No Compilation Errors!")))))
 
 (provide 'init-common)
 ;;; init-common.el ends here

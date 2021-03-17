@@ -3,8 +3,6 @@
 
 ;;; Code:
 
-;; (require 'cl)
-
 ;; enable c++-mode in .h instead of c-mode and other associations
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
@@ -12,6 +10,13 @@
 (add-to-list 'auto-mode-alist '("\\.frag\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.vert\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.comp\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.glsl\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.frag.glsl\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.vert.glsl\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.comp.glsl\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.mesh.glsl\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.task.glsl\\'" . c++-mode))
+
 (add-to-list 'auto-mode-alist '("\\.gltf\\'" . javascript-mode))
 
 ;; Autoload code folding minor mode

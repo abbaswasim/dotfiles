@@ -50,6 +50,7 @@ set showmatch
 " Solarized theme
 syntax enable
 set background=light
+hi Search ctermfg=black ctermbg=red
 
 set wildignore+=*.a,*.o
 set wildignore+=*.bmp,*.git,*.ico,*.jpg,*.png
