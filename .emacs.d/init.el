@@ -30,7 +30,7 @@
 (require 'init-linum)
 (require 'init-helm)
 (require 'init-common)
-(require 'init-magit)
+;; (require 'init-magit)
 (require 'init-neotree)
 (require 'init-mappings)
 (require 'init-c-cpp)
@@ -97,14 +97,16 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(c-noise-macro-names '("FORCE_INLINE" "ROAR_ENGINE_ITEM"))
+ '(evil-search-module 'evil-search)
  '(evil-undo-system 'undo-redo)
- '(helm-ag-insert-at-point 'symbol t)
+ '(evil-want-Y-yank-to-eol t)
+ '(helm-ag-insert-at-point 'symbol)
  '(helm-ff-lynx-style-map t)
  '(helm-occur-use-ioccur-style-keys t)
  '(ns-use-srgb-colorspace t)
  '(evil-search-module 'evil-search)
  '(package-selected-packages
-   '(powerline powerline-evil lsp-sourcekit lsp-ui helm-lsp lsp-mode helm-rg cmake-font-lock eglot lua-mode swift-mode which-key magit posframe exec-path-from-shell lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))
+   '(powerline powerline-evil lsp-sourcekit lsp-ui helm-lsp lsp-mode helm-rg cmake-font-lock eglot lua-mode swift-mode which-key posframe exec-path-from-shell lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-search-highlight-persist evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))
  '(projectile-globally-ignored-directories '(".idea" ".vscode" ".git" ".hg"))
  '(safe-local-variable-values
    '((projectile-project-compilation-cmd . "cd /personal/roar_engine && cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug && cmake --build build --config Debug -- -j$NUMCPUS")
