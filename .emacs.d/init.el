@@ -134,7 +134,9 @@
 // OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 // Version: 1.0.0
-"))))
+")))
+ '(undo-limit 10000000)
+ '(undo-strong-limit 10000000))
 
 ;; Show helm-kill-ring with C-k
 (global-set-key (kbd "C-k") 'helm-show-kill-ring)

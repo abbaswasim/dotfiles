@@ -115,21 +115,15 @@
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
 
-(evil-define-motion evil-goto-definition-current-doc ()
-  "Go to definition or first occurrence of symbol under point in current document only."
-  :jump t
-  :type exclusive
-  (let* ((string (evil-find-symbol t))
-		 (search (format "\\_<%s\\_>" (regexp-quote string))))
-	(if (null search)
-		(user-error "No symbol under cursor")
-	  (setq isearch-forward t)
-	  (cond (t (evil-search search t t (point-min)))))))
+(define-key evil-motion-state-map "gh" "gd*N")
 
-(define-key evil-motion-state-map "gh" 'evil-goto-definition-current-doc)
+;; Very important setting that makes searching very useful
+(setq-default evil-symbol-word-search t)
 
 (require 'evil-nerd-commenter)
 (evilnc-default-hotkeys)
+
+(define-key evil-normal-state-map ",cy" 'evilnc-yank-and-comment-operator)
 
 ;; Disable Evil mode in certain modes
 (add-to-list 'evil-emacs-state-modes 'xref--xref-buffer-mode)
