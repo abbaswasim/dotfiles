@@ -22,10 +22,6 @@
 ;; when getting out of insert mode don't move cursor back one character
 (setq evil-move-cursor-back nil)
 
-;; leave search highlighted like vim
-(require 'evil-search-highlight-persist)
-(global-evil-search-highlight-persist t)
-
 ;; bind C-s to go half-screen up, paired with C-d going halfscreen down
 (define-key evil-normal-state-map (kbd "C-s") (lambda () (interactive) (evil-scroll-up nil)))
 

@@ -1,7 +1,7 @@
 (when (memq window-system '(mac ns))
 ;;; sRGB doesn't blend with Powerline's pixmap colors, but is only
 ;;; used in OS X. Disable sRGB before setting up Powerline.
-  (setq ns-use-srgb-colorspace nil))
+  (setq ns-use-srgb-colorspace t)) ;; This should be set to nil for Emacs 28 and onwards
 
 (require 'color-theme-sanityinc-tomorrow)
 (load-theme 'sanityinc-tomorrow-eighties t)

@@ -11,7 +11,6 @@
 (require 'flycheck)
 (require 'lsp-diagnostics)
 (require 'lsp-completion)
-(require 'lsp-clangd)
 (require 'lsp-headerline)
 
 (setq lsp-ui-doc-enable nil
