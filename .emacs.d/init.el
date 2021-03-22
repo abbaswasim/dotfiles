@@ -251,10 +251,14 @@
 (global-set-key (kbd "s-C-<down>")  'shrink-window)
 (global-set-key (kbd "s-C-<up>")    'enlarge-window)
 
+(desktop-save-mode 1)
+
 (when (string-equal system-type "darwin")
+  (setq default-frame-alist '((undecorated . t)))
+  (setq frame-resize-pixelwise t)
   ;; On Big mac open a bigger window please, perhaps guess the resolution in the future
-  (add-to-list 'default-frame-alist '(height . 100))
-  (add-to-list 'default-frame-alist '(width . 310))
+  (add-to-list 'default-frame-alist '(height . 99))
+  (add-to-list 'default-frame-alist '(width . 363))
 
   ;; Non-native fullscreen
   ;; (setq ns-use-native-fullscreen nil)
