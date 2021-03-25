@@ -24,7 +24,7 @@
 ;; load my configurations
 (require 'init-packages)
 (require 'init-company)
-(require 'init-flycheck)
+;; (require 'init-flycheck) ;; need to enable to python and other stuff, for C/C++ lsp-mode takes care of this
 (require 'init-evil)
 (require 'init-powerline)
 (require 'init-linum)
@@ -37,6 +37,7 @@
 (require 'init-python)
 (require 'init-cmake)
 (require 'init-lsp)
+(require 'init-orgmode)
 ;; (require 'init-eglot)
 
 ;; start emacsclient server
@@ -74,15 +75,6 @@
 ;; string manipulation package
 (require 'string-inflection)
 
-;; let TODO done time logging
-(setq org-log-done t)
-(setq org-agenda-files (list "~/org/work.org"
-				 "~/org/other.org"
-				 "~/org/home.org"
-				 "~/org/notes.org"))
-
-(setq org-default-notes-file (expand-file-name "~/org/notes.org"))
-
 ;; Don't make backups everything is version controled
 (setq make-backup-files nil)
 (setq auto-save-default nil)
@@ -103,8 +95,7 @@
  '(helm-ag-insert-at-point 'symbol)
  '(helm-ff-lynx-style-map t)
  '(helm-occur-use-ioccur-style-keys t)
- '(ns-use-srgb-colorspace t)
- '(evil-search-module 'evil-search)
+ '(org-agenda-window-setup 'current-window)
  '(package-selected-packages
    '(powerline powerline-evil lsp-sourcekit lsp-ui helm-lsp lsp-mode helm-rg cmake-font-lock eglot lua-mode swift-mode which-key posframe exec-path-from-shell lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))
  '(projectile-globally-ignored-directories '(".idea" ".vscode" ".git" ".hg"))
@@ -226,9 +217,6 @@
  '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
  '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
  '(popup-tip-face ((t (:background "khaki1" :foreground "black" :underline nil)))))
-
-;; Enable org bullets in org-mode
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 ;; make sure ag follows symlinks, one can also provide other command line options
 (setq helm-ag-command-option "-f")

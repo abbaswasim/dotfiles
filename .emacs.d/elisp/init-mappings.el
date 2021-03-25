@@ -23,6 +23,9 @@
 (global-set-key [C-s-tab] 'clang-format-region)
 (global-set-key (kbd "s-7") 'clang-format-buffer)
 
+;; Global quit key apart from s-q which quits current frame
+(global-set-key (kbd "M-s-q") 'kill-emacs)
+
 (setq mac-command-modifier 'super) ; make cmd key do Meta
 (setq mac-option-modifier 'meta) ; make opt key do Super
 (setq mac-control-modifier 'control) ; make Control key do Control
