@@ -9,6 +9,7 @@ rm -rf .vim
 rm .vimrc
 rm .zshrc
 rm .zshenv
+rm .zprofile
 rm .p10k.zsh
 echo "Old symbolic links removed"
 
@@ -18,6 +19,7 @@ ln -s dotfiles/.vim .vim
 ln -s dotfiles/.vimrc .vimrc
 ln -s dotfiles/.zshrc .zshrc
 ln -s dotfiles/.zshenv .zshenv
+ln -s dotfiles/.zprofile .zprofile
 ln -s dotfiles/.p10k.zsh .p10k.zsh
 echo "Symbolic links created"
 

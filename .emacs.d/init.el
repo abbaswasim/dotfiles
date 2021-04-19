@@ -82,6 +82,9 @@
 ;; Autoload code folding minor mode
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
+;; Before emacs28 since we can't use undo-redo lets use undo-tree
+(global-undo-tree-mode)
+
 ;; start maximized
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -90,17 +93,17 @@
  ;; If there is more than one, they won't work right.
  '(c-noise-macro-names '("FORCE_INLINE" "ROAR_ENGINE_ITEM"))
  '(evil-search-module 'evil-search)
- '(evil-undo-system 'undo-redo)
+ '(evil-undo-system 'undo-tree)
  '(evil-want-Y-yank-to-eol t)
- '(helm-ag-insert-at-point 'symbol)
+ '(helm-ag-insert-at-point 'symbol t)
  '(helm-ff-lynx-style-map t)
  '(helm-occur-use-ioccur-style-keys t)
  '(org-agenda-window-setup 'current-window)
  '(package-selected-packages
-   '(powerline powerline-evil lsp-sourcekit lsp-ui helm-lsp lsp-mode helm-rg cmake-font-lock eglot lua-mode swift-mode which-key posframe exec-path-from-shell lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))
+   '(powerline powerline-evil lsp-sourcekit lsp-ui helm-lsp lsp-mode helm-rg cmake-font-lock lua-mode swift-mode which-key posframe exec-path-from-shell lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data undo-tree seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))
  '(projectile-globally-ignored-directories '(".idea" ".vscode" ".git" ".hg"))
  '(safe-local-variable-values
-   '((projectile-project-compilation-cmd . "cd /personal/roar_engine && cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug && cmake --build build --config Debug -- -j$NUMCPUS")
+   '((projectile-project-compilation-cmd . "cd /System/Volumes/Data/personal/roar_engine && cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug && cmake --build build --config Debug -- -j$NUMCPUS")
 	 (project-namespace-name . "ror")
 	 (project-copyright-header . "
 // Roar Source Code

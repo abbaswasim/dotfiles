@@ -76,6 +76,15 @@
 ;; Remap gw to swap characters
 (evil-define-key 'normal 'global "gw" "xphh")
 
+(defun swap-buffers-accross()
+  "Swaps the buffers between the 2-windows that I always use"
+  (interactive)
+  (other-window 1)
+  (window-swap-states))
+
+;; Lets swap buffers between two windows
+(evil-define-key 'normal 'global "gj" 'swap-buffers-accross)
+
 ;; :tabnew and the likes
 ;; (global-evil-tabs-mode t)
 

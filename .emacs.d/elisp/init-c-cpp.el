@@ -17,6 +17,10 @@
 (add-to-list 'auto-mode-alist '("\\.mesh.glsl\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.task.glsl\\'" . c++-mode))
 
+;; Objective-c and Objective-C++ mode enable
+(add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
+
+
 (add-to-list 'auto-mode-alist '("\\.gltf\\'" . javascript-mode))
 
 ;; Autoload code folding minor mode

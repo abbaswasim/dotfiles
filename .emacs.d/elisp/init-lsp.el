@@ -24,8 +24,9 @@
 	  lsp-diagnostics-provider :flycheck
 	  lsp-ui-peek-enable nil
 	  ;; lsp-log-io t
-	  lsp-auto-guess-root t
+	  ;; lsp-auto-guess-root t
 	  lsp-ui-peek-list-width 60
+	  lsp-idle-delay 0.1
 	  lsp-headerline-breadcrumb-enable t
 ;;	  lsp-headerline-breadcrumb-enable-symbol-numbers t don't really need this one
 	  lsp-ui-peek-peek-height 25)
@@ -53,7 +54,7 @@
 
 ;; Lets setup C++/C completion etc
 ;; Set clangd arguments
-(setq lsp-clients-clangd-args '("-j=8" "-background-index" "-header-insertion-decorators=0" "-log=error"))
+(setq lsp-clients-clangd-args '("-j=8" "-background-index" "-header-insertion-decorators=0" "-cross-file-rename" "-log=error"))
 
 ;; Some LSP performance tuneing
 ;; Bigger limint for GC for lsp mode (100mb)

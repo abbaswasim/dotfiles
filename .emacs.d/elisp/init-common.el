@@ -14,8 +14,8 @@
 (defvar project-copyright-header)
 (defvar project-namespace-name)
 
-(setq project-copyright-header "// Copyright 2018")
-(setq project-namespace-name "core_engine")
+(setq project-copyright-header "// Copyright 2021")
+(setq project-namespace-name "ror")
 
 (setq help-window-select t)
 

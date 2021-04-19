@@ -211,6 +211,7 @@ export EMACS_PLUGIN_LAUNCHER="~/dotfiles/misc/emacsclient.sh"
 export EDITOR="${EDITOR:-${EMACS_PLUGIN_LAUNCHER}}"
 alias emacs="$EMACS_PLUGIN_LAUNCHER"
 alias e=emacs
+alias ee='e $($(fc -ln -1))'
 alias evim='te'
 
 # this way just use G to grep for stuff
