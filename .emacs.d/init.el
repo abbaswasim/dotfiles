@@ -24,7 +24,7 @@
 ;; load my configurations
 (require 'init-packages)
 (require 'init-company)
-;; (require 'init-flycheck) ;; need to enable to python and other stuff, for C/C++ lsp-mode takes care of this
+(require 'init-flycheck) ;; need to enable to python and other stuff, for C/C++ lsp-mode takes care of this
 (require 'init-evil)
 (require 'init-powerline)
 (require 'init-linum)
@@ -37,6 +37,7 @@
 (require 'init-python)
 (require 'init-cmake)
 (require 'init-lsp)
+(require 'init-dap)
 (require 'init-orgmode)
 ;; (require 'init-eglot)
 
@@ -213,7 +214,9 @@
  '(flycheck-posframe-error-face ((t (:background "#e37d7d" :foreground "#1d1d1d"))))
  '(flycheck-posframe-warning-face ((t (:background "#ec9562" :foreground "#1d1d1d"))))
  '(linum-relative-current-face ((t (:inherit linum :weight bold :underline "#555"))))
+ '(lsp-face-highlight-read ((t (:inherit highlight :background "dark olive green" :underline t))))
  '(lsp-face-highlight-textual ((t (:inherit highlight :background "black"))))
+ '(lsp-face-highlight-write ((t (:inherit highlight :background "saddle brown" :weight bold))))
  '(org-level-1 ((t (:inherit outline-1 :height 1.2))))
  '(org-level-2 ((t (:inherit outline-2 :height 1.1))))
  '(org-level-3 ((t (:inherit outline-3 :height 1.0))))
@@ -245,11 +248,11 @@
 (desktop-save-mode 1)
 
 (when (string-equal system-type "darwin")
-  (setq default-frame-alist '((undecorated . t)))
   (setq frame-resize-pixelwise t)
+
   ;; On Big mac open a bigger window please, perhaps guess the resolution in the future
-  (add-to-list 'default-frame-alist '(height . 99))
-  (add-to-list 'default-frame-alist '(width . 363))
+  (setq default-frame-alist '((left . 0) (width . 363) (fullscreen . fullheight)))
+  (add-to-list 'default-frame-alist '(undecorated . t))
 
   ;; Non-native fullscreen
   ;; (setq ns-use-native-fullscreen nil)
