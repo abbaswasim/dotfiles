@@ -5,6 +5,7 @@
 
 (require 'lsp)
 (require 'lsp-mode)
+
 (add-hook 'c-mode-common-hook #'lsp)
 
 (require 'lsp-ui)
@@ -12,24 +13,31 @@
 (require 'lsp-diagnostics)
 (require 'lsp-completion)
 (require 'lsp-headerline)
+(require 'lsp-icons)
 
-(setq lsp-ui-doc-enable nil
-	  lsp-ui-sideline-enable t
-	  lsp-ui-sideline-show-symbol t ;; check this one later what does it enable disable
-	  lsp-ui-sideline-ignore-duplicate t
-	  lsp-ui-flycheck-list-position 'bottom
-	  lsp-enable-snippet t
-	  lsp-enable-imenu t
-	  lsp-completion-provider :capf
-	  lsp-diagnostics-provider :flycheck
-	  lsp-ui-peek-enable nil
-	  ;; lsp-log-io t
-	  ;; lsp-auto-guess-root t
-	  lsp-ui-peek-list-width 60
-	  lsp-idle-delay 0.1
-	  lsp-headerline-breadcrumb-enable t
-;;	  lsp-headerline-breadcrumb-enable-symbol-numbers t don't really need this one
-	  lsp-ui-peek-peek-height 25)
+(setq
+ lsp-ui-doc-enable t
+ lsp-ui-sideline-enable t
+ lsp-ui-sideline-show-symbol t ;; check this one later what does it enable disable
+ lsp-ui-sideline-ignore-duplicate t
+ lsp-ui-flycheck-list-position 'bottom
+ lsp-ui-peek-enable nil
+ lsp-ui-peek-list-width 60
+ lsp-ui-peek-peek-height 25
+ lsp-enable-snippet t
+ lsp-enable-imenu t
+ lsp-completion-provider :capf
+ lsp-diagnostics-provider :flycheck
+ ;; lsp-log-io t
+ ;; lsp-auto-guess-root t
+ lsp-lens-enable t ;; clangd doesn't support this at the moment, but might be useful in other languages
+ lsp-idle-delay 0.1
+ lsp-headerline-breadcrumb-enable t
+ lsp-headerline-breadcrumb-icons-enable t
+ ;; lsp-semantic-tokens-enable t ;; Slightly better organisation of symbols but most of them has same color means very uniform looking, also buggy, specially for enums
+ ;; lsp-headerline-breadcrumb-enable-symbol-numbers t ;; don't really need this one
+ )
+
 
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 (add-hook 'c-mode-common-hook 'flycheck-mode)
@@ -62,7 +70,7 @@
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 ;; LSP header line setup
-(setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
+;; (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols)) ;; default it fine
 
 ;; Lets setup swift mode server using lsp-SourceKit
 (require 'lsp-sourcekit)
