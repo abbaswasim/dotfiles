@@ -76,6 +76,24 @@
 ;; Remap gw to swap characters
 (evil-define-key 'normal 'global "gw" "xphh")
 
+(defun next-and-center ()
+  "Move to next search item and center."
+  (interactive)
+  (progn
+	(evil-ex-search-next 1)
+	(evil-scroll-line-to-center nil)))
+
+(defun previous-and-center ()
+  "Move to previous search item and center."
+  (interactive)
+  (progn
+	(evil-ex-search-previous 1)
+	(evil-scroll-line-to-center nil)))
+
+;; Better to center search results
+(evil-define-key 'normal 'global "n" 'next-and-center)
+(evil-define-key 'normal 'global "N" 'previous-and-center)
+
 (defun swap-buffers-accross()
   "Swaps the buffers between the 2-windows that I always use"
   (interactive)
