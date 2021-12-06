@@ -4,7 +4,7 @@
 # desc: Snippet for C++11 classes based on c++-mode/class.
 # based on c++11 snippet from yassnipet snippets
 # --
-class ROAR_ENGINE_ITEM ${1:Name}
+class ROAR_ENGINE_ITEM ${1:Name} final
 {
 public:
 
