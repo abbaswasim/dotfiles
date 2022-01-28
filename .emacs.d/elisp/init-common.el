@@ -220,6 +220,7 @@ If `THRESHOLD' is 2 only traverses error, 1 means errors and warnings and 0 mean
    ("\\_<\\(\\+\\|-\\|0x\\)?\\([0-9]+\\)\\(\\.[0-9fulUL]+\\)?\\_>" . font-lock-warning-face) ; Number identifier
    ("\\<\\(FIXME\\):" 1 font-lock-warning-face prepend)
    ("\\<\\(TODO\\):" 1 font-lock-warning-face prepend)
+   ("\\<\\(NOTE\\):" 1 font-lock-warning-face prepend)
    ("\\_<\\(FORCE_INLINE\\)" 1 font-lock-doc-face) ;; this broke again in emacs 28, but seems to be working now
    ("\\_<\\(ROAR_ENGINE_ITEM\\)" 1 font-lock-doc-face) ;; this broke again in emacs 28, but seems to be working now
    ))

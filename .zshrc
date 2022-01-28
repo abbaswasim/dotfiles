@@ -161,7 +161,7 @@ alias gcleanco='git clean -fdx;git checkout -- .'         # Full clean of git re
 alias who-is-holding-reference='lsof | grep '         # Find out who is grabing onto files
 alias all-predefined-macros='clang -dM -E -x c /dev/null'
 
-export ANDROID_NDK_ROOT=/development/android/sdk/ndk/21.1.6352462
+export ANDROID_NDK_ROOT=/development/android/sdk/ndk/23.1.7779620
 export ANDROID_SDK_ROOT=/development/android/sdk
 export ANDROID_HOME=$ANDROID_SDK_ROOT
 export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT
@@ -192,6 +192,8 @@ alias rgd='rg --colors line:fg:yellow --colors line:style:bold --colors path:fg:
 
 alias adb="$ANDROID_SDK_ROOT/platform-tools/adb"
 alias fastboot="$ANDROID_SDK_ROOT/platform-tools/fastboot"
+alias ndk-build="$ANDROID_NDK_ROOT/ndk-build"
+alias android="$ANDROID_SDK_ROOT/tools/android"
 alias which_arch='lipo -info'
 alias mount_to_dev='hdiutil attach -imagekey diskimage-class=CRawDiskImage -nomount'
 alias android_print_screen='adb shell screencap -p | perl -pe 's/\x0D\x0A/\x0A/g' > screen.png'
@@ -370,7 +372,7 @@ android_make_deploy_collect()
 	FILTER="E"
 
 	if [ "$#" -lt 3 ]; then
-		echo "To use this function provide apk to install, package name, activity name and optional filter\n\tmk_install_run_errors bla.apk com.bla.something MyActivity {filter, default E}\t where filter is {E|V|I}"
+		echo "To use this function provide apk to install, package name, activity name and optional filter\n\tandroid_make_deploy_collect bla.apk com.bla.something MyActivity {filter, default E}\t where filter is {E|V|I}"
 	else
 		APK_PATH=$1
 		PACKAGE_NAME=$2
