@@ -5,8 +5,14 @@
 
 (require 'lsp)
 (require 'lsp-mode)
+(require 'glsl-mode)
 
-(add-hook 'c-mode-common-hook #'lsp)
+(add-hook 'c-mode-common-hook
+		  (lambda ()
+			(unless (eq major-mode 'glsl-mode)
+			  (lsp))))
+
+;; (add-hook 'c-mode-common-hook #'lsp)
 
 (require 'lsp-ui)
 (require 'flycheck)

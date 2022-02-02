@@ -7,18 +7,18 @@
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.hpp\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.hh\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.frag\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.vert\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.comp\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.fs\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.vs\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.cs\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.glsl\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.frag.glsl\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.vert.glsl\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.comp.glsl\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.mesh.glsl\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.task.glsl\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.frag\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.vert\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.comp\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.fs\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.vs\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.cs\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.glsl\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.frag.glsl\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.vert.glsl\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.comp.glsl\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.mesh.glsl\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.task.glsl\\'" . glsl-mode))
 
 ;; Objective-c and Objective-C++ mode enable
 (add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
@@ -54,6 +54,11 @@
 		  (lambda ()
 			(set (make-local-variable 'company-backends)
 				 (setq company-backends (append '((:separate company-capf :separate  company-yasnippet) company-yasnippet) company-backends)))))
+
+(add-hook 'glsl-mode-hook
+		  (lambda ()
+			(set (make-local-variable 'company-backends)
+				 (add-to-list 'company-backends '(company-glsl :with company-dabbrev :with company-dabbrev-code :with company-capf)))))
 
 (provide 'init-c-cpp)
 
