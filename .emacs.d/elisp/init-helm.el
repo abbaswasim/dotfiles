@@ -30,14 +30,14 @@
 (helm-autoresize-mode t)
 
 ;; always use fuzzy matching everywhere
-(setq helm-mode-fuzzy-match t)
-(setq completion-in-region-fuzzy-match t)
+;; (setq helm-mode-fuzzy-match t)
+;; (setq completion-in-region-fuzzy-match t)
 
 ;; replace emacs M-x
 (global-set-key (kbd "M-x") 'helm-M-x)
 
-(setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
-(setq helm-buffers-fuzzy-matching t)
+;; (setq helm-M-x-fuzzy-match t) ;; optional fuzzy matching for helm-M-x
+;; (setq helm-buffers-fuzzy-matching t)
 (setq helm-quick-update t)
 (setq helm-bookmark-show-location t)
 

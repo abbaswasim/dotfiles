@@ -37,7 +37,7 @@
 (require 'init-python)
 (require 'init-cmake)
 (require 'init-lsp)
-(require 'init-dap)
+;; (require 'init-dap)
 (require 'init-orgmode)
 ;; (require 'init-eglot)
 
@@ -96,7 +96,7 @@
  '(evil-search-module 'evil-search)
  '(evil-undo-system 'undo-tree)
  '(evil-want-Y-yank-to-eol t)
- '(helm-ag-insert-at-point 'symbol t)
+ '(helm-ag-insert-at-point 'symbol)
  '(helm-ff-lynx-style-map t)
  '(helm-occur-use-ioccur-style-keys t)
  '(org-agenda-window-setup 'current-window)
@@ -247,29 +247,29 @@
 
 (desktop-save-mode 1)
 
-(when (string-equal system-type "darwin")
-  (setq frame-resize-pixelwise t)
+;; (when (string-equal system-type "darwin")
+;;   (setq frame-resize-pixelwise t)
 
-  ;; On Big mac open a bigger window please, perhaps guess the resolution in the future
-  (setq default-frame-alist '((left . 0) (width . 363) (fullscreen . fullheight)))
-  (add-to-list 'default-frame-alist '(undecorated . t))
+;;   ;; On Big mac open a bigger window please, perhaps guess the resolution in the future
+;;   (setq default-frame-alist '((left . 0) (width . 363) (fullscreen . fullheight)))
+;;   (add-to-list 'default-frame-alist '(undecorated . t))
 
-  ;; Non-native fullscreen
-  ;; (setq ns-use-native-fullscreen nil)
-  ;; delete files by moving them to the trash
-  (setq delete-by-moving-to-trash t)
-  (setq trash-directory "~/.Trash"))
+;;   ;; Non-native fullscreen
+;;   ;; (setq ns-use-native-fullscreen nil)
+;;   ;; delete files by moving them to the trash
+;;   (setq delete-by-moving-to-trash t)
+;;   (setq trash-directory "~/.Trash"))
 
-(when (string-equal system-type "gnu/linux")
-  (add-to-list 'default-frame-alist '(height . 79))
-  (add-to-list 'default-frame-alist '(width . 280))
-  (when (not (display-graphic-p))
-	(progn
-	 (cl-loop for char from ?1 to ?9
-			  do (define-key input-decode-map (format "\e[1;P%c" char) (kbd (format "s-%c" char))))
+;; (when (string-equal system-type "gnu/linux")
+;;   (add-to-list 'default-frame-alist '(height . 79))
+;;   (add-to-list 'default-frame-alist '(width . 280))
+;;   (when (not (display-graphic-p))
+;;	(progn
+;;	 (cl-loop for char from ?1 to ?9
+;;			  do (define-key input-decode-map (format "\e[1;P%c" char) (kbd (format "s-%c" char))))
 
-	 (cl-loop for char from ?a to ?z
-			  do (define-key input-decode-map (format "\e[1;P%c" char) (kbd (format "s-%c" char))))
-	 )))
+;;	 (cl-loop for char from ?a to ?z
+;;			  do (define-key input-decode-map (format "\e[1;P%c" char) (kbd (format "s-%c" char))))
+;;	 )))
 
 ;;; init.el ends here

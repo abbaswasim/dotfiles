@@ -150,6 +150,7 @@ setopt SHARE_HISTORY
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 	alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+	alias s="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 	NUMCPUS=`sysctl -n hw.ncpu`
 fi
 
@@ -215,6 +216,9 @@ alias emacs="$EMACS_PLUGIN_LAUNCHER"
 alias e=emacs
 alias ee='e $($(fc -ln -1))'
 alias evim='te'
+
+alias o='open'
+alias oo='open .'
 
 # this way just use G to grep for stuff
 alias -g G="| grep"

@@ -32,7 +32,7 @@
  lsp-ui-peek-peek-height 25
  lsp-enable-snippet t
  lsp-enable-imenu t
- lsp-completion-provider :capf
+ lsp-completion-provider :none
  lsp-diagnostics-provider :flycheck
  ;; lsp-log-io t
  ;; lsp-auto-guess-root t
@@ -68,7 +68,8 @@
 
 ;; Lets setup C++/C completion etc
 ;; Set clangd arguments
-(setq lsp-clients-clangd-args '("-j=8" "-background-index" "-header-insertion-decorators=0" "-cross-file-rename" "-log=error"))
+(setq lsp-clients-clangd-args '("-j=16" "-background-index" "-header-insertion-decorators=0" "-cross-file-rename" "-log=error"))
+;; (setq lsp-clients-clangd-args '("-j=16" "-background-index" "-header-insertion-decorators=0" "-cross-file-rename" "-log=verbose"))
 
 ;; Some LSP performance tuneing
 ;; Bigger limint for GC for lsp mode (100mb)
@@ -82,6 +83,28 @@
 (require 'lsp-sourcekit)
 (setq lsp-sourcekit-executable "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp") ;; run 'xcrun --find sourcekit-lsp' next time to find path
 (add-hook 'swift-mode-hook (lambda () (lsp))) ;; Enable swift mode when visiting .swift files
+
+;;; treemacs setup
+;;; Have tried treemacs, very lovely and fancy just like VSCode but I don't think I need this now
+;; (require 'treemacs-projectile)
+;; (require 'treemacs-evil)
+;; (require 'treemacs-icons-dired)
+;; (require 'lsp-treemacs)
+
+;; (lsp-treemacs-sync-mode 1)
+
+;;; Enable debugging with dap-mode
+;; (require 'dap-mode)
+
+;; Setting up a remote clangd server
+;; (lsp-register-client
+;;	(make-lsp-client :new-connection (lsp-tramp-connection "clangd")
+;;					 :major-modes '(c++-mode)
+;;					 :remote? t
+;;					 :server-id 'arch-linux))
+
+;; Enable dap-mode and define its settings
+;; (require 'dap-lldb)
 
 (provide 'init-lsp)
 

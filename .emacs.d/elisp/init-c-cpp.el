@@ -23,12 +23,12 @@
 ;; Objective-c and Objective-C++ mode enable
 (add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
 
-
 (add-to-list 'auto-mode-alist '("\\.gltf\\'" . javascript-mode))
 
 ;; Autoload code folding minor mode
 (add-hook 'c++-mode-hook 'hs-minor-mode)
 (add-hook 'c-mode-hook 'hs-minor-mode)
+(add-hook 'glsl-mode-hook 'turn-on-font-lock)
 
 (require 'company-c-headers)
 
