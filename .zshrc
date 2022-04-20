@@ -235,9 +235,9 @@ alias kill_barrier_server='killall -9 barriers'
 
 alias mk='make -j$NUMCPUS'
 alias emasc=emacs
-alias c=cat
-alias lc=cat
-alias cl=cat
+alias c=bat
+alias lc=bat
+alias cl=bat
 
 # Undo a `git push`
 alias undo_git_push="git push -f origin HEAD^:master"
