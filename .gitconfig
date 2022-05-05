@@ -1,0 +1,32 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Wasim Abbas
+	email = abbas.wasim@gmail.com
+
+[merge]
+	conflictStyle = diff3
+
+[core]
+	pager = delta
+
+[color]
+	ui = true
+
+[delta]
+	navigate = true  # use n and N to move between diff sections
+	line-numbers = true
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+
+[interactive]
+	diffFilter = delta --color-only
+
+[init]
+	defaultBranch = main
+
+[diff]
+	colorMoved = false
