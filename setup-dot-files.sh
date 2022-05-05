@@ -11,6 +11,7 @@ rm .zshrc
 rm .zshenv
 rm .zprofile
 rm .p10k.zsh
+rm .gitconfig
 echo "Old symbolic links removed"
 
 echo "Creating new symbolic links..."
@@ -21,6 +22,7 @@ ln -s dotfiles/.zshrc .zshrc
 ln -s dotfiles/.zshenv .zshenv
 ln -s dotfiles/.zprofile .zprofile
 ln -s dotfiles/.p10k.zsh .p10k.zsh
+ln -s dotfiles/.gitconfig .gitconfig
 echo "Symbolic links created"
 
 echo "Cloning Vundle for vim..."
