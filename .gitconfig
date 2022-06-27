@@ -15,6 +15,11 @@
 [delta]
 	navigate = true  # use n and N to move between diff sections
 	line-numbers = true
+	plus-style = syntax bold "#113e00" #195119"  #002800"
+	minus-emph-style = normal bold "#901011"
+	plus-emph-style  = syntax bold "#028d02" #006000"
+	# minus-style  = normal "#4d0b0b"
+	tabs = 4
 
 [filter "lfs"]
 	process = git-lfs filter-process
