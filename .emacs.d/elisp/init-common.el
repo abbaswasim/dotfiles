@@ -64,7 +64,11 @@
 	  (let ((fullurl (concat cpp-reference-base-url (symbol-name thing))))
 		(browse-url fullurl)))))
 
- ;; in python mode show help in window
+;; in org-mode use TAB for org-cycle
+(evil-define-key 'normal org-mode-map (kbd "<tab>") 'org-cycle)
+(evil-define-key 'normal org-mode-map (kbd "S-<tab>") 'org-shifttab)
+
+;; in python mode show help in window
 (evil-define-key 'normal python-mode-map (kbd "s-1") 'elpy-doc)
 
  ;; in elisp mode show help in popup
@@ -140,6 +144,95 @@ Make sure extension has '.' included."
   (save-buffer))
 
 (global-set-key (kbd "s-8") 'c++-create-header)
+
+(defun replace-in-string (what with in)
+  "Replace WHAT with WITH in the string IN."
+  (replace-regexp-in-string (regexp-quote what) with in nil 'literal))
+
+(setq class-crtp-name " : public classcrtpname<classname>\n")
+(setq class-base-crtp-name " : public ror::Crtp<_type, classcrtpname>\n")
+(setq class-name-template "template <class _type>\n")
+
+(setq class-declaration "class classname ")
+(setq class-definition "{ \n\
+  public: \n\
+	FORCE_INLINE                classname(const classname &a_other)     = default;        //! Copy constructor \n\
+	FORCE_INLINE                classname(classname &&a_other) noexcept = default;        //! Move constructor \n\
+	FORCE_INLINE classname &operator=(const classname &a_other)         = default;        //! Copy assignment operator \n\
+	FORCE_INLINE classname &operator=(classname &&a_other) noexcept     = default;        //! Move assignment operator \n\
+	FORCE_INLINE virtual ~classname() noexcept override                 = default;        //! Destructor \n\
+ \n\
+  protected: \n\
+	FORCE_INLINE                classname()                             = default;        //! Default constructor \n\
+  private: \n\
+};")
+
+
+(setq rhi-platform-includes "\n#if defined(ROR_RENDER_TYPE_VULKAN) \n\
+#	include \"rhi/vulkan/rorclassname.hpp\" \n\
+#elif defined(ROR_RENDER_TYPE_METAL) \n\
+#	include \"rhi/metal/rorclassname.hpp\" \n\
+#else \n\
+#	error \"Unsupported buffer platform\" \n\
+#endif \n")
+
+(defun insert-rhi-core (name subfolder)
+  "Insert NAME and SUBFOLDER in place."
+  (let* ((capt-name (capitalize name))
+		 (capt-subfolder (capitalize subfolder)))
+  (if (string= subfolder "crtp_interfaces")
+	  (progn
+		(insert "#include \"core/foundation/rorcrtp.hpp\"\n")
+		(insert "\n\nnamespace rhi\n{\n")
+		(insert class-name-template)
+		(insert (replace-in-string "classname" (concat capt-name "Crtp") class-declaration))
+		(insert (replace-in-string "classcrtpname" (concat capt-name "Crtp") class-base-crtp-name))
+		(insert (replace-in-string "classname" (concat capt-name "Crtp") class-definition)))
+	(if (not (string= subfolder ""))
+	  (progn
+		(insert-header-include (concat "rhi/crtp_interfaces/ror" name) ".hpp")
+		(insert "\n\nnamespace rhi\n{\n")
+		(insert (replace-in-string "classname" (concat capt-name capt-subfolder) class-declaration))
+		(insert (replace-in-string "classname" (concat capt-name capt-subfolder) (replace-in-string "classcrtpname" (concat capt-name "Crtp") class-crtp-name)))
+		(insert (replace-in-string "classname" (concat capt-name capt-subfolder) class-definition)))
+	  (insert  (replace-in-string "classname" name rhi-platform-includes))
+	  (insert "\n\nnamespace rhi\n{\n")))
+  (insert "\n\n} // namespace rhi")))
+
+(defun c++-create-header-rhi-triplet (name source-dir subfolder)
+  "Create sources for rhi abstract class from NAME, SOURCE-DIR and SUBFOLDER."
+  (cd (concat source-dir subfolder))
+  (find-file (concat "ror" name ".cpp"))
+  (insert project-copyright-header)
+  (insert-header-include (concat "rhi" (if (string= subfolder "") "" (concat "/" subfolder)) "/ror" name) ".hpp")
+  (insert-namespace "rhi")
+  (save-buffer)
+  (find-file (concat "ror" name ".hh"))
+  (insert project-copyright-header)
+  (insert-header-include (concat "rhi" (if (string= subfolder "") "" (concat "/" subfolder)) "/ror" name) ".hpp")
+  (insert-namespace "rhi")
+  (save-buffer)
+  (find-file (concat "ror" name ".hpp"))
+  (insert project-copyright-header)
+  (insert "\n#pragma once\n")
+  (insert-rhi-core name subfolder)
+  (insert-header-include (concat "rhi" (if (string= subfolder "") "" (concat "/" subfolder)) "/ror" name) ".hh")
+  (save-buffer))
+
+(defun c++-create-header-rhi (name source-dir)
+  "Create header/inline and source file with specificed NAME in HEADER-DIR and SOURCE-DIR."
+  (interactive
+   (let* ((X (read-string "What do you want to call your rhi abstract class: "))
+		  (Y (read-directory-name "Where is core/rhi: " (projectile-project-root))))
+	 (list X Y)))
+  (c++-create-header-rhi-triplet name source-dir "")
+  (c++-create-header-rhi-triplet name source-dir "crtp_interfaces")
+  (c++-create-header-rhi-triplet name source-dir "vulkan")
+  (c++-create-header-rhi-triplet name source-dir "metal")
+  (c++-create-header-rhi-triplet name source-dir "gles3")
+  (c++-create-header-rhi-triplet name source-dir "dx12"))
+
+(global-set-key (kbd "s-9") 'c++-create-header-rhi)
 
 ;; Let projectile save buffer on compile
 (setq compilation-ask-about-save nil)
