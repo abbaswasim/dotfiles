@@ -80,8 +80,9 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
-;; Autoload code folding minor mode
-(add-hook 'before-save-hook 'whitespace-cleanup)
+;; Removing whitespace-cleanup on each save because its problematic
+;; with yaml and python as well as other people's code bases. For now clang-format does everything I want
+;; (add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; start maximized
 (custom-set-variables
