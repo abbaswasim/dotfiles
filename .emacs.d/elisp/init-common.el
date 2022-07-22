@@ -229,9 +229,9 @@ Make sure extension has '.' included."
   (c++-create-header-rhi-triplet name source-dir "")
   (c++-create-header-rhi-triplet name source-dir "crtp_interfaces")
   (c++-create-header-rhi-triplet name source-dir "vulkan")
-  (c++-create-header-rhi-triplet name source-dir "metal")
-  (c++-create-header-rhi-triplet name source-dir "gles3")
-  (c++-create-header-rhi-triplet name source-dir "dx12"))
+  ;; (c++-create-header-rhi-triplet name source-dir "gles3")
+  ;; (c++-create-header-rhi-triplet name source-dir "dx12")
+  (c++-create-header-rhi-triplet name source-dir "metal"))
 
 (global-set-key (kbd "s-9") 'c++-create-header-rhi)
 

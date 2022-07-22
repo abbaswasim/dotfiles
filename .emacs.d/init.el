@@ -245,18 +245,18 @@
 
 (desktop-save-mode 1)
 
-;; (when (string-equal system-type "darwin")
-;;   (setq frame-resize-pixelwise t)
+(when (string-equal system-type "darwin")
+  (setq frame-resize-pixelwise t)
 
-;;   ;; On Big mac open a bigger window please, perhaps guess the resolution in the future
-;;   (setq default-frame-alist '((left . 0) (width . 363) (fullscreen . fullheight)))
-;;   (add-to-list 'default-frame-alist '(undecorated . t))
+  ;; On Big mac open a bigger window please, perhaps guess the resolution in the future
+  (setq default-frame-alist '((left . 200) (top . 0) (width . 334) (fullscreen . fullheight)))
+  ;; (add-to-list 'default-frame-alist '(undecorated . t))
 
-;;   ;; Non-native fullscreen
-;;   ;; (setq ns-use-native-fullscreen nil)
-;;   ;; delete files by moving them to the trash
-;;   (setq delete-by-moving-to-trash t)
-;;   (setq trash-directory "~/.Trash"))
+  ;; Non-native fullscreen
+  ;; (setq ns-use-native-fullscreen nil)
+  ;; delete files by moving them to the trash
+  (setq delete-by-moving-to-trash t)
+  (setq trash-directory "~/.Trash"))
 
 ;; (when (string-equal system-type "gnu/linux")
 ;;   (add-to-list 'default-frame-alist '(height . 79))
