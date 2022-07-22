@@ -191,6 +191,7 @@ Make sure extension has '.' included."
 	(if (not (string= subfolder ""))
 	  (progn
 		(insert-header-include (concat "rhi/crtp_interfaces/ror" name) ".hpp")
+		(insert "#include \"rhi/rorrhi_macros.hpp\"\n")
 		(insert "\n\nnamespace rhi\n{\n")
 		(insert (replace-in-string "classname" (concat capt-name capt-subfolder) class-declaration))
 		(insert (replace-in-string "classname" (concat capt-name capt-subfolder) (replace-in-string "classcrtpname" (concat capt-name "Crtp") class-crtp-name)))
