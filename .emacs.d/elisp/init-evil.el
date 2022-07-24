@@ -76,6 +76,21 @@
 ;; Remap gw to swap characters
 (evil-define-key 'normal 'global "gw" "xphh")
 
+(defun copy-and-past-immidiately ()
+  "Copy selection and past afterwards.  BEG and END."
+  (interactive)
+  (let* ((original-column (current-column))
+		 (original-line (line-number-at-pos)))
+	(evil-yank (region-beginning) (region-end))
+	(goto-line original-line)
+	(move-to-column original-column)
+	(evil-open-below 0)
+	(evil-normal-state)
+	(evil-paste-after 1)))
+
+;; Compund key to copy past a block in one go
+(evil-define-key 'normal 'global "gc" 'copy-and-past-immidiately)
+
 (defun next-and-center ()
   "Move to next search item and center."
   (interactive)
