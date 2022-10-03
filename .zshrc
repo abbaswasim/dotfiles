@@ -151,6 +151,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 	alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 	alias s="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+	alias metal_validation="export METAL_DEVICE_WRAPPER_TYPE=1;export METAL_ERROR_MODE=5;export METAL_DEBUG_ERROR_MODE=5"
 	NUMCPUS=`sysctl -n hw.ncpu`
 fi
 

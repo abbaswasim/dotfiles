@@ -102,7 +102,33 @@
    '(powerline powerline-evil lsp-sourcekit lsp-ui helm-lsp lsp-mode helm-rg cmake-font-lock lua-mode swift-mode which-key posframe exec-path-from-shell lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))
  '(projectile-globally-ignored-directories '(".idea" ".vscode" ".git" ".hg"))
  '(safe-local-variable-values
-   '((projectile-project-compilation-cmd . "cd /System/Volumes/Data/personal/vulkaned && cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug && cmake --build build --config Debug -- -j$NUMCPUS")
+   '((project-copyright-header . "
+// Roar Source Code
+// Wasim Abbas
+// http://www.waZim.com
+// Copyright (c) 2022
+//
+// Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the 'Software'),
+// to deal in the Software without restriction, including without limitation
+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the Software
+// is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+// CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
+// OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+// Version: 1.0.0
+")
+	 (projectile-project-compilation-cmd . "cd /System/Volumes/Data/personal/vulkaned && cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug && cmake --build build --config Debug -- -j$NUMCPUS")
 	 (projectile-project-compilation-cmd . "cd /System/Volumes/Data/personal/roar_engine && cmake -H. -Bbuild -DCMAKE_BUILD_TYPE=Debug && cmake --build build --config Debug -- -j$NUMCPUS")
 	 (project-namespace-name . "ror")
 	 (project-copyright-header . "
