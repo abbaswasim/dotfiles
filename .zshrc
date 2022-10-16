@@ -152,6 +152,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 	alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 	alias s="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 	alias metal_validation="export METAL_DEVICE_WRAPPER_TYPE=1;export METAL_ERROR_MODE=5;export METAL_DEBUG_ERROR_MODE=5"
+	alias OA="r"
 	NUMCPUS=`sysctl -n hw.ncpu`
 fi
 
@@ -169,6 +170,9 @@ export ANDROID_HOME=$ANDROID_SDK_ROOT
 export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT
 export ANDROID_MAKE_CCACHE=ccache
 export ANDROID_ROOT=$ANDROID_SDK_ROOT
+
+# setup python environment, start with lldb python package path
+export PYTHONPATH=`lldb -P`
 
 # alias gk='gitk --all &'
 alias gs='git status'
