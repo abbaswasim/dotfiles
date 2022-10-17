@@ -1,1 +1,5 @@
 # settings set prompt "[31m(lldb)[0m "
+
+settings set stop-line-count-before 20
+settings set stop-line-count-after 20
+command script import ~/.emacs.d/elisp/simple-debug/simple_debug_lldb_breakpoints.py

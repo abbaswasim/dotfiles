@@ -39,6 +39,8 @@
 (require 'init-lsp)
 ;; (require 'init-dap)
 (require 'init-orgmode)
+(load "simple-debug/simple-debug.el")
+;; (require 'simple-debug)
 ;; (require 'init-eglot)
 
 ;; start emacsclient server
