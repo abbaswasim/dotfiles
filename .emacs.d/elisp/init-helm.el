@@ -1,7 +1,7 @@
 ;; init-helm.el my helm configuation
 
 (require 'helm)
-(require 'helm-config)
+;; (require 'helm-config)
 (require 'helm-mode)
 
 

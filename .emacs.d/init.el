@@ -96,7 +96,7 @@
  '(evil-search-module 'evil-search)
  '(evil-undo-system 'undo-redo)
  '(evil-want-Y-yank-to-eol t)
- '(helm-ag-insert-at-point 'symbol t)
+ '(helm-ag-insert-at-point 'symbol)
  '(helm-ff-lynx-style-map t)
  '(helm-occur-use-ioccur-style-keys t)
  '(org-agenda-window-setup 'current-window)

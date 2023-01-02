@@ -210,6 +210,7 @@ alias flush_dns_cache='sudo dscacheutil -flushcache;sudo killall -HUP mDNSRespon
 alias vim_without_vimrc='vim -u NONE -N'
 alias find_everything='locate / | fzf'
 alias find_and_delete_files='#find . -type f -name ".non-existent-file" -exec rm -f {} \;'
+alias rsync_from_to='rsync -a from to'
 
 # Emacs specific setup, copied from .oh-my-zsh
 unalias emacs
@@ -337,9 +338,14 @@ function f()
 
 function find_something_in_something()
 {
-  toFind="$1"
-  if [ ! $2 ] ; then file="*" ; else file="$2"; fi
-  find . -name "$file" -print0 | xargs -0 grep --color -nI "$toFind"
+	toFind="$1"
+	if [ ! $2 ] ; then file="*" ; else file="$2"; fi
+	find . -name "$file" -print0 | xargs -0 grep --color -nI "$toFind"
+}
+# quickly compile shader to spir-v and run spirv-cross on the spv to covert to msl
+function compile_to_msl()
+{
+	glslangValidator -V $1 -o $1.spv && spirv-cross --msl-decoration-binding $2 $1.spv --msl-version 30000 --msl --output $1.spv.msl
 }
 
 # checkout a branch with fzf easily
