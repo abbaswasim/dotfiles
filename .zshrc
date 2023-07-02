@@ -164,7 +164,9 @@ alias gcleanco='git clean -fdx;git checkout -- .'         # Full clean of git re
 alias who-is-holding-reference='lsof | grep '         # Find out who is grabing onto files
 alias all-predefined-macros='clang -dM -E -x c /dev/null'
 
-export ANDROID_NDK_ROOT=/development/android/sdk/ndk/23.1.7779620
+# export JAVA_HOME=/development/android/jdk/jdk-17.0.7.jdk/Contents/Home
+export JAVA_HOME=/development/android/jdk/jdk-20.0.1.jdk/Contents/Home
+export ANDROID_NDK_ROOT=/development/android/sdk/ndk/25.2.9519653
 export ANDROID_SDK_ROOT=/development/android/sdk
 export ANDROID_HOME=$ANDROID_SDK_ROOT
 export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT
@@ -248,6 +250,7 @@ alias cl=bat
 # Undo a `git push`
 alias undo_git_push="git push -f origin HEAD^:master"
 alias cleanup_dsstore_files="find . -name '*.DS_Store' -type f -ls -delete"
+alias cleanup_simple_debug_files="find . -name '*.simple-debug.json' -type f -ls -delete"
 alias mount_bsg_jira="sudo mount -o resvport server:/home/$USERNAME /development/remote-dir"
 alias reset_audio="sudo killall coreaudiod"
 

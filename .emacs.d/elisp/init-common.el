@@ -337,5 +337,16 @@ If `THRESHOLD' is 2 only traverses error, 1 means errors and warnings and 0 mean
 		   (get-buffer-create "*compilation*"))
 		  (message "No Compilation Errors!")))))
 
+;; Keybindings for dired mode
+(evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
+(evil-define-key 'normal dired-mode-map (kbd "l") 'dired-find-file)
+(evil-define-key 'normal dired-mode-map (kbd "m") 'dired-mark)
+(evil-define-key 'normal dired-mode-map (kbd "u") 'dired-unmark)
+(evil-define-key 'normal dired-mode-map (kbd "t") 'dired-toggle-marks)
+(evil-define-key 'normal dired-mode-map (kbd "C") 'dired-do-copy)
+(evil-define-key 'normal dired-mode-map (kbd "D") 'dired-do-delete)
+(evil-define-key 'normal dired-mode-map (kbd "R") 'dired-do-rename)
+(evil-define-key 'normal dired-mode-map (kbd "<tab>") 'dired-display-file)
+
 (provide 'init-common)
 ;;; init-common.el ends here

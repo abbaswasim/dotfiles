@@ -70,6 +70,9 @@
 (define-key evil-normal-state-map "gt" 'evil-numbers/inc-at-pt-incremental)
 (define-key evil-normal-state-map "gy" 'evil-numbers/dec-at-pt-incremental)
 
+(define-key evil-visual-state-map "gt" 'evil-numbers/inc-at-pt-incremental)
+(define-key evil-visual-state-map "gy" 'evil-numbers/dec-at-pt-incremental)
+
 ;; Override gf to use helm-projectile-find-file-dwim instead
 (define-key evil-normal-state-map "gf" 'helm-projectile-find-file-dwim)
 
@@ -162,6 +165,7 @@
 (evilnc-default-hotkeys)
 
 (define-key evil-normal-state-map ",cy" 'evilnc-yank-and-comment-operator)
+(define-key evil-visual-state-map ",cy" 'evilnc-yank-and-comment-operator)
 
 ;; Disable Evil mode in certain modes
 (add-to-list 'evil-emacs-state-modes 'xref--xref-buffer-mode)
