@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
+(setq evil-want-keybinding nil)
 (require 'evil)
 (evil-mode 1)
 
@@ -170,6 +171,7 @@
 ;; Disable Evil mode in certain modes
 (add-to-list 'evil-emacs-state-modes 'xref--xref-buffer-mode)
 (add-to-list 'evil-emacs-state-modes 'debugger-mode)
+;; (add-to-list 'evil-emacs-state-modes 'dired-mode)
 
 (provide 'init-evil)
 ;;; init-evil ends here
