@@ -3,10 +3,9 @@
 
 ;;; Code:
 
-;; enable elpy best python IDE, if completion doesn't work make sure to 'pip install jedi'
-;; Nothing else needs doing
+;; enable lsp-mode for python , if completion doesn't work make sure to 'pip install jedi' and 'pip install 'python-lsp-server[all]''
 
-(elpy-enable)
+(add-hook 'python-mode-hook 'lsp)
 
 (provide 'init-python)
 
