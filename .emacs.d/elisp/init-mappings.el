@@ -31,5 +31,26 @@
 (setq mac-control-modifier 'control) ; make Control key do Control
 ;; (setq ns-function-modifier 'hyper)  ; make Fn key do Hyper
 
+;; Json snatcher setup
+(require 'json-snatcher)
+(defun js-mode-bindings ()
+  "Set a hotkey for using the json-snatcher plugin."
+  (when (string-match  "\\.json$" (buffer-name))
+	(local-set-key (kbd "s-p") 'jsons-print-path)))
+
+(add-hook 'js-mode-hook 'js-mode-bindings)
+(add-hook 'js2-mode-hook 'js-mode-bindings)
+
+(require 'yafolding)
+
+(add-hook 'js-json-mode-hook #'yafolding-mode)
+(add-hook 'js2-json-mode-hook #'yafolding-mode)
+(define-key yafolding-mode-map (kbd "<C-S-return>") nil)
+(define-key yafolding-mode-map (kbd "<C-M-return>") nil)
+(define-key yafolding-mode-map (kbd "<C-return>") nil)
+(define-key yafolding-mode-map (kbd "s-_") 'yafolding-toggle-all)
+(define-key yafolding-mode-map (kbd "s-+") 'yafolding-hide-parent-element)
+(define-key yafolding-mode-map (kbd "s-=") 'yafolding-toggle-element)
+
 (provide 'init-mappings)
 ;;; init-mappings.el ends here
