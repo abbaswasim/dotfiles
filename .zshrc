@@ -293,12 +293,12 @@ function print_screen_android()
 
 function dga()
 {
-	ag --hidden --all-text "$*"
+	rg --hidden --colors line:fg:yellow --colors line:style:bold --colors path:fg:green --colors path:style:bold --colors match:fg:black --colors match:bg:yellow --colors match:style:nobold "$*"
 }
 
 function dg()
 {
-	rg --hidden --colors line:fg:yellow --colors line:style:bold --colors path:fg:green --colors path:style:bold --colors match:fg:black --colors match:bg:yellow --colors match:style:nobold "$*"
+	rg --no-ignore --hidden --colors line:fg:yellow --colors line:style:bold --colors path:fg:green --colors path:style:bold --colors match:fg:black --colors match:bg:yellow --colors match:style:nobold "$*"
 }
 
 function ag_without_semicolon()
