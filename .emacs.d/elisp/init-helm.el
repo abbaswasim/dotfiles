@@ -48,6 +48,7 @@
 (setq projectile-completion-system 'helm)
 (setq projectile-switch-project-action 'helm-projectile)
 (setq projectile-enable-caching t)
+(setq projectile-indexing-method 'hybrid)
 (helm-projectile-on)
 
 ;; helm-projectile-ag would use symbol at point as input with this setting

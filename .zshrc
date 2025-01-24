@@ -258,6 +258,8 @@ alias list_my_snippets="cd ~/.emacs.d/snippets/; cat */* G key; cd -"
 
 alias k9="kill -9"
 
+alias find_executables='find . -perm +111 -type f'
+
 # Android adb specific aliases
 #Set aliases for most common keys
 alias adbk_back="adb shell input keyevent 4"
@@ -402,6 +404,14 @@ android_make_deploy_collect()
 
 		make -j8 && adb install -r $APK_PATH && adb shell am start -n $PACKAGE_NAME/$PACKAGE_NAME.$ACTIVITY_NAME && sleep 2 && adb logcat --pid=`adb shell pidof -s $PACKAGE_NAME` *:$FILTER
 	fi
+}
+
+# Python3 wrapper to check for pyvenv
+p3()
+{
+	printf "import sys\nif (sys.prefix == sys.base_prefix):\n    print('\x1b[0;33;41m' + 'Warning! running python outside virtual environment.' + '\x1b[0m')" | python3
+	python3 $1
+	printf "import sys\nif (sys.prefix == sys.base_prefix):\n    print('\x1b[0;31;43m' + 'Warning! running python outside virtual environment.' + '\x1b[0m')" | python3
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

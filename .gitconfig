@@ -20,6 +20,7 @@
 	plus-emph-style  = syntax bold "#028d02" #006000"
 	# minus-style  = normal "#4d0b0b"
 	tabs = 4
+    light = false
 
 [filter "lfs"]
 	process = git-lfs filter-process
