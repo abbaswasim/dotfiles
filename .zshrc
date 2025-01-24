@@ -181,6 +181,7 @@ alias gs='git status'
 # alias gd='git diff --color'
 alias gds='git diff --color --staged'
 alias gdws='git diff --color --ignore-space-at-eol -b -w'
+alias gdwss='git diff --submodule=diff --color --ignore-space-at-eol -b -w'
 # alias ga='git add'
 # alias gco='git checkout'
 alias gaup='git add -up'
@@ -214,6 +215,8 @@ alias find_everything='locate / | fzf'
 alias find_and_delete_files='#find . -type f -name ".non-existent-file" -exec rm -f {} \;'
 alias rsync_from_to='rsync -a from to'
 alias git_ssh_id_for_this_repo="git config core.sshCommand 'ssh -i ~/.ssh/id_rsa_xxxx'"
+alias android_find_activity_intent_name='adb shell dumpsys window windows'
+alias run_apk_with_args='adb shell am start -a android.intent.action.MAIN -n com.example.VkCube/android.app.NativeActivity --es STRING_PAR_NAME stringParameterValue'
 
 # Emacs specific setup, copied from .oh-my-zsh
 unalias emacs

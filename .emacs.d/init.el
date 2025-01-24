@@ -96,9 +96,10 @@
  '(evil-search-module 'evil-search)
  '(evil-undo-system 'undo-redo)
  '(evil-want-Y-yank-to-eol t)
- '(helm-ag-insert-at-point 'symbol)
+ '(helm-ag-insert-at-point 'symbol t)
  '(helm-ff-lynx-style-map t)
  '(helm-occur-use-ioccur-style-keys t)
+ '(ignored-local-variable-values '((apheleia-inhibit . t)))
  '(org-agenda-window-setup 'current-window)
  '(package-selected-packages
    '(yafolding json-snatcher evil-collection magit powerline powerline-evil lsp-sourcekit lsp-ui helm-lsp lsp-mode helm-rg cmake-font-lock lua-mode swift-mode which-key posframe exec-path-from-shell lsp-clangd solarized-theme realgud flycheck-popup-tip auto-package-update org-bullets elpy neotree yasnippet-snippets clang-format string-inflection web-completion-data seq s restart-emacs epl pkg-info projectile goto-chg pos-tip dash let-alist highlight async helm-core flx avy litable company cc-mode json saveplace package linum package-utils srefactor helm flycheck evil zenburn-theme yasnippet popup iedit helm-projectile helm-helm-commands helm-gtags helm-flycheck helm-company helm-ag flycheck-pos-tip evil-tutor evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-leader evil-indent-textobject evil-easymotion diminish company-web company-flx company-cmake company-c-headers color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized cmake-mode ag ace-jump-mode))
@@ -279,7 +280,7 @@
   (setq frame-resize-pixelwise t)
 
   ;; On Big mac open a bigger window please, perhaps guess the resolution in the future
-  (setq default-frame-alist '((left . 200) (top . 0) (width . 334) (fullscreen . fullheight)))
+  (setq default-frame-alist '((left . 0) (top . 0) (width . 363) (fullscreen . fullheight)))
   ;; (add-to-list 'default-frame-alist '(undecorated . t))
 
   ;; Non-native fullscreen

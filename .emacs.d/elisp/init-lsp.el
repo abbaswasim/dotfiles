@@ -97,11 +97,13 @@
 ;; (require 'dap-mode)
 
 ;; Setting up a remote clangd server
-;; (lsp-register-client
-;;	(make-lsp-client :new-connection (lsp-tramp-connection "clangd")
-;;					 :major-modes '(c++-mode)
-;;					 :remote? t
-;;					 :server-id 'arch-linux))
+;; (make-lsp-client :new-connection (lsp-tramp-connection "/usr/bin/clangd")
+(lsp-register-client
+	(make-lsp-client :new-connection (lsp-tramp-connection "/usr/bin/clangd")
+					 :activation-fn (lsp-activate-on "c" "cpp" "hpp")
+					 :major-modes '(c-mode c++-mode)
+					 :remote? t
+					 :server-id 'clangd-remote))
 
 ;; Enable dap-mode and define its settings
 ;; (require 'dap-lldb)
