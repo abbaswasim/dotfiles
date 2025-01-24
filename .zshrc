@@ -213,6 +213,7 @@ alias vim_without_vimrc='vim -u NONE -N'
 alias find_everything='locate / | fzf'
 alias find_and_delete_files='#find . -type f -name ".non-existent-file" -exec rm -f {} \;'
 alias rsync_from_to='rsync -a from to'
+alias git_ssh_id_for_this_repo="git config core.sshCommand 'ssh -i ~/.ssh/id_rsa_xxxx'"
 
 # Emacs specific setup, copied from .oh-my-zsh
 unalias emacs
