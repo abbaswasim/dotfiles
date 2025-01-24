@@ -413,9 +413,9 @@ android_make_deploy_collect()
 # Python3 wrapper to check for pyvenv
 p3()
 {
-	printf "import sys\nif (sys.prefix == sys.base_prefix):\n    print('\x1b[0;33;41m' + 'Warning! running python outside virtual environment.' + '\x1b[0m')" | python3
+	printf "import sys\nif (sys.prefix == sys.base_prefix):\n    print('\x1b[0;33;41mWarning! running python outside virtual environment.\x1b[0m')\n    print('\x1b[0;30;42mUse source development/python-environment/python-environment/environment/bin/activate.\x1b[0m')\n    print('\x1b[0;30;42mWhen done call deactivate.\x1b[0m')" | python3
 	python3 $1
-	printf "import sys\nif (sys.prefix == sys.base_prefix):\n    print('\x1b[0;31;43m' + 'Warning! running python outside virtual environment.' + '\x1b[0m')" | python3
+	printf "import sys\nif (sys.prefix == sys.base_prefix):\n    print('\x1b[0;33;41mWarning! running python outside virtual environment.\x1b[0m')\n    print('\x1b[0;30;42mUse source development/python-environment/python-environment/environment/bin/activate.\x1b[0m')\n    print('\x1b[0;30;42mWhen done call deactivate.\x1b[0m')" | python3
 }
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
