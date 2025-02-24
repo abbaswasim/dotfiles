@@ -17,7 +17,9 @@
 (unless package--initialized (package-initialize t))
 
 ;; Check if packages are avaiable for update and update if interval has passed
-(auto-package-update-maybe)
+;; Note: Don't enable this. It tried to update packages at startup and hangs everything until then
+;; Especially if you don't have internet access it hangs emacs
+; (auto-package-update-maybe)
 
 (defvar package-menu-exclude-packages '("color-theme-sanityinc-tomorrow"))
 
