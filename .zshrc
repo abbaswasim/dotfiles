@@ -414,7 +414,7 @@ android_make_deploy_collect()
 p3()
 {
 	printf "import sys\nif (sys.prefix == sys.base_prefix):\n    print('\x1b[0;33;41mWarning! running python outside virtual environment.\x1b[0m')\n    print('\x1b[0;30;42mUse source development/python-environment/python-environment/environment/bin/activate.\x1b[0m')\n    print('\x1b[0;30;42mWhen done call deactivate.\x1b[0m')" | python3
-	python3 $1
+	python3 $*
 	printf "import sys\nif (sys.prefix == sys.base_prefix):\n    print('\x1b[0;33;41mWarning! running python outside virtual environment.\x1b[0m')\n    print('\x1b[0;30;42mUse source development/python-environment/python-environment/environment/bin/activate.\x1b[0m')\n    print('\x1b[0;30;42mWhen done call deactivate.\x1b[0m')" | python3
 }
 
