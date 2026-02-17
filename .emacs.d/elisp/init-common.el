@@ -271,7 +271,7 @@ Make sure extension has '.' included."
                  ;; Projectile has already set `default-directory` to the project’s
                  ;; compilation dir before calling projectile-run-compilation.
                  (let* ((dir (expand-file-name default-directory))
-                        (full (format "cd %s && %s"
+                        (full (format "cd %s && %s && cd -"
                                       (shell-quote-argument dir)
                                       cmd)))
                    (my/iterm2-send full)))
