@@ -9,6 +9,10 @@
 (require 'json)
 (require 'python)
 (require 'evil)
+(require 'cl-lib)
+(require 'projectile)
+(require 'compile)
+
 ;; (require 'flycheck)
 
 (defvar project-copyright-header)
@@ -239,17 +243,92 @@ Make sure extension has '.' included."
 ;; Let projectile save buffer on compile
 (setq compilation-ask-about-save nil)
 
-;; Run projectile compile command to start building the poroject
-(defun compile-projectile-project-no-prompt ()
-  "Compiles projectile project without prompting for compile command.
+;;; Code: A few functions that run projectile compile command to start building the project and run in iterm2 if succeeded
+(defun my/iterm2-send (text)
+  "Send TEXT to the current iTerm2 session (creating a window if needed)."
+  (let* ((escaped (replace-regexp-in-string "\"" "\\\\\"" text))
+         (script (format
+                  "tell application \"iTerm2\"
+                     activate
+                     if (count of windows) = 0 then
+                       create window with default profile
+                     end if
+                     tell current session of current window
+                       write text \"%s\"
+                     end tell
+                   end tell" escaped)))
+    (if (fboundp 'do-applescript)
+        (do-applescript script)
+      (start-process "osascript-iterm2" nil "osascript" "-e" script))))
 
-It uses projectile-project-compilation-cmd from .dir-locals.el if defined
-Or run projectile-compile-command first to save a command in history"
-  (interactive)
-  (let ((compilation-read-command nil))
-	(projectile-compile-project nil)))
+(defun my/projectile-run-project--in-iterm2 (orig-fn arg)
+  "Advice: run `projectile-run-project` but execute in iTerm2. ORIG-FN and ARG."
+  (cl-letf (((symbol-function #'projectile-run-compilation)
+             (lambda (cmd &optional _use-comint-mode)
+               ;; Respect Projectile behavior if CMD is a function
+               (if (functionp cmd)
+                   (funcall cmd)
+                 ;; Projectile has already set `default-directory` to the project’s
+                 ;; compilation dir before calling projectile-run-compilation.
+                 (let* ((dir (expand-file-name default-directory))
+                        (full (format "cd %s && %s"
+                                      (shell-quote-argument dir)
+                                      cmd)))
+                   (my/iterm2-send full)))
+               cmd)))
+    (funcall orig-fn arg)))
 
-(global-set-key (kbd "s-<return>") 'compile-projectile-project-no-prompt)
+(advice-add 'projectile-run-project :around #'my/projectile-run-project--in-iterm2)
+
+;; Buffer-local storage used by the compilation buffer so the finish hook knows what to do.
+(defvar-local my/projectile--compile-origin-buffer nil)
+(defvar-local my/projectile--compile-then-run-arg nil)
+
+(defun my/projectile--run-project-after-compile (buf msg)
+  "Run `projectile-run-project' after compilation BUF MSG finishes successfully."
+  ;; One-shot: remove ourselves from this compilation buffer’s local hook.
+  (with-current-buffer buf
+    (remove-hook 'compilation-finish-functions
+                 #'my/projectile--run-project-after-compile
+                 t))
+
+  ;; Only run when compilation succeeded.
+  (when (string-match-p "\\bfinished\\b" msg)
+    (let ((origin (buffer-local-value 'my/projectile--compile-origin-buffer buf))
+          (arg    (buffer-local-value 'my/projectile--compile-then-run-arg buf)))
+      (when (buffer-live-p origin)
+        (with-current-buffer origin
+          ;; Don’t prompt for the run command unless Projectile decides it must
+          ;; (or unless you pass C-u to this whole command via ARG).
+          (let ((compilation-read-command nil))
+            (projectile-run-project arg)))))))
+
+(defun compile-projectile-project-no-prompt (&optional arg)
+  "Compile project (no prompt), then run it (only if compile succeeded).
+
+With prefix ARG \\<mapvar> & \\[command], Projectile will show its normal prompts (compile/run),
+but the run still waits for the compile to finish."
+  (interactive "P")
+  (let ((origin (current-buffer))
+        (compilation-read-command nil))
+    ;; Start compilation (async)
+    (let* ((ret (projectile-compile-project arg))
+           ;; Projectile/compile usually returns the compilation buffer.
+           (cbuf (cond ((bufferp ret) ret)
+                       ((boundp 'compilation-last-buffer) compilation-last-buffer)
+                       (t nil))))
+      (unless (buffer-live-p cbuf)
+        (user-error "Could not find the compilation buffer"))
+      ;; Attach a buffer-local finish hook to *this* compilation buffer only.
+      (with-current-buffer cbuf
+        (setq-local my/projectile--compile-origin-buffer origin)
+        (setq-local my/projectile--compile-then-run-arg arg)
+        (add-hook 'compilation-finish-functions
+                  #'my/projectile--run-project-after-compile
+                  nil
+                  t)))))
+
+(global-set-key (kbd "s-<return>") #'compile-projectile-project-no-prompt)
 
 ;; Cycles through the compilation errors only
 (defun go-to-next-compile-error (&optional direction threshold)

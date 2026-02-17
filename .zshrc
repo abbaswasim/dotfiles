@@ -166,7 +166,7 @@ alias all-predefined-macros='clang -dM -E -x c /dev/null'
 
 # export JAVA_HOME=/development/android/jdk/jdk-17.0.7.jdk/Contents/Home
 export JAVA_HOME=/development/android/jdk/jdk-20.0.1.jdk/Contents/Home
-export ANDROID_NDK_ROOT=/development/android/sdk/ndk/25.2.9519653
+export ANDROID_NDK_ROOT=/development/android/sdk/ndk/26.1.10909125
 export ANDROID_SDK_ROOT=/development/android/sdk
 export ANDROID_HOME=$ANDROID_SDK_ROOT
 export ANDROID_NDK_HOME=$ANDROID_NDK_ROOT
