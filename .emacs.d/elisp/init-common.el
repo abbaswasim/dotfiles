@@ -55,8 +55,19 @@
 	 :position (point))
 	(add-hook 'pre-command-hook #'remove-description-posframe)))
 
+;; Boolean toggler From (true to false and false to true)
+(defun toggle-boolean-true-false ()
+  "Toggle the first occurrence of the literals “true” or “false”.
+Case-sensitive so it won’t mangle TRUE/FALSE used elsewhere."
+  (interactive)
+  (save-excursion
+    (beginning-of-line)
+    (when (re-search-forward "\\b\\(true\\|false\\)\\b" (line-end-position) t)
+      (replace-match (if (string= (match-string 0) "true") "false" "true") t t)))
+  (indent-according-to-mode))
+
 (defvar vulkan-1_2-base-url "https://www.khronos.org/registry/vulkan/specs/1.2-extensions/man/html/")
-(defvar cpp-reference-base-url "https://en.cppreference.com/mwiki/index.php?title=Special%3ASearch&search=")
+(defvar cpp-reference-base-url "https://duckduckgo.com/?sites=cppreference.com&q=")
 
 (defun describe-c++-in-browser ()
   "Show full documentation of the c++ symbol at point by searching it online in a browser."
@@ -239,6 +250,18 @@ Make sure extension has '.' included."
   (c++-create-header-rhi-triplet name source-dir "metal"))
 
 (global-set-key (kbd "s-9") 'c++-create-header-rhi)
+
+;; Run projectile compile command to start building the poroject
+(defun compile-only-projectile-project-no-prompt ()
+  "Compiles projectile project without prompting for compile command.
+
+It uses projectile-project-compilation-cmd from .dir-locals.el if defined
+Or run projectile-compile-command first to save a command in history"
+  (interactive)
+  (let ((compilation-read-command nil))
+	(projectile-compile-project nil)))
+
+(global-set-key (kbd "s-\\") 'compile-only-projectile-project-no-prompt)
 
 ;; Let projectile save buffer on compile
 (setq compilation-ask-about-save nil)
