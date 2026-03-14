@@ -264,6 +264,10 @@
 (setq compilation-scroll-output t)
 ;; (setq compilation-scroll-output 'first-error) ;; Also possible but I prefer to end of output
 
+(require 'adoc-mode)
+(setq adoc-display-images t)
+(setq adoc-display-remote-images t)
+
 ;; enable async mode very handy
 ;; Try to understand how this works a bit more
 (require 'async)

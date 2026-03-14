@@ -4,6 +4,26 @@ settings set stop-line-count-before 20
 settings set stop-line-count-after 20
 command script import ~/.emacs.d/elisp/simple-debug/simple_debug_lldb_breakpoints.py
 
+# expr -l c++ -- (void)__asan_describe_address((void*)$x0)
+# register read x0 pc lr
+# command source -s 0 '/tmp/roar_lldb_crash.txt'
+# process handle SIGSEGV -n true -p true -s false
+# target stop-hook add -o 'thread backtrace all'
+# settings set target.env-vars ASAN_OPTIONS=detect_container_overflow=1:abort_on_error=1:halt_on_error=1
+# settings set target.env-vars UBSAN_OPTIONS=print_stacktrace=1:halt_on_error=1:abort_on_error=1
+
+
+# expr -l c++ -- (void)__asan_describe_address((void*)$x0)    # Evaluate a C++ expression that calls AddressSanitizer to describe the memory at the address contained in register x0, this way run any c++ or objc++ code inside lldb
+# register read x0 pc lr                                      # Print the current values of registers x0, pc (program counter), and lr (link register)
+# register read sp fp pc lr x0 x1 x2 x3                       # Same effect
+# command source -s 0 '/tmp/roar_lldb_crash.txt'              # Execute LLDB commands from the specified file; -s 0 continues even if some commands fail
+# process handle SIGSEGV -n true -p true -s false             # Configure how LLDB handles SIGSEGV: notify the debugger (n), pass it to the program (p), and do not stop automatically (s)
+# process handle SIGABRT -n true -p true -s false             # Configure how LLDB handles SIGABRT: notify the debugger (n), pass it to the program (p), and do not stop automatically (s)
+# target stop-hook add -o 'thread backtrace all'              # Add a hook so that every time the target stops LLDB automatically prints backtraces for all threads
+# settings set target.env-vars ASAN_OPTIONS=detect_container_overflow=1:abort_on_error=1:halt_on_error=1  # Set AddressSanitizer runtime options for the debugged program via environment variables
+# settings set target.env-vars UBSAN_OPTIONS=print_stacktrace=1:halt_on_error=1:abort_on_error=1           # Set UndefinedBehaviorSanitizer runtime options for the debugged program via environment variables
+
+
 env VK_LOADER_DEBUG=all
 env DYLD_LIBRARY_PATH=/usr/local/lib
 env VK_ADD_LAYER_PATH=/development/vulkan/vulkansdk-macos-1.4.313.1/macOS/share/vulkan/explicit_layer.d

@@ -439,6 +439,10 @@ If `THRESHOLD' is 2 only traverses error, 1 means errors and warnings and 0 mean
 		   (get-buffer-create "*compilation*"))
 		  (message "No Compilation Errors!")))))
 
+(defun my/close-all-buffers ()
+(interactive)
+  (mapc 'kill-buffer (buffer-list)))
+
 ;; Keybindings for dired mode
 (evil-define-key 'normal dired-mode-map (kbd "h") 'dired-up-directory)
 (evil-define-key 'normal dired-mode-map (kbd "l") 'dired-find-file)
