@@ -1,4 +1,4 @@
-;;; init.el --- Wasim's emacs configuration
+;;; init.el --- Wasim's emacs configuration  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; code:
 
@@ -170,7 +170,7 @@
 (global-set-key (kbd "s-b") 'helm-buffers-list)
 
 ;; s-w kill current buffer
-(global-set-key (kbd "s-w") 'kill-this-buffer)
+(global-set-key (kbd "s-w") 'kill-current-buffer)
 
 ;; Use s-x for m-x as well
 (global-set-key (kbd "s-x") 'helm-M-x)

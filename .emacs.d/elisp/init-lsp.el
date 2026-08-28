@@ -1,4 +1,4 @@
-;;; package --- summary
+;;; package --- summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; init-lsp.el lsp-mode settings
 ;;; Code:

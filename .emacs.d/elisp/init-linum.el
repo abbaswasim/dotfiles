@@ -1,4 +1,4 @@
-;;; init-linum.el --- Stuff for line numbers.
+;;; init-linum.el --- Stuff for line numbers.  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 

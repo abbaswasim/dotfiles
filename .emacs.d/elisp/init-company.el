@@ -1,4 +1,4 @@
-;;; package --- summary
+;;; package --- summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; init-company.el company-mode settings
 ; start company-mode with Emacs

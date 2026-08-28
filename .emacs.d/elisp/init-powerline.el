@@ -1,3 +1,5 @@
+;;; init-powerline.el --- Powerline configuration  -*- lexical-binding: t; -*-
+
 (when (memq window-system '(mac ns))
 ;;; sRGB doesn't blend with Powerline's pixmap colors, but is only
 ;;; used in OS X. Disable sRGB before setting up Powerline.

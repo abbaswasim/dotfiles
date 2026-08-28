@@ -1,4 +1,4 @@
-;; init-magit.el --- provides magit initialization
+;; init-magit.el --- provides magit initialization  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:

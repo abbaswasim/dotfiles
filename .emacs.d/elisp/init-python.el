@@ -1,4 +1,4 @@
-;;; init-python --- initialize cmake
+;;; init-python --- initialize cmake  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:

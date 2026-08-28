@@ -1,4 +1,4 @@
-;;; init-leader.el --- all leader key mappings are defined here
+;;; init-leader.el --- all leader key mappings are defined here  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 ;; evil-leader is loaded in init-evil.el

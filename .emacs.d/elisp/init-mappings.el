@@ -1,4 +1,4 @@
-;;; init-mappings.el -- all my global mappings goes here
+;;; init-mappings.el -- all my global mappings goes here  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Code:
 (global-set-key (kbd "C-x C-f") 'helm-find-files)

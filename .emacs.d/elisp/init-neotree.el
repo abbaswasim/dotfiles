@@ -1,4 +1,4 @@
-;;; package --- summary
+;;; package --- summary  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; init-neotree.el neotree-mode settings
 (require 'neotree)

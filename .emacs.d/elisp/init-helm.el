@@ -1,4 +1,4 @@
-;; init-helm.el my helm configuation
+;; init-helm.el my helm configuation  -*- lexical-binding: t; -*-
 
 (require 'helm)
 ;; (require 'helm-config)

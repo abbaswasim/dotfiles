@@ -1,4 +1,4 @@
-;;; init-cmake --- initialize cmake
+;;; init-cmake --- initialize cmake  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:

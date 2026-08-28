@@ -1,4 +1,4 @@
-;;; init-packages.el -- elpa configuration
+;;; init-packages.el -- elpa configuration  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Initialize the package manager and add archives
 

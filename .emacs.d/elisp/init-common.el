@@ -1,4 +1,4 @@
-;;; init-common.el --- provides common usefull functions;
+;;; init-common.el --- provides common usefull functions;  -*- lexical-binding: t; -*-
 ;;
 ;;
 ;;; Commentary:
